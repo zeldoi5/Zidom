@@ -206,13 +206,6 @@ var parseString = require('xml2js').parseString;
 
 //http://www.zodianet.com/pub/ZAPI2_V1.2.pdf
 
-//        http://zibase.net/m/get_xml.php?device=ZiBASE005bf2&token=fdb06a35b3
-xmlurl = "http://zibase.net/m/get_xml.php?device=ZiBASE005bf2&token=fdb06a35b3";
-//        https://zibase.net/api/get/ZAPI.php?zibase=ZiBASE005bf2&token=fdb06a35b3&service=get&target=home
-//        http://zibase.net/m/get_xml.php?device=ZiBASE005bf2&token=fdb06a35b3&format=xml
-//        https://zibase.net/api/get/ZAPI.php?zibase=ZiBASE005bf2&token&service=get&target=actuator&id=xxx
-//xmlurl = /home/volumio/udp/zibase.xml
-
 console.log("// *************************************************************************** ")
 console.log("// *****************   Script de configuration automatique   ***************** ")
 console.log("// *****************   Zeldoi5                               ***************** ")
