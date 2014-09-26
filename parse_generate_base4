@@ -42,6 +42,8 @@ app_script = app_script+'// *****************   - zibase_device                 
 app_script = app_script+'// *****************   - jeedom_ip                                                                    ***************** \n';
 app_script = app_script+'// *****************   - jeedom_api                                                                   ***************** \n';
 app_script = app_script+'// ******************************************************************************************************************** \n';
+app_script = app_script+'// XML URL : '+zibase_url+' \n';
+
 
 app_script = app_script+'var clientIp = process.env.MYIP || getIPAddress();\n';
 app_script = app_script+'var zibaseIp = process.env.IP_ZIBASE|| "'+zibase_ip+'";\n';
@@ -209,19 +211,21 @@ var parseString = require('xml2js').parseString;
 
 xmlurl = zibase_url;
 
-console.log("// *************************************************************************** ")
-console.log("// *****************   Script de configuration automatique   ***************** ")
-console.log("// *****************   Zeldoi5                               ***************** ")
-console.log("// *****************   merci de remplir les variables :      ***************** ")
-console.log("// *****************   - zibase_device                       ***************** ")
-console.log("// *****************   - zibase_token                        ***************** ")
-console.log("// *****************   - zibase_device                       ***************** ")
-console.log("// *****************   - jeedom_ip                           ***************** ")
-console.log("// *****************   - jeedom_api                          ***************** ")
-console.log("// *************************************************************************** ")
-
 request(xmlurl, function(err, resp, body)
 {
+	console.log(" URL de peripheriques Zibase : "+xmlurl);
+
+	console.log("// *************************************************************************** ")
+	console.log("// *****************   Script de configuration automatique   ***************** ")
+	console.log("// *****************   Zeldoi5                               ***************** ")
+	console.log("// *****************   merci de remplir les variables :      ***************** ")
+	console.log("// *****************   - zibase_device                       ***************** ")
+	console.log("// *****************   - zibase_token                        ***************** ")
+	console.log("// *****************   - zibase_device                       ***************** ")
+	console.log("// *****************   - jeedom_ip                           ***************** ")
+	console.log("// *****************   - jeedom_api                          ***************** ")
+	console.log("// *************************************************************************** ")
+	
 	var name_eqp = "";
 	var id_eqp= "";
 	var id1_eqp= "";
@@ -435,6 +439,33 @@ request(xmlurl, function(err, resp, body)
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
+				
+				app_script = app_script+'	if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'"))\n'
+				app_script = app_script+'	{\n';
+				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\")\n';
+				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Activation volet de l\'equipement \")\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
+
+				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
+				app_script = app_script+'		http_request = http_request + 1;\n';
+				app_script = app_script+'	}\n';
+				
+				app_script = app_script+'	if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'"))\n'
+				app_script = app_script+'	{\n';
+				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\")\n';
+				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP DESActivation volet de l\'equipement \")\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
+
+				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
+				app_script = app_script+'		http_request = http_request + 1;\n';
+				app_script = app_script+'	}\n';
+				
 			}
 			if (type_eqp == "transmitter")
 			{
