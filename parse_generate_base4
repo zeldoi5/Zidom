@@ -440,30 +440,20 @@ request(xmlurl, function(err, resp, body)
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
 				
-				app_script = app_script+'	if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'"))\n'
+				app_script = app_script+'	if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'_OFF"))\n'
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\")\n';
-				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Activation volet de l\'equipement \")\n';
+				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Ouverture volet de l\'equipement \")\n';
 				app_script = app_script+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
-
-				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-				app_script = app_script+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
-				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
-				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
 				
-				app_script = app_script+'	if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'"))\n'
+				app_script = app_script+'	if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'_ON"))\n'
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\")\n';
-				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP DESActivation volet de l\'equipement \")\n';
-				app_script = app_script+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Fermeture volet de l\'equipement \")\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
-
-				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-				app_script = app_script+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
-				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
-				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
 				
 			}
