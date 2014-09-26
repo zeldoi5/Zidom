@@ -217,7 +217,7 @@ console.log("// *****************   - jeedom_ip                           ******
 console.log("// *****************   - jeedom_api                          ***************** ")
 console.log("// *************************************************************************** ")
 
-request(xmlurl, function(err, resp, body)
+request(zibase_url, function(err, resp, body)
 {
 	var name_eqp = "";
 	var id_eqp= "";
