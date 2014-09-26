@@ -1,6 +1,6 @@
 var clientIp = process.env.MYIP || getIPAddress();
-var zibaseIp = process.env.IP_ZIBASE|| "192.168.0.XX";
-
+var zibase_ip = "192.168.XXX.XXX"
+var zibaseIp = process.env.IP_ZIBASE|| zibase_ip;
 var zibase_device = require('string');
 var zibase_token = require('string');
 var zibase_url = require('string');
@@ -39,7 +39,7 @@ app_script = app_script+'// *****************   - jeedom_api                    
 app_script = app_script+'// ******************************************************************************************************************** \n';
 
 app_script = app_script+'var clientIp = process.env.MYIP || getIPAddress();\n';
-app_script = app_script+'var zibaseIp = process.env.IP_ZIBASE|| "192.168.0.30";\n';
+app_script = app_script+'var zibaseIp = process.env.IP_ZIBASE|| "'+zibase_ip+'";\n';
 app_script = app_script+'var S = require(\'string\');\n';
 app_script = app_script+'var request = require(\"request\");\n';
 app_script = app_script+'var dgram = require(\"dgram\");\n';
