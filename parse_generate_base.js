@@ -287,17 +287,17 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Total Energy: \" + kwh)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + kwh, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + kwh, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Power: \" + w)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + w, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + w, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -310,12 +310,12 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id1_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Telecommande ON : \" + sta)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -325,12 +325,12 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id2_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Telecommande OFF : \" + sta)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=0\", function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=0\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -343,12 +343,12 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id1_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Telecommande ON : \" + sta)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -358,12 +358,12 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id2_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Telecommande OFF : \" + sta)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=0\", function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=0\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -376,12 +376,12 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id1_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Telecommande ON : \" + sta)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -391,12 +391,12 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id2_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Telecommande OFF : \" + sta)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=0\", function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=0\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -411,11 +411,11 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Activation de l\'equipement \")\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -424,11 +424,11 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement \")\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -443,11 +443,11 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Activation de l\'equipement \")\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -456,11 +456,11 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement \")\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=1\", function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -473,17 +473,17 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP temperature: \" + tem)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + tem, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + tem, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Niveau de reception radio: \" + lev)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + lev, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + lev, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
@@ -496,12 +496,12 @@ request(zibase_url, function(err, resp, body)
 				app_script = app_script+'	{\n';
 				app_script = app_script+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\")\n';
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP lumiere: \" + uv)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + uv, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + uv, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 
 				app_script = app_script+'		console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-				app_script = app_script+'		request(\"http://192.168.0.35/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
+				app_script = app_script+'		request(\"http://'+jeedom_ip+'/jeedom/core/api/jeeApi.php?api='+jeedom_api+'&type=virtual&id=&value=\" + bat, function(error, response, body)\n';
 				app_script = app_script+'		{	console.log(new Date() + \" \" + body); });\n';
 				app_script = app_script+'		http_request = http_request + 1;\n';
 				app_script = app_script+'	}\n';
