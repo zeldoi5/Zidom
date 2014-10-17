@@ -857,7 +857,7 @@ request(xmlurl, function(err, resp, body)
 						
 						app_undefined = app_undefined+'			if (S(msg).include(\'Humidity\'))\n'
 						app_undefined = app_undefined+'			{\n';
-						app_undefined = app_undefined+'				console.log(\"  Envoi de la requete HTTP Hygrometrie: \" + bat)\n';
+						app_undefined = app_undefined+'				console.log(\"  Envoi de la requete HTTP Hygrometrie: \" + hum)\n';
 						app_undefined = app_undefined+'				request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + hum, function(error, response, body)\n';
 						app_undefined = app_undefined+'				{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'				http_request = http_request + 1;\n';
