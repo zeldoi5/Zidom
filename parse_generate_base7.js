@@ -1182,7 +1182,7 @@ request(xmlurl, function(err, resp, body)
 		
 		console.log("\n\n------------------------------------------------------------------------------------")
 		console.log(" Debut d'Ecriture dans le fichier zidomn.js ...")
-		fs.writeFileSync("zidomn.js", app_script, "UTF-8");
+		fs.writeFileSync("zidomn7.js", app_script, "UTF-8");
 		console.log(" Fin d'Ecriture dans le fichier zidomn.js !")
 	});
 });
