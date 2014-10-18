@@ -13,7 +13,7 @@ var  jeedom_api = require('string');
 // A remplir :
 zibase_device = "";
 zibase_token = "";
-jeedom_ip = "";
+jeedom_ip = "192.168.X.X";
 jeedom_api = "";
 
 jeedom_chemin_install    = "/jeedom/core/api/jeeApi.php?api=";
@@ -21,6 +21,7 @@ jeedom_chemin_preinstall = "/core/api/jeeApi.php?api=";
 jeedom_chemin = jeedom_chemin_install; // ou jeedom_chemin = jeedom_chemin_preinstall; si jeedom a ete preinstallee
 
 zibase_url = "http://zibase.net/m/get_xml.php?device="+zibase_device+"&token="+zibase_token;
+
 
 var S = require('string');
 var request = require("request");
@@ -110,7 +111,7 @@ app_script = app_script+'	sta 	= S(msg).between(\'<sta>\', \'</sta>\').s;\n';
 app_script = app_script+'\n';
 app_script = app_script+'	console.log("--------------------------------------------------------------------------------------")\n';
 app_script = app_script+'\n';
-//app_script = app_script+'	console.log(new Date() + " " + msg.slice(70));\n';
+app_script = app_script+'	console.log(new Date() + " " + msg.slice(70));\n';
 app_script = app_script+'';
 
 app_script = app_script+'	visionic433 = S(msg).include(\'VISONIC433\');\n';
@@ -323,7 +324,7 @@ app_script = app_script+'		{\n			 xdd868alrm_status = "ON";\n		}\n';
 app_script = app_script+'		else if (S(msg).include(\'_OFF\'))\n';
 app_script = app_script+'		{\n			 xdd868alrm_status = "OFF";\n		}\n';
 app_script = app_script+'		else if (S(msg).include(\'_DIM/SPECIAL\'))\n';
-app_script = app_script+'		{\n			 xdd868pilotwire_status = "DIM/SPECIAL"; }\n';
+app_script = app_script+'		{\n			 xdd868pilotwire_status = "DIM/SPECIAL";\n		}\n';
 app_script = app_script+'		console.log("Debug : xdd868pilotwire    : " + xdd868pilotwire + " | Composant/Id " + xdd868pilotwire_id + " | Statut " + xdd868pilotwire_status);\n';
 app_script = app_script+'	}\n';
 
@@ -337,7 +338,7 @@ app_script = app_script+'		{\n			 xdd868alrm_status = "ON";\n		}\n';
 app_script = app_script+'		else if (S(msg).include(\'_OFF\'))\n';
 app_script = app_script+'		{\n			 xdd868alrm_status = "OFF";\n		}\n';
 app_script = app_script+'		else if (S(msg).include(\'_DIM/SPECIAL\'))\n';
-app_script = app_script+'		{\n			 xdd868pilotwire_status = "DIM/SPECIAL"; }\n';
+app_script = app_script+'		{\n			 xdd868pilotwire_status = "DIM/SPECIAL";\n		}\n';
 app_script = app_script+'		console.log("Debug : xdd868boiler    : " + xdd868boiler + " | Composant/Id " + xdd868boiler_id + " | Statut " + xdd868boiler_status);\n';
 app_script = app_script+'	}\n';
 
