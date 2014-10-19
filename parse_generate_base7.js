@@ -21,7 +21,7 @@ jeedom_chemin_preinstall = "/core/api/jeeApi.php?api=";
 jeedom_chemin = jeedom_chemin_install; // ou jeedom_chemin = jeedom_chemin_preinstall; si jeedom a ete preinstallee
 
 zibase_url = "http://zibase.net/m/get_xml.php?device="+zibase_device+"&token="+zibase_token;
-//http://zibase.net/m/get_xml.php?device=ZiBASE005d18&token=fdb06a35b3
+
 
 var S = require('string');
 var request = require("request");
@@ -530,14 +530,14 @@ request(xmlurl, function(err, resp, body)
 					app_chacon = app_chacon+'		{\n';
 					app_chacon = app_chacon+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut ON et de type '+type_eqp+'\");\n';
 					app_chacon = app_chacon+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\";\n';
-					app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement\n';
-					app_chacon = app_chacon+'			console.log(\"  Requete :\" + http_request)\n';
+					app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement \");\n';
+					app_chacon = app_chacon+'			console.log(\"  Requete :\" + http_request);\n';
 					app_chacon = app_chacon+'			request(http_request, function(error, response, body)\n';
 					app_chacon = app_chacon+'			{	console.log(new Date() + \" \" + body); });\n';
 
-					/*app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
+					/*app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
 					app_chacon = app_chacon+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\"+bat;\n';
-					app_chacon = app_chacon+'			console.log(\"  Requete :\" + http_request)\n';
+					app_chacon = app_chacon+'			console.log(\"  Requete :\" + http_request);\n';
 					app_chacon = app_chacon+'			request(http_request, function(error, response, body)\n';
 					app_chacon = app_chacon+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_chacon = app_chacon+'			nb_http_request = nb_http_request + 1;\n';*/
@@ -547,12 +547,12 @@ request(xmlurl, function(err, resp, body)
 					app_chacon = app_chacon+'		{\n';
 					app_chacon = app_chacon+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut OFF et de type '+type_eqp+'\");\n';
 					app_chacon = app_chacon+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\";\n';
-					app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement\n';
-					app_chacon = app_chacon+'			console.log(\"  Requete :\" + http_request)\n';
+					app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement \");\n';
+					app_chacon = app_chacon+'			console.log(\"  Requete :\" + http_request);\n';
 					app_chacon = app_chacon+'			request(http_request, function(error, response, body)\n';
 					app_chacon = app_chacon+'			{	console.log(new Date() + \" \" + body); });\n';
 
-					/*app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
+					/*app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
 					app_chacon = app_chacon+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\"+bat;\n';
 					app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement :\"+http_request+\");\n';
 					app_chacon = app_chacon+'			request(http_request, function(error, response, body)\n';
@@ -576,15 +576,15 @@ request(xmlurl, function(err, resp, body)
 					app_rfx10 = app_rfx10+'\n		if (rfx10_id=="'+id_eqp+'" && rfx10_status=="ON")\n'
 					app_rfx10 = app_rfx10+'		{\n';
 					app_rfx10 = app_rfx10+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut ON et de type '+type_eqp+'\");\n';
-					app_rfx10 = app_rfx10+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\";\n';
-					app_rfx10 = app_rfx10+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement\n';
-					app_rfx10 = app_rfx10+'			console.log(\"  Requete :\" + http_request)\n';
+					app_rfx10 = app_rfx10+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
+					app_rfx10 = app_rfx10+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement \");\n';
+					app_rfx10 = app_rfx10+'			console.log(\"  Requete :\" + http_request);\n';
 					app_rfx10 = app_rfx10+'			request(http_request, function(error, response, body)\n';
 					app_rfx10 = app_rfx10+'			{	console.log(new Date() + \" \" + body); });\n';
 
-					/*app_rfx10 = app_rfx10+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
+					/*app_rfx10 = app_rfx10+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
 					app_rfx10 = app_rfx10+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\"+bat;\n';
-					app_rfx10 = app_rfx10+'			console.log(\"  Requete :\" + http_request)\n';
+					app_rfx10 = app_rfx10+'			console.log(\"  Requete :\" + http_request);\n';
 					app_rfx10 = app_rfx10+'			request(http_request + bat, function(error, response, body)\n';
 					app_rfx10 = app_rfx10+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_rfx10 = app_rfx10+'			nb_http_request = nb_http_request + 1;\n';*/
@@ -594,12 +594,12 @@ request(xmlurl, function(err, resp, body)
 					app_rfx10 = app_rfx10+'		{\n';
 					app_rfx10 = app_rfx10+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+'de statut OFF et de type '+type_eqp+'\");\n';
 					app_rfx10 = app_rfx10+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\";\n';
-					app_rfx10 = app_rfx10+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement\n';
-					app_rfx10 = app_rfx10+'			console.log(\"  Requete :\" + http_request)\n';
+					app_rfx10 = app_rfx10+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement \");\n';
+					app_rfx10 = app_rfx10+'			console.log(\"  Requete :\" + http_request);\n';
 					app_rfx10 = app_rfx10+'			request(http_request, function(error, response, body)\n';
 					app_rfx10 = app_rfx10+'			{	console.log(new Date() + \" \" + body); });\n';
 
-					/*app_rfx10 = app_rfx10+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
+					/*app_rfx10 = app_rfx10+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
 					app_rfx10 = app_rfx10+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\"+bat;\n';
 					app_rfx10 = app_rfx10+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement :\"+http_request+\");\n';
 					app_rfx10 = app_rfx10+'			request(http_request, function(error, response, body)\n';
@@ -616,23 +616,24 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'\n		if (zwave_id=="'+id_eqp+'")\n'
 						app_zwave = app_zwave+'		{\n';
 						app_zwave = app_zwave+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut POWER et de type '+type_eqp+'\");\n';
-						app_zwave = app_zwave+'			http_request = (\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + kwh';
-						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Total Energy: \" + kwh)\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n';
+						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + kwh;\n';
+						
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Total Energy: \" + kwh);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_zwave = app_zwave+'			http_request = (\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + w';
-						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Power: \" + w)\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n';
+						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + w;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Power: \" + w);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_zwave = app_zwave+'			http_request = (\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat';
-						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n';
+						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
@@ -647,15 +648,15 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'\n		if (dev=="CMD/INTER" && zwave_id=="'+id_eqp+'" && zwave_status=="ON")\n'
 						app_zwave = app_zwave+'		{\n';
 						app_zwave = app_zwave+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut ON et de type '+type_eqp+'\");\n';
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1"\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement\");\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n'; 
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n'; 
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat\n';
-						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
@@ -664,15 +665,15 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'\n		if (dev=="CMD/INTER" && zwave_id=="'+id_eqp+'" && zwave_status=="OFF")\n'
 						app_zwave = app_zwave+'		{\n';
 						app_zwave = app_zwave+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut OFF et de type '+type_eqp+'\");\n';
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0"\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\";\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement\");\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n'; 
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n'; 
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat\n';
-						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
@@ -681,15 +682,15 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'\n		if (zwave_id=="'+id_eqp+'" && zwave_status=="ON")\n'
 						app_zwave = app_zwave+'		{\n';
 						app_zwave = app_zwave+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut ON et de type '+type_eqp+'\");\n';
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1"\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement\");\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n'; 
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n'; 
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat\n';
-						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
@@ -698,17 +699,53 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'\n		if (zwave_id=="'+id_eqp+'" && zwave_status=="OFF")\n'
 						app_zwave = app_zwave+'		{\n';
 						app_zwave = app_zwave+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut OFF et de type '+type_eqp+'\");\n';
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0"\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\";\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement\");\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n'; 
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n'; 
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat\n';
-						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
+						app_zwave = app_zwave+'		}\n';
+						
+						app_zwave = app_zwave+'\n		if (zwave_id=="'+id_eqp+'" && zwave_status=="UNKNOWN" && S(dev).include(\'Power Measure\'))\n'
+						app_zwave = app_zwave+'		{\n';
+						app_zwave = app_zwave+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut POWER et de type '+type_eqp+'\");\n';
+						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + kwh;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Total Energy: \" + kwh);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
+						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
+						app_zwave = app_zwave+'			{	console.log(new Date() + " " + body); });\n';
+						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
+
+						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + w;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Power: \" + w);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
+						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
+						app_zwave = app_zwave+'			{	console.log(new Date() + " " + body); });\n';
+						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
+
+						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
+						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
+						app_zwave = app_zwave+'			{	console.log(new Date() + " " + body); });\n';
+						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
+						app_zwave = app_zwave+'		}\n'
+
+						app_zwave = app_zwave+'\n		if (zwave_id=="'+id_eqp+'" && zwave_status=="UNKNOWN" && dev == "WakeUp")\n'
+						app_zwave = app_zwave+'		{\n';
+						app_zwave = app_zwave+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut WakeUp de type '+type_eqp+'\");\n';
+						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
+						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
+						app_zwave = app_zwave+'			{	console.log(new Date() + " " + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
 						app_zwave = app_zwave+'		}\n';
 					}
@@ -721,15 +758,15 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'\n		if (dev=="CMD/INTER" && zwave_id=="'+id_eqp+'" && zwave_status=="ON")\n'
 						app_zwave = app_zwave+'		{\n';
 						app_zwave = app_zwave+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut ON et de type '+type_eqp+'\");\n';
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1"\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement\");\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n'; 
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n'; 
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat\n';
-						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
@@ -738,15 +775,15 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'\n		if (dev=="CMD/INTER" && zwave_id=="'+id_eqp+'" && zwave_status=="OFF")\n'
 						app_zwave = app_zwave+'		{\n';
 						app_zwave = app_zwave+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut OFF et de type '+type_eqp+'\");\n';
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0"\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\";\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement\");\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n'; 
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n'; 
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 
-						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat\n';
-						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request)\n';
+						app_zwave = app_zwave+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
@@ -784,9 +821,9 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868intershutter = app_xdd868intershutter+'\n		if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'_ON"))\n'
 					app_xdd868intershutter = app_xdd868intershutter+'		{\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut ONet de type '+type_eqp+'\");\n';
-					app_xdd868intershutter = app_xdd868intershutter+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1"\n';
-					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Envoi de la requete HTTP Ouvetture volet de l\'equipement \");\n';
-					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Requete :\" + http_request)\n'; 
+					app_xdd868intershutter = app_xdd868intershutter+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
+					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Envoi de la requete HTTP Ouverture volet de l\'equipement \");\n';
+					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868intershutter = app_xdd868intershutter+'			request(http_request, function(error, response, body)\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_xdd868intershutter = app_xdd868intershutter+'		}\n';
@@ -794,9 +831,9 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868intershutter = app_xdd868intershutter+'\n		if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'_OFF"))\n'
 					app_xdd868intershutter = app_xdd868intershutter+'		{\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut OFF et de type '+type_eqp+'\");\n';
-					app_xdd868intershutter = app_xdd868intershutter+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0"\n';
+					app_xdd868intershutter = app_xdd868intershutter+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\";\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Envoi de la requete HTTP Fermeture volet de l\'equipement \");\n';
-					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Requete :\" + http_request)\n'; 
+					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868intershutter = app_xdd868intershutter+'			request(http_request, function(error, response, body)\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_xdd868intershutter = app_xdd868intershutter+'		}\n';
@@ -804,9 +841,9 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868intershutter = app_xdd868intershutter+'\n		if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'") && S(msg).include("DIM/SPECIAL"))\n'
 					app_xdd868intershutter = app_xdd868intershutter+'		{\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statu DIM/SPECIAL et de type '+type_eqp+'\");\n';
-					app_xdd868intershutter = app_xdd868intershutter+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1"\n';
+					app_xdd868intershutter = app_xdd868intershutter+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Envoi de la requete HTTP Arret volet de l\'equipement \");\n';
-					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Requete :\" + http_request)\n'; 
+					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868intershutter = app_xdd868intershutter+'			request(http_request, function(error, response, body)\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_xdd868intershutter = app_xdd868intershutter+'		}\n';
@@ -819,9 +856,9 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_ON"))\n'
 					app_xdd868pilotwire = app_xdd868pilotwire+'		{\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut ON et de type '+type_eqp+'\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1"\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request)\n'; 
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'		}\n';
@@ -829,9 +866,9 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868pilotwire = app_xdd868pilotwire+'		if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_OFF"))\n'
 					app_xdd868pilotwire = app_xdd868pilotwire+'		{\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut OFF et de type '+type_eqp+'\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement\")\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request)\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
@@ -840,9 +877,9 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'") && S(msg).include("DIM/SPECIAL"))\n'
 					app_xdd868pilotwire = app_xdd868pilotwire+'		{\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut DIM/SPECIAL et de type '+type_eqp+'\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP DIM/SPECIAL de l\equipement\")\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request)\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP DIM/SPECIAL de l\equipement\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
@@ -859,80 +896,98 @@ request(xmlurl, function(err, resp, body)
 				// Traitement des périphériques sans protocoles
 				else if (proto =="oregon")
 				{
-						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
-						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
-						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'")\n'
-						app_undefined = app_undefined+'		{\n';
-						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			http_request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + tem\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP temperature: \" + tem)\n';
-						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request)\n';
-						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
-						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
-						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
+					console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
+					app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'")\n'
+					app_undefined = app_undefined+'		{\n';
 
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio: \" + lev)\n';
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + lev\n';
-						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request)\n';
-						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
-						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
-						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+					/*app_undefined = app_undefined+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut DIM/SPECIAL et de type '+type_eqp+'\");\n';
+					app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+					app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP DIM/SPECIAL de l\equipement\");\n';
+					app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+					app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+					app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
 
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat\n';
-						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request)\n';
-						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
-						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
-						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
-						
-						app_undefined = app_undefined+'			if (S(msg).include(\'Humidity\'))\n'
-						app_undefined = app_undefined+'			{\n';
-						app_undefined = app_undefined+'				console.log(\"  Envoi de la requete HTTP Hygrometrie: \" + bat)\n';
-						app_undefined = app_undefined+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + hum\n';
-						app_undefined = app_undefined+'				console.log(\"  Requete :\" + http_request)\n';
-						app_undefined = app_undefined+'				request(http_request, function(error, response, body)\n';
-						app_undefined = app_undefined+'				{	console.log(new Date() + \" \" + body); });\n';
-						app_undefined = app_undefined+'				nb_http_request = nb_http_request + 1;\n';
-						app_undefined = app_undefined+'			}\n';
-						app_undefined = app_undefined+'		}\n';
+					app_undefined = app_undefined+'			console.log(\" Test de l equipement Oregon ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\");\n';
+					app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + tem;\n';
+					app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP temperature: \" + tem);\n';
+					app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+					app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+					app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + lev;\n';
+					app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio: \" + lev);\n';
+					app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+					app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+					app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+					app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+					app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+					app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+					app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+					
+					app_undefined = app_undefined+'			if (S(msg).include(\'Humidity\'))\n'
+					app_undefined = app_undefined+'			{\n';
+					app_undefined = app_undefined+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + hum\n';
+					app_undefined = app_undefined+'				console.log(\"  Envoi de la requete HTTP Hygrometrie: \" + hum);\n';
+					app_undefined = app_undefined+'				console.log(\"  Requete :\" + http_request);\n';
+					app_undefined = app_undefined+'				request(http_request, function(error, response, body)\n';
+					app_undefined = app_undefined+'				{	console.log(new Date() + \" \" + body); });\n';
+					app_undefined = app_undefined+'				nb_http_request = nb_http_request + 1;\n';
+					app_undefined = app_undefined+'			}\n';
+					app_undefined = app_undefined+'		}\n';
 				}
 				else if (proto == "undefined")
 				{
 					//console.log(" Equipement de type "+proto+".");
-					//Traitements des sondes de température					
+					//Traitements des sondes de Temperature					
 					if (type_eqp == "temperature")
 					{
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
 						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'")\n'
 						app_undefined = app_undefined+'		{\n';
-						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			http_request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + tem\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP temperature: \" + tem)\n';
-						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request)\n';
+
+						/*app_undefined = app_undefined+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut DIM/SPECIAL et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP DIM/SPECIAL de l\equipement\");\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
+
+						app_undefined = app_undefined+'			console.log(\" Test de l equipement Temperature ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + tem;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP temperature: \" + tem);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio: \" + lev)\n';
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + lev\n';
-						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request)\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + lev;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio: \" + lev);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat\n';
-						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request)\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						
 						app_undefined = app_undefined+'			if (S(msg).include(\'Humidity\'))\n'
 						app_undefined = app_undefined+'			{\n';
-						app_undefined = app_undefined+'				console.log(\"  Envoi de la requete HTTP Hygrometrie: \" + bat)\n';
-						app_undefined = app_undefined+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + hum\n';
-						app_undefined = app_undefined+'				console.log(\"  Requete :\" + http_request)\n';
+						app_undefined = app_undefined+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + hum;\n';
+						app_undefined = app_undefined+'				console.log(\"  Envoi de la requete HTTP Hygrometrie: \" + hum);\n';
+						app_undefined = app_undefined+'				console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'				request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'				{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'				nb_http_request = nb_http_request + 1;\n';
@@ -948,14 +1003,27 @@ request(xmlurl, function(err, resp, body)
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
 						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'" && dev == "Light/UV")\n'
 						app_undefined = app_undefined+'		{\n';
+
+						/*app_undefined = app_undefined+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut DIM/SPECIAL et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP DIM/SPECIAL de l\equipement\");\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
+
 						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP lumiere: \" + uv)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + uv, function(error, response, body)\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + uv;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP lumiere: \" + uv);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						app_undefined = app_undefined+'		}\n';
@@ -969,14 +1037,27 @@ request(xmlurl, function(err, resp, body)
 						console.log("  Ajout dans le script Zidom du test de remontee sur cette telecommande");
 						app_undefined = app_undefined+'\n		if (id=="'+id1_eqp+'")\n'
 						app_undefined = app_undefined+'		{\n';
-						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id1_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande ON : \" + sta)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+						/*app_undefined = app_undefined+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut DIM/SPECIAL et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP DIM/SPECIAL de l\equipement\");\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
+
+						app_undefined = app_undefined+'			console.log(\" Test de l equipement COMMANDE ' + name_eqp + ', d\'ID '+id1_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande ON : \" + sta);\n';
+						//app_undefined = app_undefined+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						app_undefined = app_undefined+'		}\n';
@@ -984,16 +1065,33 @@ request(xmlurl, function(err, resp, body)
 						
 						app_undefined = app_undefined+'\n		if (id=="'+id2_eqp+'")\n'
 						app_undefined = app_undefined+'		{\n';
-						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id2_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande OFF : \" + sta)\n';
+						
+						app_undefined = app_undefined+'			console.log(\" Test de l equipement COMMANDE ' + name_eqp + ', d\'ID '+id2_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande OFF : \" + sta);\n';
+						//app_undefined = app_undefined+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+						
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+						
+						/*app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id2_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande OFF : \" + sta);\n';
 						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\", function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat);\n';
 						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
-						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
 						app_undefined = app_undefined+'		}\n';
 					}
 					//else if (type_eqp == "COMMANDE2")
@@ -1003,14 +1101,27 @@ request(xmlurl, function(err, resp, body)
 						console.log("  Ajout dans le script Zidom du test de remontee sur cette telecommande");
 						app_undefined = app_undefined+'\n		if (id=="'+id1_eqp+'")\n'
 						app_undefined = app_undefined+'		{\n';
-						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id1_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande ON : \" + sta)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+						/*app_undefined = app_undefined+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut DIM/SPECIAL et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP DIM/SPECIAL de l\equipement\");\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
+
+						app_undefined = app_undefined+'			console.log(\" Test de l equipement COMMANDE ' + name_eqp + ', d\'ID '+id1_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande ON : \" + sta);\n';
+						//app_undefined = app_undefined+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						app_undefined = app_undefined+'		}\n';
@@ -1018,14 +1129,19 @@ request(xmlurl, function(err, resp, body)
 						
 						app_undefined = app_undefined+'\n		if (id=="'+id2_eqp+'")\n'
 						app_undefined = app_undefined+'		{\n';
-						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id2_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande OFF : \" + sta)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\", function(error, response, body)\n';
+						app_undefined = app_undefined+'			console.log(\" Test de l equipement COMMANDE ' + name_eqp + ', d\'ID '+id2_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande OFF : \" + sta);\n';
+						//app_undefined = app_undefined+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						app_undefined = app_undefined+'		}\n';
@@ -1037,14 +1153,27 @@ request(xmlurl, function(err, resp, body)
 						console.log("  Ajout dans le script Zidom du test de remontee sur cette telecommande");
 						app_undefined = app_undefined+'\n		if (id=="'+id1_eqp+'")\n'
 						app_undefined = app_undefined+'		{\n';
-						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id1_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande ON : \" + sta)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+						/*app_undefined = app_undefined+'		console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' de statut DIM/SPECIAL et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP DIM/SPECIAL de l\equipement\");\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
+
+						app_undefined = app_undefined+'			console.log(\" Test de l equipement COMMANDE ' + name_eqp + ', d\'ID '+id1_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande ON : \" + sta);\n';
+						//app_undefined = app_undefined+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						app_undefined = app_undefined+'		}\n';
@@ -1052,14 +1181,19 @@ request(xmlurl, function(err, resp, body)
 						
 						app_undefined = app_undefined+'\n		if (id=="'+id2_eqp+'")\n'
 						app_undefined = app_undefined+'		{\n';
-						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id2_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande OFF : \" + sta)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\", function(error, response, body)\n';
+						app_undefined = app_undefined+'			console.log(\" Test de l equipement COMMANDE ' + name_eqp + ', d\'ID '+id2_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Telecommande OFF : \" + sta);\n';
+						//app_undefined = app_undefined+'		request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie Telecommande: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						app_undefined = app_undefined+'		}\n';
@@ -1070,31 +1204,39 @@ request(xmlurl, function(err, resp, body)
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
 						
-						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'")\n'
+						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'" && sta =="ON")\n'
 						app_undefined = app_undefined+'		{\n';
 						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
 						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement \");\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\", function(error, response, body)\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n'; 
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						app_undefined = app_undefined+'		}\n';
 
-						/*app_undefined = app_undefined+'\n		if (dev=="CMD/INTER" && zwave_id=="'+id_eqp+'_OFF")\n'
+						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'" && sta =="OFF")\n'
 						app_undefined = app_undefined+'		{\n';
 						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID '+id_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=1\";\n';
 						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement \");\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=0\", function(error, response, body)\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n'; 
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat)\n';
-						app_undefined = app_undefined+'			request(\"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat, function(error, response, body)\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=42&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
-						app_undefined = app_undefined+'		}\n';*/
+						app_undefined = app_undefined+'		}\n';
 					}
 				}
 			}
@@ -1181,9 +1323,9 @@ request(xmlurl, function(err, resp, body)
 		app_script = app_script+'}\n';
 		
 		console.log("\n\n------------------------------------------------------------------------------------")
-		console.log(" Debut d'Ecriture dans le fichier zidomn.js ...")
+		console.log(" Debut d'Ecriture dans le fichier zidomn7.js ...")
 		fs.writeFileSync("zidomn7.js", app_script, "UTF-8");
-		console.log(" Fin d'Ecriture dans le fichier zidomn.js !")
+		console.log(" Fin d'Ecriture dans le fichier zidomn7.js !")
 	});
 });
 
