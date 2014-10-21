@@ -366,7 +366,7 @@ app_script2 = app_script2+'		{\n			 xdd868alrm_status = "ON";\n		}\n';
 app_script2 = app_script2+'		else if (S(msg).include(\'_OFF\'))\n';
 app_script2 = app_script2+'		{\n			 xdd868alrm_status = "OFF";\n		}\n';
 app_script2 = app_script2+'		else if (S(msg).include(\'_DIM/SPECIAL\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "DIM/SPECIAL";\n		}\n';
+app_script2 = app_script2+'		{\n			 xdd868boiler_status = "DIM/SPECIAL";\n		}\n';
 app_script2 = app_script2+'		console.log("Debug : xdd868boiler    : " + xdd868boiler + " | Composant/Id " + xdd868boiler_id + " | Statut " + xdd868boiler_status);\n';
 app_script2 = app_script2+'	}\n';
 
