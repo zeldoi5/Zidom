@@ -20,7 +20,7 @@ jeedom_chemin_install    = "/jeedom/core/api/jeeApi.php?api=";
 jeedom_chemin_preinstall = "/core/api/jeeApi.php?api=";
 jeedom_chemin = jeedom_chemin_install; // ou jeedom_chemin = jeedom_chemin_preinstall; si jeedom a ete preinstallee
 
-
+zibase_url = "http://zibase.net/m/get_xml.php?device="+zibase_device+"&token="+zibase_token;
 //var utils = require('util');
 var S = require('string');
 var request = require("request");
@@ -1073,7 +1073,7 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868pilotwire = app_xdd868pilotwire+'				request(http_request, function(error, response, body)\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'				{	console.log(new Date() + \" \" + body); });\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'				nb_http_request = nb_http_request + 1;\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+'+jidcmd+;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+'+jidcmd+';\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Envoi de la requete HTTP Commande de l\'equipement\");\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868pilotwire = app_xdd868pilotwire+'				request(http_request, function(error, response, body)\n';
