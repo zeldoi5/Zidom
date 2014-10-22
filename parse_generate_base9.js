@@ -1,5 +1,5 @@
 var clientIp = process.env.MYIP || getIPAddress();
-zibase_ip = "192.168.0."
+zibase_ip = "192.168.0.x"
 var zibaseIp = process.env.IP_ZIBASE|| zibase_ip;
 
 var zibase_device = require('string');
@@ -1115,7 +1115,7 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'		}\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'	}\n';
+					//app_xdd868pilotwire = app_xdd868pilotwire+'	}\n';
 
 					count_periph++;					
 				}
