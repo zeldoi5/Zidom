@@ -20,8 +20,6 @@ jeedom_chemin_install    = "/jeedom/core/api/jeeApi.php?api=";
 jeedom_chemin_preinstall = "/core/api/jeeApi.php?api=";
 jeedom_chemin = jeedom_chemin_install; // ou jeedom_chemin = jeedom_chemin_preinstall; si jeedom a ete preinstallee
 
-zibase_url = "http://zibase.net/m/get_xml.php?device="+zibase_device+"&token="+zibase_token;
-//http://zibase.net/m/get_xml.php?device=ZiBASE005d18&token=fdb06a35b3
 
 //var utils = require('util');
 var S = require('string');
