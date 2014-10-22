@@ -1,5 +1,5 @@
 var clientIp = process.env.MYIP || getIPAddress();
-zibase_ip = "192.168.0.x"
+zibase_ip = "192.168.0."
 var zibaseIp = process.env.IP_ZIBASE|| zibase_ip;
 
 var zibase_device = require('string');
@@ -39,6 +39,8 @@ var jidhygro = require('string');	// Variable des identifiants Jeedom pour les r
 jidhygro = "";
 var jidbatterie = require('string');	// Variable des identifiants Jeedom pour les remontées de batterie
 jidbatterie = "";
+var jidcmd = require('string');	// Variable des identifiants Jeedom pour les remontées de commande (X2D)
+jidcmd = "";
 var jidradio = require('string');	// Variable des identifiants Jeedom pour les remontées de réception radio
 jidradio = "";
 var jidpowerstatus = require('string');	// Variable des identifiants Jeedom pour les remontées de Statut sur les équipements de type Power
@@ -169,6 +171,7 @@ app_script2 = app_script2+'	xdd868intershutter = S(msg).include(\'Inter/shutter 
 app_script2 = app_script2+'		xdd868intershutter_status = "";\n';
 app_script2 = app_script2+'	xdd868pilotwire = S(msg).include(\'XDD868 Radiator/Pilot Wire\');\n';
 app_script2 = app_script2+'		xdd868pilotwire_status = "";\n';
+app_script2 = app_script2+'		xdd868pilotwire_cmd = "";\n';
 app_script2 = app_script2+'	xdd868boiler = S(msg).include(\'XDD868Boiler\');\n';
 app_script2 = app_script2+'		xdd868boiler_status = "";\n';
 app_script2 = app_script2+'	owl = S(msg).include(\'433Mhz OWL\');\n';
@@ -210,7 +213,7 @@ app_script2 = app_script2+'		{\n			 chacon_status = "OFF";\n		}\n';
 app_script2 = app_script2+'		console.log("Debug : chacon    : " + chacon + " | Composant/Id " + chacon_id + " | Statut " + chacon_status);\n';
 app_script2 = app_script2+'	}\n';
 
-app_script2 = app_script2+'\n	//Test de remontees de PROTOCOLE 4 : composants DOMIA\n';
+app_script2 = app_script2+'\n	//Test de remontees de PROTOCOLE 4 : composants DOMIA : 	Sent radio ID (1 Burst(s), Protocols=\'Domia\' ): M13_ON\n';
 app_script2 = app_script2+'	if (S(msg).include(\'DOMIA\'))\n';
 app_script2 = app_script2+'	{\n';
 app_script2 = app_script2+'	    domia_id  = S(msg).between("Domia\' ): ", \'_\').s;\n';
@@ -315,7 +318,7 @@ app_script2 = app_script2+'		{\n			 xdd868alrm_status = "OFF";\n		}\n';
 app_script2 = app_script2+'		console.log("Debug : xdd868alrm    : " + xdd868alrm + " | Composant/Id " + id + " | Statut " + xdd868alrm_status);\n';
 app_script2 = app_script2+'	}\n';
 
-app_script2 = app_script2+'\n	//Test de remontees de PROTOCOLE 10 : composants XDD868 Inter/Shutter\n';
+app_script2 = app_script2+'\n	//Test de remontees de PROTOCOLE 10 : composants XDD868 Inter/Shutter : 		 Sent radio ID (1 Burst(s), Protocols=\'Inter/shutter RFY433\' ): C1_OFF\n';
 app_script2 = app_script2+'	if (S(msg).include(\'Inter/shutter RFY433\'))\n';
 app_script2 = app_script2+'	{\n';
 app_script2 = app_script2+'	    xdd868intershutter_id  = S(msg).between("Inter/shutter RFY433\' ): ", \'_\').s;\n';
@@ -329,31 +332,20 @@ app_script2 = app_script2+'		else if (S(msg).include(\'_OFF)\')) { xdd868intersh
 app_script2 = app_script2+'		console.log("Debug : xdd868intershutter    : " + xdd868intershutter + " | Composant/Id " + xdd868intershutter_id + " | Statut " + xdd868intershutter_status);\n';
 app_script2 = app_script2+'	}\n';
 
-/*app_script2 = app_script2+'	//Test de remontees de composants Inter/shutter RFY433 ou SOMFY		 Sent radio ID (1 Burst(s), Protocols=\'Inter/shutter RFY433\' ): C1_OFF\n';
-app_script2 = app_script2+'	somfy = S(msg).include(\'Inter/shutter RFY433\'); somfy_id = ""; somfy_power_ON = ""; somfy_power_OFF = ""; somfy_DIM_SPECIAL = "";\n ';
-app_script2 = app_script2+'	if (S(msg).include(\'Inter/shutter RFY433\'))\n';
-app_script2 = app_script2+'	{\n';
-app_script2 = app_script2+'		somfy = true;\n';
-app_script2 = app_script2+'		somfy_id 			= S(msg).between("Protocols=\'Inter/shutter RFY433\' ): ", " ").s;\n';
-app_script2 = app_script2+'		somfy_power_ON 		= S(msg).include(\'_ON\');\n';
-app_script2 = app_script2+'		somfy_power_OFF 	= S(msg).include(\'_OFF\');\n';
-app_script2 = app_script2+'		somfy_DIM_SPECIAL 	= S(msg).include(\'DIM/SPECIAL\');\n';
-app_script2 = app_script2+'		//somfy_cmd 			= S(msg).between("Protocols=\'Inter/shutter RFY433\' ): ", " ").s;\n';
-app_script2 = app_script2+'		console.log("Debug : somfy     : " + somfy + " | Power ON : " + somfy_power_ON + " | Power OFF : " + somfy_power_OFF + " | DIM/SPECIAL : " + somfy_DIM_SPECIAL);\n';
-app_script2 = app_script2+'	}\n';*/
-
-app_script2 = app_script2+'	//Test de remontees de PROTOCOLE 11 : composants XDD868PilotWire\n';
+app_script2 = app_script2+'	//Test de remontees de PROTOCOLE 11 : composants XDD868PilotWire: Sent radio ID (1 Burst(s), Protocols=\'XDD868 Radiator/Pilot Wire :OutOfFrost\' ): B1 DIM/SPECIAL\n';
+app_script2 = app_script2+'	\t\t//Sent radio ID (1 Burst(s), Protocols=\'XDD868 Radiator/Pilot Wire :Auto\' ): B1_ON';
 app_script2 = app_script2+'	if (S(msg).include(\'XDD868 Radiator/Pilot Wire\'))\n';
 app_script2 = app_script2+'	{\n';
 app_script2 = app_script2+'	    xdd868pilotwire_id  = S(msg).between("\' ): ", \'_\').s;\n';
 app_script2 = app_script2+'		xdd868pilotwire = true;\n';
+app_script2 = app_script2+'		xdd868pilotwire_cmd = S(msg).between("Radiator/Pilot Wire :", "\'").s;\n';
 app_script2 = app_script2+'		if (S(msg).include(\'_ON\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868alrm_status = "ON";\n		}\n';
+app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "ON";\n		}\n';
 app_script2 = app_script2+'		else if (S(msg).include(\'_OFF\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868alrm_status = "OFF";\n		}\n';
+app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "OFF";\n		}\n';
 app_script2 = app_script2+'		else if (S(msg).include(\'_DIM/SPECIAL\'))\n';
 app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "DIM/SPECIAL";\n		}\n';
-app_script2 = app_script2+'		console.log("Debug : xdd868pilotwire    : " + xdd868pilotwire + " | Composant/Id " + xdd868pilotwire_id + " | Statut " + xdd868pilotwire_status);\n';
+app_script2 = app_script2+'		console.log("Debug : xdd868pilotwire    : " + xdd868pilotwire + " | Composant/Id " + xdd868pilotwire_id + " | Statut " + xdd868pilotwire_status+ " | Commande " +xdd868pilotwire_cmd);\n';
 app_script2 = app_script2+'	}\n';
 
 app_script2 = app_script2+'	//Test de remontees de PROTOCOLE 12 : composants XDD868Boiler\n';
@@ -362,9 +354,9 @@ app_script2 = app_script2+'	{\n';
 app_script2 = app_script2+'	    xdd868boiler_id  = S(msg).between("XDD868Boiler\' ): ", \'_\').s;\n';
 app_script2 = app_script2+'		xdd868boiler = true;\n';
 app_script2 = app_script2+'		if (S(msg).include(\'_ON\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868alrm_status = "ON";\n		}\n';
+app_script2 = app_script2+'		{\n			 xdd868boiler_status = "ON";\n		}\n';
 app_script2 = app_script2+'		else if (S(msg).include(\'_OFF\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868alrm_status = "OFF";\n		}\n';
+app_script2 = app_script2+'		{\n			 xdd868boiler_status = "OFF";\n		}\n';
 app_script2 = app_script2+'		else if (S(msg).include(\'_DIM/SPECIAL\'))\n';
 app_script2 = app_script2+'		{\n			 xdd868boiler_status = "DIM/SPECIAL";\n		}\n';
 app_script2 = app_script2+'		console.log("Debug : xdd868boiler    : " + xdd868boiler + " | Composant/Id " + xdd868boiler_id + " | Statut " + xdd868boiler_status);\n';
@@ -438,18 +430,18 @@ request(xmlurl, function(err, resp, body)
 	var proto = "";
 
 	//Initialisation des variables de scripts par proto
-	var app_visionic433 = "	if (visionic433)\n	{//	 Equipements de Type VISIONIC433\n";
-	var app_visionic868 = "	else if (visionic868)\n	{//	 Equipements de Type VISIONIC868\n";
-	var app_chacon = "	else if (chacon)\n	{//	 Equipements de Type CHACON\n";
-	var app_domia = "	else if (domia)\n	{//	 Equipements de Type DOMIA\n";
-	var app_rfx10 = "	else if (rfx10)\n	{//	 Equipements de Type RF X10\n";
-	var app_zwave = "	else if (zwave)\n	{//	 Equipements de Type ZWAVE\n";
-	var app_rfs10ts10 = "	else if (rfs10ts10)\n	{//	 Equipements de Type RFS10 TS10\n";
-	var app_xdd433alrm = "	else if (xdd433alrm)\n	{//	 Equipements de Type XDD433 alrm\n";
-	var app_xdd868alrm = "	else if (xdd868alrm)\n	{//	 Equipements de Type XDD868 alrm\n";
-	var app_xdd868intershutter = "	else if (xdd868intershutter)\n	{//	 Equipements de Type XDD868\n";
-	var app_xdd868pilotwire = "	else if (xdd868pilotwire)\n	{//	 Equipements de Type XDD868\n";
-	var app_xdd868boiler = "	else if (xdd868boiler)\n	{//	 Equipements de Type XDD868\n";
+	var app_visionic433 = "	if (visionic433)\n	{						//	 Equipements de Type VISIONIC433\n";
+	var app_visionic868 = "	else if (visionic868)\n	{					//	 Equipements de Type VISIONIC868\n";
+	var app_chacon = "	else if (chacon)\n	{							//	 Equipements de Type CHACON\n";
+	var app_domia = "	else if (domia)\n	{							//	 Equipements de Type DOMIA\n";
+	var app_rfx10 = "	else if (rfx10)\n	{							//	 Equipements de Type RF X10\n";
+	var app_zwave = "	else if (zwave)\n	{							//	 Equipements de Type ZWAVE\n";
+	var app_rfs10ts10 = "	else if (rfs10ts10)\n	{					//	 Equipements de Type RFS10 TS10\n";
+	var app_xdd433alrm = "	else if (xdd433alrm)\n	{					//	 Equipements de Type XDD433 alrm\n";
+	var app_xdd868alrm = "	else if (xdd868alrm)\n	{					//	 Equipements de Type XDD868 alrm\n";
+	var app_xdd868intershutter = "	else if (xdd868intershutter)\n	{	//	 Equipements de Type XDD868\n";
+	var app_xdd868pilotwire = "	else if (xdd868pilotwire)\n	{			//	 Equipements de Type XDD868\n";
+	var app_xdd868boiler = "	else if (xdd868boiler)\n	{			//	 Equipements de Type XDD868\n";
 	//var app_undefined = "	else if (S(msg).include('Received radio ID'))\n	{//	 Equipements sans protocole scpecifique\n";
 	var app_undefined = "	\n	{//	 Equipements sans protocole scpecifique\n";
 	
@@ -627,9 +619,52 @@ request(xmlurl, function(err, resp, body)
 				}
 				if (proto =="DOMIA")
 				{
-					//A implémenter
-					console.log(" Equipement de type "+proto+" | Tests non realises en l absence de ce type d equipement\n");
-					app_domia=app_domia+'	//Aucun equipement VISIONIC433 n est en ma possession pour tester et remonter les infos\n';
+					console.log(" Equipement de type "+proto+"."); // | Tests non realises en l absence de ce type d equipement\n");
+					//Sent radio ID (1 Burst(s), Protocols='Domia' ): M13_ON
+					//Sent radio ID (1 Burst(s), Protocols='Domia' ): M11_OFF
+
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					jid = "j_"+periph_jeedom;
+					jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
+					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
+					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
+					
+					app_domia = app_domia+'\n		if (domia_id=="'+id_eqp+'" && domia_status=="ON")\n'
+					app_domia = app_domia+'		{\n';
+					app_domia = app_domia+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut ON et de type '+type_eqp+'\");\n';
+					app_domia = app_domia+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=0\";\n';
+					app_domia = app_domia+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement \");\n';
+					app_domia = app_domia+'			console.log(\"  Requete :\" + http_request);\n';
+					app_domia = app_domia+'			request(http_request, function(error, response, body)\n';
+					app_domia = app_domia+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_domia = app_domia+'			nb_http_request = nb_http_request + 1;\n';
+
+					/*app_domia = app_domia+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+					app_domia = app_domia+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
+					app_domia = app_domia+'			console.log(\"  Requete :\" + http_request);\n';
+					app_domia = app_domia+'			request(http_request, function(error, response, body)\n';
+					app_domia = app_domia+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_domia = app_domia+'			nb_http_request = nb_http_request + 1;\n';*/
+					app_domia = app_domia+'		}\n';
+
+					app_domia = app_domia+'		if (domia_id=="'+id_eqp+'" && domia_status=="OFF")\n'
+					app_domia = app_domia+'		{\n';
+					app_domia = app_domia+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut OFF et de type '+type_eqp+'\");\n';
+					app_domia = app_domia+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=0\";\n';
+					app_domia = app_domia+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement \");\n';
+					app_domia = app_domia+'			console.log(\"  Requete :\" + http_request);\n';
+					app_domia = app_domia+'			request(http_request, function(error, response, body)\n';
+					app_domia = app_domia+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_domia = app_domia+'			nb_http_request = nb_http_request + 1;\n';
+
+					/*app_domia = app_domia+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+					app_domia = app_domia+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
+					app_domia = app_domia+'			console.log(\"  Requete :\" + http_request);\n';
+					app_domia = app_domia+'			request(http_request, function(error, response, body)\n';
+					app_domia = app_domia+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_domia = app_domia+'			nb_http_request = nb_http_request + 1;\n';*/
+					app_domia = app_domia+'		}\n';
 
 					count_periph++;
 				}
@@ -998,32 +1033,45 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
-						//jidradio = "j_"+periph_jeedom+"_radio";
+						jidcmd = "j_"+periph_jeedom+"_cmd";
 					
 					jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
 						jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
 						jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
 					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
 						jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						//jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t\t\t'+jidcmd+' = 88;\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_ON"))\n'
 					app_xdd868pilotwire = app_xdd868pilotwire+'		{\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut ON et de type '+type_eqp+'\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+', de statut ON, de commande '+jidcmd+' et de type '+type_eqp+'\");\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement\");\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+'+jidcmd+'+\";\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP Commande de l\'equipement\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n'; 
+					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'		}\n';
 					
 					app_xdd868pilotwire = app_xdd868pilotwire+'		if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_OFF"))\n'
 					app_xdd868pilotwire = app_xdd868pilotwire+'		{\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut OFF et de type '+type_eqp+'\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+', de statut OFF, de commande '+jidcmd+' et de type '+type_eqp+'\");\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + bat;\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement\");\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+'+jidcmd+'+\";\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP Commande de l\'equipement\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
@@ -1031,10 +1079,16 @@ request(xmlurl, function(err, resp, body)
 
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'") && S(msg).include("DIM/SPECIAL"))\n'
 					app_xdd868pilotwire = app_xdd868pilotwire+'		{\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut DIM/SPECIAL et de type '+type_eqp+'\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+', de statut DIM/SPECIAL, de commande '+jidcmd+' de type '+type_eqp+'\");\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + bat;\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP DIM/SPECIAL de l\equipement\");\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+'+jidcmd+'+\";\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP Commande de l\'equipement\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
