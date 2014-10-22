@@ -794,12 +794,12 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowerpower+'+\"&value=\" + w;\n';
+						/*app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowerpower+'+\"&value=\" + w;\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Power: \" + w);\n';
 						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
-						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
+						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';*/
 
 						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowerstatus+'+\"&value=\" + w;\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Power Status: \" + w);\n';
@@ -808,12 +808,12 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
+						/*app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
 						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
-						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
+						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';*/
 						app_zwave = app_zwave+'		}\n';
 					}
  
