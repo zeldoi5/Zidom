@@ -87,6 +87,7 @@ app_script1 = app_script1+'var client = dgram.createSocket(\"udp4\");\n\n';
 
 app_script2 = app_script2+'var expr,chacon,oregon,zwave,temp_web = require(\'string\');\n';
 app_script2 = app_script2+'var zibase_device, zibase_token = require(\'string\');\n\n';
+app_script2 = app_script2+'var owl_id, owl_status = require(\'string\');\n\n';
 
 app_script2 = app_script2+'var b = new Buffer(70);b.fill(0);b.write(\'ZSIG\0\', 0/*offset*/);\n';
 app_script2 = app_script2+'b.writeUInt16BE(13,4); //command HOST REGISTERING (13)\n';
@@ -176,6 +177,7 @@ app_script2 = app_script2+'	xdd868boiler = S(msg).include(\'XDD868Boiler\');\n';
 app_script2 = app_script2+'		xdd868boiler_status = "";\n';
 app_script2 = app_script2+'	owl = S(msg).include(\'433Mhz OWL\');\n';
 app_script2 = app_script2+'		owl_id = "";\n';
+app_script2 = app_script2+'		owl_status = "";\n';
 
 app_script2 = app_script2+'\n	//Test de remontees de PROTOCOLE 1 : composants VISION433 :\n';
 app_script2 = app_script2+'	if (S(msg).include(\'VISONIC433\'))\n';
@@ -528,8 +530,10 @@ request(xmlurl, function(err, resp, body)
 				else if (type_eqp != "temperature" && type_eqp != "power" && proto_i == 11 ) { proto ="XDD868PilotWire";}
 				else if (type_eqp != "temperature" && type_eqp != "power" && proto_i == 12 ) { proto ="XDD868Boiler";}
 				else if (type_eqp == "temperature" && type_eqp != "power") { proto = "oregon"; }
-				else if (type_eqp != "temperature" && type_eqp == "power") { proto = "owl"; }
+				else if (type_eqp == "power" ) { proto = "owl";console.log("\n\n POWERRRRRR !!! \n\n"); }
 				else proto = "undefined";
+				
+				if (type_eqp == "power") { proto = "owl";console.log("\n\n POWERRRRRR !!! \n\n"); }
 				//console.log(" --> Protocole defini : "+proto)
 			}
 		
@@ -794,12 +798,12 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
 
-						/*app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowerpower+'+\"&value=\" + w;\n';
+						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowerpower+'+\"&value=\" + w;\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Power: \" + w);\n';
 						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
-						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';*/
+						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
 
 						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowerstatus+'+\"&value=\" + w;\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Power Status: \" + w);\n';
@@ -808,12 +812,12 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
 
-						/*app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
+						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
 						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
-						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';*/
+						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
 						app_zwave = app_zwave+'		}\n';
 					}
  
@@ -1187,7 +1191,7 @@ request(xmlurl, function(err, resp, body)
 
 					count_periph++;
 				}
-				else if (proto =="owl")
+				/*else if (proto =="owl")
 				{
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet OWL");
@@ -1242,12 +1246,65 @@ request(xmlurl, function(err, resp, body)
 					app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
 					count_periph++;
-				}
+				}*/
 				else if (proto == "undefined")
 				{
+					if (type_eqp =="power")
+					{
+						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+						//jid = "j_"+periph_jeedom;
+							jidpowertotal = "j_"+periph_jeedom+"_powertotal";
+							jidpowerpower = "j_"+periph_jeedom+"_powerpower";
+							jidbatterie = "j_"+periph_jeedom+"_batterie";
+							jidradio = "j_"+periph_jeedom+"_radio";
+						
+						//jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidpowertotal+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidpowerpower+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
+						//jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidpowertotal+' = 88;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t'+jidpowerpower+' = 88;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
+						
+						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
+						console.log("  Ajout dans le script Zidom du test de remontee sur ce Power OWL");
+						app_undefined = app_undefined+'\n		if (owl_id=="'+id_eqp+'")\n'
+						app_undefined = app_undefined+'		{\n';
+						app_undefined = app_undefined+'			console.log(\" Test de l equipement OWL ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut POWER et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowertotal+'+\"&value=\" + kwh;\n';
+						
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP OWL Power Total Energy: \" + kwh);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+
+						app_undefined = app_undefined+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowerpower+'+\"&value=\" + w;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP OWL Power: \" + w);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+
+						app_undefined = app_undefined+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP OWL Batterie: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+						app_undefined = app_undefined+'			}\n';
+
+						count_periph++;
+					}
+				
 					//console.log(" Equipement de type "+proto+".");
 					//Traitements des sondes de Temperature					
-					if (type_eqp == "temperature")
+					 else if (type_eqp == "temperature")
 					{
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
