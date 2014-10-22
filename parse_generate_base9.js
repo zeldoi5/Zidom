@@ -21,6 +21,7 @@ jeedom_chemin_preinstall = "/core/api/jeeApi.php?api=";
 jeedom_chemin = jeedom_chemin_install; // ou jeedom_chemin = jeedom_chemin_preinstall; si jeedom a ete preinstallee
 
 zibase_url = "http://zibase.net/m/get_xml.php?device="+zibase_device+"&token="+zibase_token;
+//http://zibase.net/m/get_xml.php?device=ZiBASE005d18&token=fdb06a35b3
 
 //var utils = require('util');
 var S = require('string');
@@ -392,12 +393,12 @@ app_script2 = app_script2+'	{\n';
 app_script2 = app_script2+'	    owl_id  = id;\n';
 app_script2 = app_script2+'		owl = true;\n';
 app_script2 = app_script2+'		if (S(msg).include(\'_ON\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868alrm_status = "ON";\n		}\n';
+app_script2 = app_script2+'		{\n			 owl_status = "ON";\n		}\n';
 app_script2 = app_script2+'		else if (S(msg).include(\'_OFF\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868alrm_status = "OFF";\n		}\n';
+app_script2 = app_script2+'		{\n			 owl_status = "OFF";\n		}\n';
 app_script2 = app_script2+'		else if (S(msg).include(\'_DIM/SPECIAL\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "DIM/SPECIAL";\n		}\n';
-app_script2 = app_script2+'		console.log("Debug : 433Mhz OWL    : " + owl + " | Composant/Id " + owl_id);\n';
+app_script2 = app_script2+'		{\n			 owl_status = "DIM/SPECIAL";\n		}\n';
+app_script2 = app_script2+'		console.log("Debug : 433Mhz OWL    : " + owl + " | Composant/Id " + owl_id+ " | Statut " + owl_status);\n';
 app_script2 = app_script2+'	}\n';
 
 app_script2 = app_script2+'	// Test de remontees de composants Oregon	Received radio ID (<rf>433Mhz Oregon</rf> Noise=<noise>2453</noise> Level=<lev>5.0</lev>/5 <dev>THWR288A-THN132N</dev> Ch=<ch>2</ch> T=<tem>+23.3</tem>C (+73.9F)  Batt=<bat>Ok</bat>): <id>OS3930896642</id>  Batt=<bat>Ok</bat>): <id>OS4294967047</id>\n';
@@ -1216,26 +1217,26 @@ request(xmlurl, function(err, resp, body)
 					
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur ce Power OWL");
-					app_undefined = app_undefined+'\n		if (zwave_id=="'+id_eqp+'")\n'
+					app_undefined = app_undefined+'\n		if (owl_id=="'+id_eqp+'")\n'
 					app_undefined = app_undefined+'		{\n';
 					app_undefined = app_undefined+'			console.log(\" Test de l equipement OWL ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut POWER et de type '+type_eqp+'\");\n';
 					app_undefined = app_undefined+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowertotal+'+\"&value=\" + kwh;\n';
 					
-					app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Power Total Energy: \" + kwh);\n';
+					app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP OWL Power Total Energy: \" + kwh);\n';
 					app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 					app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 					app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
 					app_undefined = app_undefined+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowerpower+'+\"&value=\" + w;\n';
-					app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Power: \" + w);\n';
+					app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP OWL Power: \" + w);\n';
 					app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 					app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 					app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
 					app_undefined = app_undefined+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
-					app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+					app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP OWL Batterie: \" + bat);\n';
 					app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 					app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 					app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
