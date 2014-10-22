@@ -21,6 +21,7 @@ jeedom_chemin_preinstall = "/core/api/jeeApi.php?api=";
 jeedom_chemin = jeedom_chemin_install; // ou jeedom_chemin = jeedom_chemin_preinstall; si jeedom a ete preinstallee
 
 zibase_url = "http://zibase.net/m/get_xml.php?device="+zibase_device+"&token="+zibase_token;
+
 //var utils = require('util');
 var S = require('string');
 var request = require("request");
@@ -1064,7 +1065,7 @@ request(xmlurl, function(err, resp, body)
 						jid_file = jid_file+'\t\t\t'+jidcmd+' = 88;\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
-					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_ON"))\n'
+					app_xdd868pilotwire = app_xdd868pilotwire+'\n			if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_ON"))\n'
 					app_xdd868pilotwire = app_xdd868pilotwire+'			{\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+', de statut ON, de commande '+jidcmd+' et de type '+type_eqp+'\");\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
@@ -1114,9 +1115,9 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868pilotwire = app_xdd868pilotwire+'				{	console.log(new Date() + \" \" + body); });\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'				nb_http_request = nb_http_request + 1;\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			}\n';
-					//app_xdd868pilotwire = app_xdd868pilotwire+'	}\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'		}\n';
 
-					count_periph++;					
+					count_periph++;
 				}
 				else if (proto =="XDD868Boiler")
 				{
