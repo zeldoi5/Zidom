@@ -1050,7 +1050,7 @@ request(xmlurl, function(err, resp, body)
 				{
 					console.log(" Equipement de type "+proto+" | Tests non realises en l absence de ce type d equipement");
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (id=="'+id_eqp+'")\n'
-					app_xdd868pilotwire=app_xdd868pilotwire+'	{\n';
+					app_xdd868pilotwire=app_xdd868pilotwire+'		{\n';
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
@@ -1067,55 +1067,55 @@ request(xmlurl, function(err, resp, body)
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_ON"))\n'
-					app_xdd868pilotwire = app_xdd868pilotwire+'		{\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+', de statut ON, de commande '+jidcmd+' et de type '+type_eqp+'\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n'; 
-					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+'+jidcmd+'+\";\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP Commande de l\'equipement\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n'; 
-					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'		}\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			{\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+', de statut ON, de commande '+jidcmd+' et de type '+type_eqp+'\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Envoi de la requete HTTP Activation de l\'equipement\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Requete :\" + http_request);\n'; 
+					app_xdd868pilotwire = app_xdd868pilotwire+'				request(http_request, function(error, response, body)\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				nb_http_request = nb_http_request + 1;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+'+jidcmd+;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Envoi de la requete HTTP Commande de l\'equipement\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Requete :\" + http_request);\n'; 
+					app_xdd868pilotwire = app_xdd868pilotwire+'				request(http_request, function(error, response, body)\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				nb_http_request = nb_http_request + 1;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			}\n';
 					
-					app_xdd868pilotwire = app_xdd868pilotwire+'		if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_OFF"))\n'
-					app_xdd868pilotwire = app_xdd868pilotwire+'		{\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+', de statut OFF, de commande '+jidcmd+' et de type '+type_eqp+'\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + bat;\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+'+jidcmd+'+\";\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP Commande de l\'equipement\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n'; 
-					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'		}\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_OFF"))\n'
+					app_xdd868pilotwire = app_xdd868pilotwire+'			{\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+', de statut OFF, de commande '+jidcmd+' et de type '+type_eqp+'\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + bat;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Requete :\" + http_request);\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				request(http_request, function(error, response, body)\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				nb_http_request = nb_http_request + 1;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+'+jidcmd+';\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Envoi de la requete HTTP Commande de l\'equipement\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Requete :\" + http_request);\n'; 
+					app_xdd868pilotwire = app_xdd868pilotwire+'				request(http_request, function(error, response, body)\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				nb_http_request = nb_http_request + 1;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			}\n';
 
-					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'") && S(msg).include("DIM/SPECIAL"))\n'
-					app_xdd868pilotwire = app_xdd868pilotwire+'		{\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+', de statut DIM/SPECIAL, de commande '+jidcmd+' de type '+type_eqp+'\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + bat;\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP DIM/SPECIAL de l\equipement\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+'+jidcmd+'+\";\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Envoi de la requete HTTP Commande de l\'equipement\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			console.log(\"  Requete :\" + http_request);\n'; 
-					app_xdd868pilotwire = app_xdd868pilotwire+'			request(http_request, function(error, response, body)\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			{	console.log(new Date() + \" \" + body); });\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'			nb_http_request = nb_http_request + 1;\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'		}\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'\n			if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'") && S(msg).include("DIM/SPECIAL"))\n'
+					app_xdd868pilotwire = app_xdd868pilotwire+'			{\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+', de statut DIM/SPECIAL, de commande '+jidcmd+' de type '+type_eqp+'\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + bat;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Envoi de la requete HTTP DIM/SPECIAL de l\equipement\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Requete :\" + http_request);\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				request(http_request, function(error, response, body)\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				nb_http_request = nb_http_request + 1;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+'+jidcmd+';\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Envoi de la requete HTTP Commande de l\'equipement\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\"  Requete :\" + http_request);\n'; 
+					app_xdd868pilotwire = app_xdd868pilotwire+'				request(http_request, function(error, response, body)\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'				nb_http_request = nb_http_request + 1;\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'			}\n';
 					//app_xdd868pilotwire = app_xdd868pilotwire+'	}\n';
 
 					count_periph++;					
