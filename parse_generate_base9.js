@@ -490,6 +490,9 @@ request(xmlurl, function(err, resp, body)
 			proto_i = "";
 			proto = "";
 			
+			bool_periph_added = 0; 	//Booléen : si 0 --> périph non ajouté
+										//			si 1 --> périph ajouté
+			
 			//Extraction des equipements
 			name_eqp = i.n;
 			id_eqp= i['$'].c;
@@ -501,6 +504,8 @@ request(xmlurl, function(err, resp, body)
 			//if ( id_eqp== "")
 			proto_i = i['$'].p;
 
+			console.log(" ----------------------------------------------------------------------------------------------------- ");
+			//console.log(" type_eqp : "+type_eqp);
 			//console.log(" --> S(id_eqp).startsWith('Z')="+ S(id_eqp).startsWith('Z'));
 			
 			//Test des peripheriques remontés en protocole ZWAVE mais n'ayant pas de Z dans l'ID
@@ -514,6 +519,8 @@ request(xmlurl, function(err, resp, body)
 				//if (S(id_eqp).include("Z"))
 				if (S(id_eqp).startsWith('Z')||S(id_eqp).startsWith('PZ'))
 				{	proto ="ZWAVE";	}
+				if (type_eqp == "temperature" && type_eqp != "power" && (!S(id_eqp).startsWith('Z')||S(id_eqp).startsWith('PZ'))) { proto = "oregon"; }
+				else if (type_eqp != "temperature" && type_eqp == "power" && !S(id_eqp).startsWith('PZ')) { proto = "owl"; }
 			}
 			else
 			{
@@ -529,11 +536,9 @@ request(xmlurl, function(err, resp, body)
 				else if (type_eqp != "temperature" && type_eqp != "power" && proto_i == 10 ) { proto ="XDD868Inter/Shutter";}
 				else if (type_eqp != "temperature" && type_eqp != "power" && proto_i == 11 ) { proto ="XDD868PilotWire";}
 				else if (type_eqp != "temperature" && type_eqp != "power" && proto_i == 12 ) { proto ="XDD868Boiler";}
-				else if (type_eqp == "temperature" && type_eqp != "power") { proto = "oregon"; }
-				else if (type_eqp == "power" ) { proto = "owl";console.log("\n\n POWERRRRRR !!! \n\n"); }
+				//else if (type_eqp == "temperature" && type_eqp != "power") { proto = "oregon"; }
+				//else if (type_eqp != "temperature" && type_eqp == "power") { proto = "owl";console.log("\n\n POWERRRRRR !!! \n\n"); }
 				else proto = "undefined";
-				
-				if (type_eqp == "power") { proto = "owl";console.log("\n\n POWERRRRRR !!! \n\n"); }
 				//console.log(" --> Protocole defini : "+proto)
 			}
 		
@@ -574,7 +579,7 @@ request(xmlurl, function(err, resp, body)
 				if (proto =="VISONIC433")
 				{
 					//A implémenter
-					console.log(" Equipement de type "+proto+" | Tests non realises en l absence de ce type d equipement\n");
+					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
 					app_visionic433 = app_visionic433+'\n	//Aucun equipement VISIONIC433 n est en ma possession pour tester et remonter les infos\n';
 
 					count_periph++;
@@ -582,14 +587,14 @@ request(xmlurl, function(err, resp, body)
 				if (proto =="VISONIC868")
 				{
 					//A implémenter
-					console.log(" Equipement de type "+proto+" | Tests non realises en l absence de ce type d equipement\n");
+					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
 					app_visionic868 = app_visionic868+'\n	//Aucun equipement VISIONIC868 n est en ma possession pour tester et remonter les infos\n';
 
 					count_periph++;
 				}
 				if (proto =="CHACON")
 				{
-					console.log(" Equipement de type "+proto+".");
+					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					
@@ -643,10 +648,12 @@ request(xmlurl, function(err, resp, body)
 					app_chacon = app_chacon+'		}\n';
 
 					count_periph++;
+					bool_periph_added = 1;
 				}
 				if (proto =="DOMIA")
 				{
-					console.log(" Equipement de type "+proto+"."); // | Tests non realises en l absence de ce type d equipement\n");
+					console.log(" Equipement de protocole "+proto+".");
+					console.log(" Equipement de protocole "+proto+"."); // | Tests non realises en l absence de ce type d equipement\n");
 					//Sent radio ID (1 Burst(s), Protocols='Domia' ): M13_ON
 					//Sent radio ID (1 Burst(s), Protocols='Domia' ): M11_OFF
 
@@ -694,10 +701,11 @@ request(xmlurl, function(err, resp, body)
 					app_domia = app_domia+'		}\n';
 
 					count_periph++;
+					bool_periph_added = 1;
 				}
 				if (proto =="RF X10")
 				{
-					console.log(" Equipement de type "+proto+".");
+					console.log(" Equipement de protocole "+proto+".");
 					//app_rfx10=app_rfx10+'	}\n';
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
@@ -755,9 +763,11 @@ request(xmlurl, function(err, resp, body)
 					app_rfx10 = app_rfx10+'		}\n';
 
 					count_periph++;
+					bool_periph_added = 1;
 				}
 				else if (proto =="ZWAVE")
 				{
+					console.log(" Equipement de protocole "+proto+".");
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 
@@ -972,34 +982,38 @@ request(xmlurl, function(err, resp, body)
 					}
 
 					count_periph++;
+					bool_periph_added = 1;
 				}
 				else if (proto =="RFS10/TS10")
 				{
 					//A implémenter
-					console.log(" Equipement de type "+proto+" | Tests non realises en l absence de ce type d equipement\n");
+					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
 					app_rfs10ts10=app_rfs10ts10+'	}\n';
 
-					count_periph++;					
+					count_periph++;	
+					bool_periph_added = 1;				
 				}
 				else if (proto =="XDD433")
 				{
 					//A implémenter
-					console.log(" Equipement de type "+proto+" | Tests non realises en l absence de ce type d equipement\n");
+					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
 					app_xdd433alrm=app_xdd433alrm+'	}\n';
 
-					count_periph++;					
+					count_periph++;	
+					bool_periph_added = 1;				
 				}
 				else if (proto =="XDD868")
 				{
 					//A implémenter
-					console.log(" Equipement de type "+proto+" | Tests non realises en l absence de ce type d equipement\n");
+					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
 					app_xdd868alrm=app_xdd868alrm+'	}\n';
 
-					count_periph++;					
+					count_periph++;	
+					bool_periph_added = 1;				
 				}
 				else if (proto =="XDD868Inter/Shutter")
 				{
-					console.log(" Equipement de type "+proto+".");
+					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					
@@ -1025,6 +1039,7 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868intershutter = app_xdd868intershutter+'			request(http_request, function(error, response, body)\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868intershutter = app_xdd868intershutter+'			nb_http_request = nb_http_request + 1;\n';
 					app_xdd868intershutter = app_xdd868intershutter+'		}\n';
 					
 					app_xdd868intershutter = app_xdd868intershutter+'\n		if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'_OFF"))\n'
@@ -1035,6 +1050,7 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868intershutter = app_xdd868intershutter+'			request(http_request, function(error, response, body)\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868intershutter = app_xdd868intershutter+'			nb_http_request = nb_http_request + 1;\n';
 					app_xdd868intershutter = app_xdd868intershutter+'		}\n';
 					
 					app_xdd868intershutter = app_xdd868intershutter+'\n		if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'") && S(msg).include("DIM/SPECIAL"))\n'
@@ -1045,13 +1061,17 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868intershutter = app_xdd868intershutter+'			request(http_request, function(error, response, body)\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_xdd868intershutter = app_xdd868intershutter+'			nb_http_request = nb_http_request + 1;\n';
 					app_xdd868intershutter = app_xdd868intershutter+'		}\n';
 
 					count_periph++;
+					bool_periph_added = 1;
 				}
 				else if (proto =="XDD868PilotWire")
 				{
-					console.log(" Equipement de type "+proto+" | Tests non realises en l absence de ce type d equipement");
+					console.log(" Equipement de protocole "+proto+".");
+					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
+					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (id=="'+id_eqp+'")\n'
 					app_xdd868pilotwire=app_xdd868pilotwire+'		{\n';
 					
@@ -1122,18 +1142,21 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868pilotwire = app_xdd868pilotwire+'		}\n';
 
 					count_periph++;
+					bool_periph_added = 1;
 				}
 				else if (proto =="XDD868Boiler")
 				{
 					//A implémenter
-					console.log(" Equipement de type "+proto+" | Tests non realises en l absence de ce type d equipement");
+					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement");
 					app_xdd868boiler=app_xdd868boiler+'	}\n';
 
-					count_periph++;					
+					count_periph++;
+					bool_periph_added = 1;			
 				}
 				// Traitement des peripheriques sans protocoles
 				else if (proto =="oregon")
 				{
+					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet Oregon");
 					app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'")\n'
@@ -1190,14 +1213,16 @@ request(xmlurl, function(err, resp, body)
 					app_undefined = app_undefined+'		}\n';
 
 					count_periph++;
+					bool_periph_added = 1;
 				}
-				/*else if (proto =="owl")
+				else if (proto =="owl")
 				{
+					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet OWL");
-					app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'")\n'
+					app_undefined = app_undefined+'\n		if (owl_id=="'+id_eqp+'")\n'
 					app_undefined = app_undefined+'		{\n';
-					
+
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					//jid = "j_"+periph_jeedom;
@@ -1205,7 +1230,7 @@ request(xmlurl, function(err, resp, body)
 						jidpowerpower = "j_"+periph_jeedom+"_powerpower";
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						jidradio = "j_"+periph_jeedom+"_radio";
-					
+
 					//jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
 						jid_descr = jid_descr+'var '+jidpowertotal+' = require(\'string\');\n';
 						jid_descr = jid_descr+'var '+jidpowerpower+' = require(\'string\');\n';
@@ -1217,11 +1242,7 @@ request(xmlurl, function(err, resp, body)
 						jid_file = jid_file+'\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
 						jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
-					
-					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
-					console.log("  Ajout dans le script Zidom du test de remontee sur ce Power OWL");
-					app_undefined = app_undefined+'\n		if (owl_id=="'+id_eqp+'")\n'
-					app_undefined = app_undefined+'		{\n';
+
 					app_undefined = app_undefined+'			console.log(\" Test de l equipement OWL ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut POWER et de type '+type_eqp+'\");\n';
 					app_undefined = app_undefined+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowertotal+'+\"&value=\" + kwh;\n';
 					
@@ -1244,12 +1265,15 @@ request(xmlurl, function(err, resp, body)
 					app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 					app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
 					app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+					app_undefined = app_undefined+'		}\n';
 
 					count_periph++;
-				}*/
+					bool_periph_added = 1;
+				}
 				else if (proto == "undefined")
 				{
-					if (type_eqp =="power")
+					console.log(" Equipement de protocole "+proto+".");
+					/*if (type_eqp =="power")
 					{
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
@@ -1300,11 +1324,11 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'			}\n';
 
 						count_periph++;
-					}
+					}*/
 				
-					//console.log(" Equipement de type "+proto+".");
+					//console.log(" Equipement de protocole "+proto+".");
 					//Traitements des sondes de Temperature					
-					 else if (type_eqp == "temperature")
+					if (type_eqp == "temperature")
 					{
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
@@ -1591,11 +1615,7 @@ request(xmlurl, function(err, resp, body)
 
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
-						/*periph_jeedom = S(periph_jeedom).replaceAll('é', 'e').s;
-						periph_jeedom = S(periph_jeedom).replaceAll('è', 'e').s;
-						periph_jeedom = S(periph_jeedom).replaceAll('ê', 'e').s;
-						periph_jeedom = S(periph_jeedom).replaceAll('à', 'a').s;
-						periph_jeedom = S(periph_jeedom).replaceAll('â', 'a').s;*/
+
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 							jidradio = "j_"+periph_jeedom+"_radio";
@@ -1656,8 +1676,83 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						app_undefined = app_undefined+'		}\n';
 					}
+					//else if (type_eqp == "receiverXDom")
+					else if (type_eqp == "receiverXDom")
+					{
+						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
+						console.log("  Ajout dans le script Zidom du test de remontee sur ce receiverXDom");
+
+						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+
+						jid = "j_"+periph_jeedom;
+							//jidbatterie = "j_"+periph_jeedom+"_batterie";
+							//jidradio = "j_"+periph_jeedom+"_radio";
+						
+						jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
+							//jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
+							//jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
+						jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
+							//jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+							//jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
+					
+						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'" && sta =="ON")\n'
+						app_undefined = app_undefined+'		{\n';
+						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement \");\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n'; 
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+						app_undefined = app_undefined+'		}\n';
+
+						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'" && sta =="OFF")\n'
+						app_undefined = app_undefined+'		{\n';
+						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' et de type '+type_eqp+'\");\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP DESActivation de l\'equipement \");\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n'; 
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\" + bat;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de réception Radio: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+						app_undefined = app_undefined+'		}\n';
+					}
 
 					count_periph++;
+					bool_periph_added = 1;
+				}
+				if (bool_periph_added == 0)
+				{
+					console.log(" Equipement NON AJOUTE (protocole "+proto+").");
+					console.log(" Equipement NON AJOUTE : " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 				}
 			}
 			
