@@ -1,5 +1,5 @@
 var clientIp = process.env.MYIP || getIPAddress();
-zibase_ip = "192.168.0.x"
+zibase_ip = "192.168.0.38"
 var zibaseIp = process.env.IP_ZIBASE|| zibase_ip;
 
 var zibase_device = require('string');
@@ -285,7 +285,6 @@ app_script2 = app_script2+'\t		&& !S(msg).include(\'ZWAVE\')\n';
 app_script2 = app_script2+'\t 		&&  S(msg).include(\'_ON\')\n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'_OFF\')\n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'Power Measure\'))\n';
-//app_script2 = app_script2+'		else if (S(msg).include(\'ZWave\') && (!S(msg).include(\'ZWAVE\')) && !S(msg).include(\'Battery level\') && (S(msg).include(\'_ON\')) && (!S(msg).include(\'_OFF\')) && !(S(msg).include(\'Power Measure\')))\n';
 app_script2 = app_script2+'		{\n';
 app_script2 = app_script2+'			zwave_message = true;\n';
 app_script2 = app_script2+'			zwave_id= S(msg).between(\'): \', \'_ON\').s;\n';
@@ -299,21 +298,20 @@ app_script2 = app_script2+'\t		&& !S(msg).include(\'ZWAVE\')\n';
 app_script2 = app_script2+'\t 		&& !S(msg).include(\'_ON\')\n';
 app_script2 = app_script2+'\t		&&  S(msg).include(\'_OFF\')\n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'Power Measure\'))\n';
-//app_script2 = app_script2+'		else if (S(msg).include(\'ZWave\') && (!S(msg).include(\'ZWAVE\')) && !S(msg).include(\'Battery level\') && (!S(msg).include(\'_ON\')) && (S(msg).include(\'_OFF\')) && !(S(msg).include(\'Power Measure\')))\n';
 app_script2 = app_script2+'		{\n';
 app_script2 = app_script2+'			zwave_message = true;\n';
 app_script2 = app_script2+'			zwave_id= S(msg).between(\'): \', \'_OFF\').s;\n';
 app_script2 = app_script2+'			zwave_status = "OFF";\n';
 app_script2 = app_script2+'			if (!S(msg).include(\'Battery\')) { bat = "Ok"; }';
 app_script2 = app_script2+'		}\n';
-app_script2 = app_script2+'		//Tue Aug 19 2014 19:52:59 GMT+0100 (BST) Received radio ID (<rf>ZWAVE ZC7</rf>  <dev>CMD/INTER</dev>  Batt=<bat>Ok</bat>): <id>ZC7_ON</id>\n';
+app_script2 = app_script2+'		//Tue Aug 19 2014 19:52:59 GMT+0100  (BST) Received radio ID (<rf>ZWAVE ZC7</rf>  <dev>CMD/INTER</dev>  Batt=<bat>Ok</bat>): <id>ZC7_ON</id>\n';
+app_script2 = app_script2+'		//Fri Oct 24 2014 19:40:24 GMT+0200 (CEST) Received radio ID (<rf>ZWAVE ZB3</rf>  <dev>CMD/INTER</dev>  Batt=<bat>Ok</bat>): <id>ZB3</id>\n';
 app_script2 = app_script2+'		else if (\n			   !S(msg).include(\'ZWave\') \n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'Battery level\')\n';
 app_script2 = app_script2+'\t		&&  S(msg).include(\'ZWAVE\')\n';
-app_script2 = app_script2+'\t 		&&  S(msg).include(\'_ON\')\n';
+app_script2 = app_script2+'\t 		&&( S(msg).include(\'_ON\') || S(msg).include(\'<dev>CMD/INTER</dev>\'))\n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'_OFF\')\n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'Power Measure\'))\n';
-//app_script2 = app_script2+'		else if (!S(msg).include(\'ZWave\') && (S(msg).include(\'ZWAVE\')) && (!S(msg).include(\'Battery level\')) && (!S(msg).include(\'_ON\')) && (!S(msg).include(\'_OFF\')) && !(S(msg).include(\'Power Measure\')))\n';
 app_script2 = app_script2+'		{\n';
 app_script2 = app_script2+'			zwave_status = "ON";\n';
 app_script2 = app_script2+'			//Test pour identifier le composant ZWAVE impacte\n';
@@ -330,7 +328,6 @@ app_script2 = app_script2+'\t		&&  S(msg).include(\'ZWAVE\')\n';
 app_script2 = app_script2+'\t 		&& !S(msg).include(\'_ON\')\n';
 app_script2 = app_script2+'\t		&&  S(msg).include(\'_OFF\')\n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'Power Measure\'))\n';
-//app_script2 = app_script2+'		else if (!S(msg).include(\'ZWave\') && (S(msg).include(\'ZWAVE\')) && (!S(msg).include(\'Battery level\')) && (S(msg).include(\'_ON\')) && (!S(msg).include(\'_OFF\')) && !(S(msg).include(\'Power Measure\')))\n';
 app_script2 = app_script2+'		{\n';
 app_script2 = app_script2+'			zwave_status = "OFF";\n';
 app_script2 = app_script2+'			//Test pour identifier le composant ZWAVE impacte\n';
@@ -347,7 +344,6 @@ app_script2 = app_script2+'\t		&&  S(msg).include(\'ZWAVE\')\n';
 app_script2 = app_script2+'\t 		&& !S(msg).include(\'_ON\')\n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'_OFF\')\n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'Power Measure\'))\n';
-//app_script2 = app_script2+'		else if (!S(msg).include(\'ZWave\') && (S(msg).include(\'ZWAVE\')) && (!S(msg).include(\'Battery level\')) && (!S(msg).include(\'_ON\')) && (S(msg).include(\'_OFF\')) && !(S(msg).include(\'Power Measure\')))\n';
 app_script2 = app_script2+'		{\n';
 app_script2 = app_script2+'			zwave_status = "UNKNOWN";\n';
 app_script2 = app_script2+'			zwave_id = S(msg).between(\'<rf>ZWAVE \', \'</rf>\').s;\n';
@@ -359,8 +355,7 @@ app_script2 = app_script2+'\t		&&  S(msg).include(\'ZWAVE\')\n';
 app_script2 = app_script2+'\t 		&& !S(msg).include(\'_ON\')\n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'_OFF\')\n';
 app_script2 = app_script2+'\t		&&  S(msg).include(\'Power Measure\'))\n';
-//app_script2 = app_script2+'		else if (!S(msg).include(\'ZWave\') && (S(msg).include(\'ZWAVE\')) && (!S(msg).include(\'Battery level\')) && (!S(msg).include(\'_ON\')) && (!S(msg).include(\'_OFF\')) && (S(msg).include(\'Power Measure\')))\n';
-//app_script2 = app_script2+'		else if ((S(msg).include(\'ZWAVE\')) && (S(msg).include(\'Power Measure\')))\n';
+app_script2 = app_script2+'		else if ((S(msg).include(\'ZWAVE\')) && (S(msg).include(\'Power Measure\')))\n';
 app_script2 = app_script2+'		{\n';
 app_script2 = app_script2+'			zwave_status = "UNKNOWN";\n';
 app_script2 = app_script2+'			zwave_id = S(msg).between(\'<id>\', \'</id>\').s;\n';
@@ -431,7 +426,8 @@ app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "ON";\n		}\n';
 app_script2 = app_script2+'		else if (S(msg).include(\'_OFF\'))\n';
 app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "OFF";\n		}\n';
 app_script2 = app_script2+'		else if (S(msg).include(\'_DIM/SPECIAL\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "DIM/SPECIAL";\n		}\n';
+app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "DIM/SPECIAL";\n';
+app_script2 = app_script2+'		\txdd868pilotwire_id  = S(msg).between("\' ): ", \' DIM\').s\n		}\n';
 app_script2 = app_script2+'		console.log("Debug : xdd868pilotwire    : " + xdd868pilotwire + " | Composant/Id " + xdd868pilotwire_id + " | Statut " + xdd868pilotwire_status+ " | Commande " +xdd868pilotwire_cmd);\n';
 app_script2 = app_script2+'	}\n';
 
@@ -1909,9 +1905,9 @@ request(xmlurl, function(err, resp, body)
 		app_script = app_script+'}\n';
 
 		console.log("------------------------------------------------------------------------------------")
-		console.log(" Debut d'Ecriture dans le fichier zidomn9.js ...")
-		fs.writeFileSync("zidomn9.js", app_script, "UTF-8");
-		console.log(" Fin d'Ecriture dans le fichier zidomn9.js !")
+		console.log(" Debut d'Ecriture dans le fichier zidomn10.js ...")
+		fs.writeFileSync("zidomn10.js", app_script, "UTF-8");
+		console.log(" Fin d'Ecriture dans le fichier zidomn10.js !")
 		console.log("------------------------------------------------------------------------------------")
 		console.log(" Debut d'Ecriture dans le fichier jeedom_id.txt ...")
 		fs.writeFileSync("jeedom_id.txt", jid_file, "UTF-8");
