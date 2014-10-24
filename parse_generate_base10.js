@@ -1,5 +1,5 @@
 var clientIp = process.env.MYIP || getIPAddress();
-zibase_ip = "192.168.0.38"
+zibase_ip = "192.168.0.x"
 var zibaseIp = process.env.IP_ZIBASE|| zibase_ip;
 
 var zibase_device = require('string');
@@ -355,7 +355,7 @@ app_script2 = app_script2+'\t		&&  S(msg).include(\'ZWAVE\')\n';
 app_script2 = app_script2+'\t 		&& !S(msg).include(\'_ON\')\n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'_OFF\')\n';
 app_script2 = app_script2+'\t		&&  S(msg).include(\'Power Measure\'))\n';
-app_script2 = app_script2+'		else if ((S(msg).include(\'ZWAVE\')) && (S(msg).include(\'Power Measure\')))\n';
+//app_script2 = app_script2+'		else if ((S(msg).include(\'ZWAVE\')) && (S(msg).include(\'Power Measure\')))\n';
 app_script2 = app_script2+'		{\n';
 app_script2 = app_script2+'			zwave_status = "UNKNOWN";\n';
 app_script2 = app_script2+'			zwave_id = S(msg).between(\'<id>\', \'</id>\').s;\n';
