@@ -1,5 +1,5 @@
 var clientIp = process.env.MYIP || getIPAddress();
-zibase_ip = "192.168.0.x"
+zibase_ip = "192.168.0.X"
 var zibaseIp = process.env.IP_ZIBASE|| zibase_ip;
 
 var zibase_device = require('string');
@@ -422,12 +422,12 @@ app_script2 = app_script2+'	    xdd868pilotwire_id  = S(msg).between("\' ): ", \
 app_script2 = app_script2+'		xdd868pilotwire = true;\n';
 app_script2 = app_script2+'		xdd868pilotwire_cmd = S(msg).between("Radiator/Pilot Wire :", "\'").s;\n';
 app_script2 = app_script2+'		if (S(msg).include(\'_ON\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "ON";\n		}\n';
+app_script2 = app_script2+'		{\n			xdd868pilotwire_status = "ON";\n		}\n';
 app_script2 = app_script2+'		else if (S(msg).include(\'_OFF\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "OFF";\n		}\n';
-app_script2 = app_script2+'		else if (S(msg).include(\'_DIM/SPECIAL\'))\n';
-app_script2 = app_script2+'		{\n			 xdd868pilotwire_status = "DIM/SPECIAL";\n';
-app_script2 = app_script2+'		\txdd868pilotwire_id  = S(msg).between("\' ): ", \' DIM\').s\n		}\n';
+app_script2 = app_script2+'		{\n			xdd868pilotwire_status = "OFF";\n		}\n';
+app_script2 = app_script2+'		else if (S(msg).include(\'DIM/SPECIAL\'))\n';
+app_script2 = app_script2+'		{\n			xdd868pilotwire_status = "DIM/SPECIAL";\n';
+app_script2 = app_script2+'				xdd868pilotwire_id  = S(msg).between(" ): ", \' DIM/SPECIAL\').s\n		}\n';
 app_script2 = app_script2+'		console.log("Debug : xdd868pilotwire    : " + xdd868pilotwire + " | Composant/Id " + xdd868pilotwire_id + " | Statut " + xdd868pilotwire_status+ " | Commande " +xdd868pilotwire_cmd);\n';
 app_script2 = app_script2+'	}\n';
 
@@ -657,6 +657,8 @@ request(xmlurl, function(err, resp, body)
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -716,6 +718,8 @@ request(xmlurl, function(err, resp, body)
 					//Sent radio ID (1 Burst(s), Protocols='Domia' ): M11_OFF
 
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					jid = "j_"+periph_jeedom;
 					jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
@@ -769,6 +773,8 @@ request(xmlurl, function(err, resp, body)
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					/*periph_jeedom = S(periph_jeedom).replaceAll('é', 'e').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('è', 'e').s;
@@ -827,6 +833,8 @@ request(xmlurl, function(err, resp, body)
 				{
 					console.log(" Equipement de protocole "+proto+".");
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 
 					jid = "j_"+periph_jeedom;
@@ -1077,6 +1085,8 @@ request(xmlurl, function(err, resp, body)
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1135,6 +1145,8 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868pilotwire=app_xdd868pilotwire+'		{\n';
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1147,8 +1159,10 @@ request(xmlurl, function(err, resp, body)
 						jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
 						jid_file = jid_file+'\t\t\t'+jidcmd+' = 88;\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
+
+					app_xdd868pilotwire = app_xdd868pilotwire+'\n			DEBUG X2D !!!!!! Dans les tests X2D....\n';
 					
-					app_xdd868pilotwire = app_xdd868pilotwire+'\n			if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_ON"))\n'
+					app_xdd868pilotwire = app_xdd868pilotwire+'\n			if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_ON"))\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			{\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'				console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+', de statut ON, de commande '+jidcmd+' et de type '+type_eqp+'\");\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
@@ -1222,6 +1236,8 @@ request(xmlurl, function(err, resp, body)
 					app_undefined = app_undefined+'		{\n';
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					jid = "j_"+periph_jeedom;
 					jidhygro = "j_"+periph_jeedom+"_hygro";
@@ -1283,6 +1299,8 @@ request(xmlurl, function(err, resp, body)
 					app_undefined = app_undefined+'		{\n';
 
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					//jid = "j_"+periph_jeedom;
 						jidpowertotal = "j_"+periph_jeedom+"_powertotal";
@@ -1335,6 +1353,8 @@ request(xmlurl, function(err, resp, body)
 					/*if (type_eqp =="power")
 					{
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						//jid = "j_"+periph_jeedom;
 							jidpowertotal = "j_"+periph_jeedom+"_powertotal";
@@ -1395,6 +1415,8 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'		{\n';
 					
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						jid = "j_"+periph_jeedom;
 						jidhygro = "j_"+periph_jeedom+"_hygro";
@@ -1454,6 +1476,8 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'		{\n';
 					
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1495,6 +1519,8 @@ request(xmlurl, function(err, resp, body)
 
 
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1557,6 +1583,8 @@ request(xmlurl, function(err, resp, body)
 					
 
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1616,6 +1644,8 @@ request(xmlurl, function(err, resp, body)
 											
 
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1673,6 +1703,8 @@ request(xmlurl, function(err, resp, body)
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
 
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 
 						jid = "j_"+periph_jeedom;
@@ -1742,6 +1774,8 @@ request(xmlurl, function(err, resp, body)
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce receiverXDom");
 
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
+						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 
 						jid = "j_"+periph_jeedom;
