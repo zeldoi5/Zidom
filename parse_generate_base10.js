@@ -1160,7 +1160,7 @@ request(xmlurl, function(err, resp, body)
 						jid_file = jid_file+'\t\t\t'+jidcmd+' = 88;\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
-					app_xdd868pilotwire = app_xdd868pilotwire+'\n			console.log(\"DEBUG X2D !!!!!! Dans les tests X2D....\n\");\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'\n			console.log(\"DEBUG X2D !!!!!! Dans les tests X2D....\");\n';
 					
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n			if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_ON"))\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'			{\n';
