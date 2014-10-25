@@ -658,7 +658,7 @@ request(xmlurl, function(err, resp, body)
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+					////periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -719,7 +719,7 @@ request(xmlurl, function(err, resp, body)
 
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+					//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					jid = "j_"+periph_jeedom;
 					jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
@@ -774,7 +774,7 @@ request(xmlurl, function(err, resp, body)
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+					//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					/*periph_jeedom = S(periph_jeedom).replaceAll('é', 'e').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('è', 'e').s;
@@ -834,7 +834,7 @@ request(xmlurl, function(err, resp, body)
 					console.log(" Equipement de protocole "+proto+".");
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+					//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 
 					jid = "j_"+periph_jeedom;
@@ -1086,7 +1086,7 @@ request(xmlurl, function(err, resp, body)
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+					//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1146,7 +1146,7 @@ request(xmlurl, function(err, resp, body)
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+					//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1237,7 +1237,7 @@ request(xmlurl, function(err, resp, body)
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+					//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					jid = "j_"+periph_jeedom;
 					jidhygro = "j_"+periph_jeedom+"_hygro";
@@ -1300,7 +1300,7 @@ request(xmlurl, function(err, resp, body)
 
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-					periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+					//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					//jid = "j_"+periph_jeedom;
 						jidpowertotal = "j_"+periph_jeedom+"_powertotal";
@@ -1354,7 +1354,7 @@ request(xmlurl, function(err, resp, body)
 					{
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+						//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						//jid = "j_"+periph_jeedom;
 							jidpowertotal = "j_"+periph_jeedom+"_powertotal";
@@ -1416,7 +1416,7 @@ request(xmlurl, function(err, resp, body)
 					
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+						//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						jid = "j_"+periph_jeedom;
 						jidhygro = "j_"+periph_jeedom+"_hygro";
@@ -1477,7 +1477,7 @@ request(xmlurl, function(err, resp, body)
 					
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+						//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1520,7 +1520,7 @@ request(xmlurl, function(err, resp, body)
 
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+						//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1584,7 +1584,7 @@ request(xmlurl, function(err, resp, body)
 
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+						//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1645,7 +1645,7 @@ request(xmlurl, function(err, resp, body)
 
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+						//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1704,7 +1704,7 @@ request(xmlurl, function(err, resp, body)
 
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+						//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 
 						jid = "j_"+periph_jeedom;
@@ -1775,7 +1775,7 @@ request(xmlurl, function(err, resp, body)
 
 						periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 						periph_jeedom = S(name_eqp).replaceAll('/', '_').s;
-						periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
+						//periph_jeedom = S(name_eqp).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 
 						jid = "j_"+periph_jeedom;
