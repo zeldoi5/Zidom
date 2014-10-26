@@ -29,28 +29,28 @@ var dgram = require("dgram");
 var server = dgram.createSocket("udp4");
 var client = dgram.createSocket("udp4");
 
-var periph_file = require('string');	// Variable temporaire pour stocker en fichier les périphériques
+var periph_file = require('string');	// Variable temporaire pour stocker en fichier les peripheriques
 periph_file = "";
-var periph_jeedom = require('string');	// Variable temporaire pour stocker les noms des périphériques
+var periph_jeedom = require('string');	// Variable temporaire pour stocker les noms des peripheriques
 periph_jeedom = "";
 var jid = require('string');	// Variable des identifiants de base Jeedom
 jid = "";
-var jidhygro = require('string');	// Variable des identifiants Jeedom pour les remontées d'hygrométrie
+var jidhygro = require('string');	// Variable des identifiants Jeedom pour les remontees d'hygrometrie
 jidhygro = "";
-var jidbatterie = require('string');	// Variable des identifiants Jeedom pour les remontées de batterie
+var jidbatterie = require('string');	// Variable des identifiants Jeedom pour les remontees de batterie
 jidbatterie = "";
-var jidcmd = require('string');	// Variable des identifiants Jeedom pour les remontées de commande (X2D)
+var jidcmd = require('string');	// Variable des identifiants Jeedom pour les remontees de commande (X2D)
 jidcmd = "";
-var jidradio = require('string');	// Variable des identifiants Jeedom pour les remontées de réception radio
+var jidradio = require('string');	// Variable des identifiants Jeedom pour les remontees de reception radio
 jidradio = "";
-var jidpowerstatus = require('string');	// Variable des identifiants Jeedom pour les remontées de Statut sur les équipements de type Power
+var jidpowerstatus = require('string');	// Variable des identifiants Jeedom pour les remontees de Statut sur les equipements de type Power
 jidpowerstatus = "";
-var jidpowertotal = require('string');	// Variable des identifiants Jeedom pour les remontées 'Total Energy' sur les équipements de type Power
+var jidpowertotal = require('string');	// Variable des identifiants Jeedom pour les remontees 'Total Energy' sur les equipements de type Power
 jidpowertotal = "";
-var jidpowerpower = require('string');	// Variable des identifiants Jeedom pour les remontées 'Power' sur les équipements de type Power
+var jidpowerpower = require('string');	// Variable des identifiants Jeedom pour les remontees 'Power' sur les equipements de type Power
 jidpowertotal = "";
 
-var jid_descr = require('string');	// Variable temporaire de déclaration des identifiants Jeedom et d'initialisation à 0
+var jid_descr = require('string');	// Variable temporaire de declaration des identifiants Jeedom et d'initialisation à 0
 jid_descr = "";
 var jid_file = require('string');	// Variable temporaire pour stocker en fichier les identifiants Jeedom
 jid_file = "";
@@ -189,7 +189,7 @@ app_script2 = app_script2+'	owl = S(msg).include(\'433Mhz OWL\');\n';
 app_script2 = app_script2+'		owl_id = "";\n';
 app_script2 = app_script2+'		owl_status = "";\n';
 
-app_script2 = app_script2+'\n	//Test de démarrage de script :\n';
+app_script2 = app_script2+'\n	//Test de demarrage de script :\n';
 app_script2 = app_script2+'	if (S(msg).include(\'Zapi linked to host\'))\n';
 app_script2 = app_script2+'	{\n';
 app_script2 = app_script2+'	    demmarrage = true\n';
@@ -302,7 +302,7 @@ app_script2 = app_script2+'		{\n';
 app_script2 = app_script2+'			zwave_message = true;\n';
 app_script2 = app_script2+'			zwave_id= S(msg).between(\'): \', \'_ON\').s;\n';
 app_script2 = app_script2+'			zwave_status = "ON";\n';
-app_script2 = app_script2+'			if (!S(msg).include(\'Battery\')) { bat = "Ok"; }';
+app_script2 = app_script2+'			if (!S(msg).include(\'Battery\')) { bat = "Ok";}\n';
 app_script2 = app_script2+'		}\n';
 app_script2 = app_script2+'		//Thu Aug 14 2014 23:04:47 GMT+0100 (BST) Sent radio ID (1 Burst(s), Protocols=\'ZWave n38\'  Last RF Transmit Time=10ms): ZC7_OFF\n';
 app_script2 = app_script2+'		else if (\n			    S(msg).include(\'ZWave\') \n';
@@ -316,7 +316,7 @@ app_script2 = app_script2+'		{\n';
 app_script2 = app_script2+'			zwave_message = true;\n';
 app_script2 = app_script2+'			zwave_id= S(msg).between(\'): \', \'_OFF\').s;\n';
 app_script2 = app_script2+'			zwave_status = "OFF";\n';
-app_script2 = app_script2+'			if (!S(msg).include(\'Battery\')) { bat = "Ok"; }';
+app_script2 = app_script2+'			if (!S(msg).include(\'Battery\')) { bat = "Ok";}\n';
 app_script2 = app_script2+'		}\n';
 app_script2 = app_script2+'		//Tue Aug 19 2014 19:52:59 GMT+0100  (BST) Received radio ID (<rf>ZWAVE ZC7</rf>  <dev>CMD/INTER</dev>  Batt=<bat>Ok</bat>): <id>ZC7_ON</id>\n';
 app_script2 = app_script2+'		//Fri Oct 24 2014 19:40:24 GMT+0200 (CEST) Received radio ID (<rf>ZWAVE ZB3</rf>  <dev>CMD/INTER</dev>  Batt=<bat>Ok</bat>): <id>ZB3</id>\n';
@@ -334,7 +334,7 @@ app_script2 = app_script2+'			if ((S(msg).include("ZWave")))\n';
 app_script2 = app_script2+'			{ zwave_id = "Z"+S(msg).between(\': Z\', \'_ON\').s; }\n';
 app_script2 = app_script2+'			else if ((S(msg).include("ZWAVE")))\n';
 app_script2 = app_script2+'			{ zwave_id = "Z"+S(msg).between(\'<rf>ZWAVE Z\',\'</rf>\').s; }\n';
-app_script2 = app_script2+'			if (!S(msg).include(\'Battery\')) { bat = "Ok"; }';
+app_script2 = app_script2+'			if (!S(msg).include(\'Battery\')) { bat = "Ok";}\n';
 app_script2 = app_script2+'		}\n';
 app_script2 = app_script2+'		//Tue Aug 19 2014 19:52:59 GMT+0100 (BST) Received radio ID (<rf>ZWAVE ZC7</rf>  <dev>CMD/INTER</dev>  Batt=<bat>Ok</bat>): <id>ZC7_OFF</id>\n';
 app_script2 = app_script2+'		else if (\n			   !S(msg).include(\'ZWave\') \n';
@@ -351,7 +351,7 @@ app_script2 = app_script2+'			if ((S(msg).include("ZWave")))\n';
 app_script2 = app_script2+'			{ zwave_id = "Z"+S(msg).between(\': Z\', \'_OFF\').s; }\n';
 app_script2 = app_script2+'			else if ((S(msg).include("ZWAVE")))\n';
 app_script2 = app_script2+'			{ zwave_id = "Z"+S(msg).between(\'<rf>ZWAVE Z\',\'</rf>\').s; }\n';
-app_script2 = app_script2+'			if (!S(msg).include(\'Battery\')) { bat = "Ok"; }';
+app_script2 = app_script2+'			if (!S(msg).include(\'Battery\')) { bat = "Ok";}\n';
 app_script2 = app_script2+'		}\n';
 app_script2 = app_script2+'		//Thu Aug 14 2014 23:33:06 GMT+0100 (BST) Received radio ID (<rf>ZWAVE ZC6</rf> <dev>WakeUp</dev> Batt=<bat>Ok</bat>): <id>WZC4</id>\n';
 app_script2 = app_script2+'		else if (\n			   !S(msg).include(\'ZWave\') \n';
@@ -366,6 +366,18 @@ app_script2 = app_script2+'			zwave_status = "WakeUp";\n';
 app_script2 = app_script2+'			zwave_id = S(msg).between(\'<rf>ZWAVE \', \'</rf>\').s;\n';
 app_script2 = app_script2+'			//zwave_id = id;\n';
 app_script2 = app_script2+'		}\n';
+app_script2 = app_script2+'		//Sun Oct 26 2014 14:38:39 GMT+0100 (CET) Received radio ID (<rf>ZWAVE ZA8</rf> <dev>Low-Power Measure</dev> Total Energy=<kwh>11.4</kwh>kWh Power=<w>200</w>W Batt=<bat>Ok</bat>): <id>PZA8</id>\n';
+app_script2 = app_script2+'		else if (\n			   !S(msg).include(\'ZWave\') \n';
+app_script2 = app_script2+'\t		&& !S(msg).include(\'Battery level\')\n';
+app_script2 = app_script2+'\t		&&  S(msg).include(\'ZWAVE\')\n';
+app_script2 = app_script2+'\t 		&& !S(msg).include(\'_ON\')\n';
+app_script2 = app_script2+'\t		&& !S(msg).include(\'_OFF\')\n';
+app_script2 = app_script2+'\t		&&  S(msg).include(\'Power Measure\')\n';
+app_script2 = app_script2+'\t		&& !S(msg).include(\'<dev>WakeUp\'))\n';
+app_script2 = app_script2+'		{\n';
+app_script2 = app_script2+'			zwave_status = "UNKNOWN";\n';
+app_script2 = app_script2+'			zwave_id = id;\n';
+app_script2 = app_script2+'		}\n';
 app_script2 = app_script2+'		else if (\n			   !S(msg).include(\'ZWave\') \n';
 app_script2 = app_script2+'\t		&& !S(msg).include(\'Battery level\')\n';
 app_script2 = app_script2+'\t		&&  S(msg).include(\'ZWAVE\')\n';
@@ -376,7 +388,7 @@ app_script2 = app_script2+'\t		&& !S(msg).include(\'<dev>WakeUp\'))\n';
 app_script2 = app_script2+'		{\n';
 app_script2 = app_script2+'			zwave_status = "UNKNOWN";\n';
 app_script2 = app_script2+'			zwave_id = S(msg).between(\'<id>\', \'</id>\').s;\n';
-app_script2 = app_script2+'			if (!S(msg).include(\'Battery\')) { bat = "Ok"; }';
+app_script2 = app_script2+'			if (!S(msg).include(\'Battery\')) { bat = "Ok";}\n';
 app_script2 = app_script2+'		}\n';
 app_script2 = app_script2+'		console.log("Debug  : zwave     : " + zwave + " | Composant " + zwave_id + " | Statut : " + zwave_status);\n';
 app_script2 = app_script2+'	}\n';
@@ -580,8 +592,8 @@ request(xmlurl, function(err, resp, body)
 			proto_i = "";
 			proto = "";
 			
-			bool_periph_added = 0; 	//Booléen : si 0 --> périph non ajouté
-										//			si 1 --> périph ajouté
+			bool_periph_added = 0; 	//Booleen : si 0 --> periph non ajoute
+										//			si 1 --> periph ajoute
 			
 			//Extraction des equipements
 			name_eqp = i.n;
@@ -598,11 +610,11 @@ request(xmlurl, function(err, resp, body)
 			//console.log(" type_eqp : "+type_eqp);
 			//console.log(" --> S(id_eqp).startsWith('Z')="+ S(id_eqp).startsWith('Z'));
 			
-			//Test des peripheriques remontés en protocole ZWAVE mais n'ayant pas de Z dans l'ID
+			//Test des peripheriques remontes en protocole ZWAVE mais n'ayant pas de Z dans l'ID
 			if (proto_i == 6 && !S(id_eqp).startsWith('Z'))
 			{	id_eqp = "Z" + id_eqp;	}
 			
-			//Test des peripheriques dont l'ID commence par un Z mais dont le protocole n'est pas défini en Zwave 
+			//Test des peripheriques dont l'ID commence par un Z mais dont le protocole n'est pas defini en Zwave 
 			if (!proto_i)
 			{
 				proto = "undefined";
@@ -668,7 +680,7 @@ request(xmlurl, function(err, resp, body)
 				*/
 				if (proto =="VISONIC433")
 				{
-					//A implémenter
+					//A implementer
 					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement. Les developpements ci dessous sont hypothetiques\n");
 					app_visionic433 = app_visionic433+'\n	//Aucun equipement VISIONIC433 n est en ma possession pour tester et remonter les infos\n';
 
@@ -996,8 +1008,8 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
-					/*periph_jeedom = S(periph_jeedom).replaceAll('é', 'e').s;
-					periph_jeedom = S(periph_jeedom).replaceAll('è', 'e').s;
+					/*periph_jeedom = S(periph_jeedom).replaceAll('e', 'e').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('e', 'e').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('ê', 'e').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('à', 'a').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('â', 'a').s;*/
@@ -1085,7 +1097,7 @@ request(xmlurl, function(err, resp, body)
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce Power");
 						app_zwave = app_zwave+'\n		if (zwave_id=="'+id_eqp+'")\n'
 						app_zwave = app_zwave+'		{\n';
-						app_zwave = app_zwave+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut POWER et de type '+type_eqp+'\");\n';
+						app_zwave = app_zwave+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut UNKNOWN et de type '+type_eqp+'\");\n';
 						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowertotal+'+\"&value=\" + kwh;\n';
 						
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Power Total Energy: \" + kwh);\n';
@@ -1101,12 +1113,12 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowerstatus+'+\"&value=\" + w;\n';
+						/*app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowerstatus+'+\"&value=\" + w;\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Power Status: \" + w);\n';
 						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{	console.log(new Date() + \" \" + body); });\n';
-						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
+						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';*/
 
 						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
@@ -1269,11 +1281,11 @@ request(xmlurl, function(err, resp, body)
 
 					count_periph++;
 					bool_periph_added = 1;
-					app_zwave = app_zwave+'		fs.writeFileSync("debug_zwave.txt", S(msg), "UTF-8");';
+					//app_zwave = app_zwave+'		fs.writeFileSync("debug_zwave.txt", S(msg), "UTF-8");';
 				}
 				else if (proto =="RFS10/TS10")
 				{
-					//A implémenter
+					//A implementer
 					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
 					app_rfs10ts10=app_rfs10ts10+'	}\n';
 
@@ -1282,7 +1294,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="XDD433")
 				{
-					//A implémenter
+					//A implementer
 					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
 					app_xdd433alrm=app_xdd433alrm+'	}\n';
 
@@ -1291,7 +1303,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="XDD868")
 				{
-					//A implémenter
+					//A implementer
 					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
 					app_xdd868alrm=app_xdd868alrm+'	}\n';
 
@@ -1461,7 +1473,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="XDD868Boiler")
 				{
-					//A implémenter
+					//A implementer
 					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement");
 					app_xdd868boiler=app_xdd868boiler+'	}\n';
 
@@ -1709,7 +1721,7 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'		}\n';
 					}
 
-					//Traitements des sondes de lumière
+					//Traitements des sondes de lumiere
 					else if (type_eqp == "light")
 					{
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
@@ -1750,7 +1762,7 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'		}\n';
 					}
 
-					//Traitements des télécommandes
+					//Traitements des telecommandes
 					//else if (type_eqp == "COMMANDE")
 					else if (type_eqp == "COMMANDE")
 					{
@@ -2002,7 +2014,7 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
 						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\" + bat;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de réception Radio: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception Radio: \" + bat);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
@@ -2073,7 +2085,7 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
 						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\" + bat;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de réception Radio: \" + bat);\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception Radio: \" + bat);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{	console.log(new Date() + \" \" + body); });\n';
@@ -2185,8 +2197,8 @@ request(xmlurl, function(err, resp, body)
 		fs.writeFileSync("zidomn10.js", app_script, "UTF-8");
 		console.log(" Fin d'Ecriture dans le fichier zidomn10.js !")
 		console.log("------------------------------------------------------------------------------------")
-		console.log(" Debut d'Ecriture dans le fichier jeedom_id_steph.txt ...")
-		fs.writeFileSync("jeedom_id_steph.txt", jid_file, "UTF-8");
+		console.log(" Debut d'Ecriture dans le fichier jeedom_id.txt ...")
+		fs.writeFileSync("jeedom_id.txt", jid_file, "UTF-8");
 		console.log(" Fin d'Ecriture dans le fichier jeedom_id.txt !")
 		console.log("------------------------------------------------------------------------------------")
 		/*console.log(" Debut d'Ecriture dans le fichier de DEBUG ZWAVE debug_zwave.txt ...")
