@@ -1,5 +1,5 @@
 var clientIp = process.env.MYIP || getIPAddress();
-zibase_ip = "192.168.0.X"
+zibase_ip = "192.168.0.x"
 var zibaseIp = process.env.IP_ZIBASE|| zibase_ip;
 
 var zibase_device = require('string');
@@ -13,7 +13,7 @@ var  jeedom_api = require('string');
 // A remplir :
 zibase_device = "";
 zibase_token = "";
-jeedom_ip = "192.168.0.X";
+jeedom_ip = "192.168.0.x";
 jeedom_api = "";
 
 jeedom_chemin_install    = "/jeedom/core/api/jeeApi.php?api=";
@@ -178,6 +178,7 @@ app_script2 = app_script2+'		xdd868alrm_status = "";\n';
 app_script2 = app_script2+'	xdd868intershutter = S(msg).include(\'Inter/shutter RFY433\');\n';
 app_script2 = app_script2+'		xdd868intershutter_status = "";\n';
 app_script2 = app_script2+'	xdd868pilotwire = S(msg).include(\'XDD868 Radiator/Pilot Wire\');\n';
+app_script2 = app_script2+'		xdd868pilotwire_id = "";\n';
 app_script2 = app_script2+'		xdd868pilotwire_status = "";\n';
 app_script2 = app_script2+'		xdd868pilotwire_cmd = "";\n';
 app_script2 = app_script2+'	xdd868boiler = S(msg).include(\'XDD868Boiler\');\n';
@@ -195,26 +196,34 @@ app_script2 = app_script2+'	    nb_http_request++;\n';
 app_script2 = app_script2+'	}\n';
 
 app_script2 = app_script2+'\n	//Test de remontees de PROTOCOLE 1 : composants VISION433 :\n';
-app_script2 = app_script2+'	if (S(msg).include(\'VISONIC433\'))\n';
+app_script2 = app_script2+'\n	//Received radio ID \n';
+app_script2 = app_script2+'\n	//Received radio ID \n';
+app_script2 = app_script2+'	if (S(msg).include(\'<rf>433Mhz </rf>\') && S(msg).include(\'<id>VS\'))\n';
 app_script2 = app_script2+'	{\n';
-app_script2 = app_script2+'	    visionic433_id  = S(msg).between("Visionic433\' ): ", \'_\').s;\n';
+app_script2 = app_script2+'		visionic433_status = "UNKNOWN";\n';
+app_script2 = app_script2+'	    visionic433_id  = "VS".S(msg).between("<id>VS", \'</id>\').s;\n';
 app_script2 = app_script2+'		visionic433 = true;\n';
-app_script2 = app_script2+'		if (S(msg).include(\'_ON\'))\n';
-app_script2 = app_script2+'		{\n			 visionic433_status = "ON";\n		}\n';
-app_script2 = app_script2+'		else if (S(msg).include(\'_OFF\'))\n';
-app_script2 = app_script2+'		{\n			 visionic433_status = "OFF";\n		}\n';
+app_script2 = app_script2+'		if (S(msg).include(\'>Alive</flag\') && !S(msg).include(\'>Alarm</flag\'))\n';
+app_script2 = app_script2+'		{\n			 visionic433_status = "Alive";\n		}\n';
+app_script2 = app_script2+'		else if (!S(msg).include(\'>Alive</flag\') && S(msg).include(\'>Alarm</flag\'))\n';
+app_script2 = app_script2+'		{\n			 visionic433_status = "Alarm";\n		}\n';
+app_script2 = app_script2+'		else  visionic433_status = "UNKNOWN";\n';
 app_script2 = app_script2+'		console.log("Debug : visionic433    : " + visionic433 + " | Composant/Id " + visionic433_id + " | Statut " + visionic433_status);\n';
 app_script2 = app_script2+'	}\n';
 
 app_script2 = app_script2+'\n	//Test de remontees de PROTOCOLE 2 : composants VISION868 :\n';
-app_script2 = app_script2+'	if (S(msg).include(\'VISONIC868\'))\n';
+app_script2 = app_script2+'\n	//Received radio ID (<rf>868Mhz </rf> Noise=<noise>2163</noise> Level=<lev>5.0</lev>/5  <dev>Remote Control</dev>  Flags= <flag3>Alive</flag3>  Batt=<bat>Ok</bat>): <id>VS3549221672</id> \n';
+app_script2 = app_script2+'\n	//Received radio ID (<rf>868Mhz </rf> Noise=<noise>2173</noise> Level=<lev>5.0</lev>/5  <dev>Remote Control</dev>  Flags= <flag1>Alarm</flag1>  Batt=<bat>Ok</bat>): <id>VS381936674</id>  \n';
+app_script2 = app_script2+'	if (S(msg).include(\'<rf>868Mhz </rf>\') && S(msg).include(\'<id>VS\'))\n';
 app_script2 = app_script2+'	{\n';
-app_script2 = app_script2+'	    visionic868_id  = S(msg).between("Visionic868\' ): ", \'_\').s;\n';
+app_script2 = app_script2+'		visionic868_status = "UNKNOWN";\n';
+app_script2 = app_script2+'	    visionic868_id  = "VS".S(msg).between("<id>VS", \'</id>\').s;\n';
 app_script2 = app_script2+'		visionic868 = true;\n';
-app_script2 = app_script2+'		if (S(msg).include(\'_ON\'))\n';
-app_script2 = app_script2+'		{\n			 visionic868_status = "ON";\n		}\n';
-app_script2 = app_script2+'		else if (S(msg).include(\'_OFF\'))\n';
-app_script2 = app_script2+'		{\n			 visionic868_status = "OFF";\n		}\n';
+app_script2 = app_script2+'		if (S(msg).include(\'>Alive</flag\') && !S(msg).include(\'>Alarm</flag\'))\n';
+app_script2 = app_script2+'		{\n			 visionic868_status = "Alive";\n		}\n';
+app_script2 = app_script2+'		else if (!S(msg).include(\'>Alive</flag\') && S(msg).include(\'>Alarm</flag\'))\n';
+app_script2 = app_script2+'		{\n			 visionic868_status = "Alarm";\n		}\n';
+app_script2 = app_script2+'		else  visionic868_status = "UNKNOWN";\n';
 app_script2 = app_script2+'		console.log("Debug : visionic868    : " + visionic868 + " | Composant/Id " + visionic868_id + " | Statut " + visionic868_status);\n';
 app_script2 = app_script2+'	}\n';
 
@@ -440,7 +449,7 @@ app_script2 = app_script2+'		}\n';
 app_script2 = app_script2+'		else if (!S(msg).include(\'_ON\') && !S(msg).include(\'_OFF\') && S(msg).include(\'DIM/SPECIAL\'))\n';
 app_script2 = app_script2+'		{\n';
 app_script2 = app_script2+'			xdd868pilotwire_status = "DIM/SPECIAL";\n';
-app_script2 = app_script2+'			xdd868pilotwire_id  = S(msg).between(" ): ", \' DIM/SPECIAL\').s\n';
+app_script2 = app_script2+'			xdd868pilotwire_id  = S(msg).between(" ): ", \' DIM/SPECIAL\').s;\n';
 app_script2 = app_script2+'		}\n';
 app_script2 = app_script2+'		else xdd868pilotwire_status = "UNKNOWN";\n';
 app_script2 = app_script2+'		console.log("Debug : xdd868pilotwire    : " + xdd868pilotwire + " | Composant/Id " + xdd868pilotwire_id + " | Statut " + xdd868pilotwire_status+ " | Commande " +xdd868pilotwire_cmd);\n';
@@ -543,9 +552,9 @@ request(xmlurl, function(err, resp, body)
 	var app_rfs10ts10 = "	else if (rfs10ts10)\n	{					//	 Equipements de Type RFS10 TS10\n";
 	var app_xdd433alrm = "	else if (xdd433alrm)\n	{					//	 Equipements de Type XDD433 alrm\n";
 	var app_xdd868alrm = "	else if (xdd868alrm)\n	{					//	 Equipements de Type XDD868 alrm\n";
-	var app_xdd868intershutter = "	else if (xdd868intershutter)\n	{	//	 Equipements de Type XDD868\n";
-	var app_xdd868pilotwire = "	else if (xdd868pilotwire)\n	{			//	 Equipements de Type XDD868\n;";
-	var app_xdd868boiler = "	else if (xdd868boiler)\n	{			//	 Equipements de Type XDD868\n";
+	var app_xdd868intershutter = "	else if (xdd868intershutter)\n	{	//	 Equipements de Type XDD868Inter/Shutter\n";
+	var app_xdd868pilotwire = "	else if (xdd868pilotwire)\n	{			//	 Equipements de Type XDD868PilotWire\n";
+	var app_xdd868boiler = "	else if (xdd868boiler)\n	{			//	 Equipements de Type XDD868Boiler\n";
 	//var app_undefined = "	else if (S(msg).include('Received radio ID'))\n	{//	 Equipements sans protocole scpecifique\n";
 	var app_undefined = "	\n	{//	 Equipements sans protocole scpecifique\n";
 	
@@ -658,17 +667,205 @@ request(xmlurl, function(err, resp, body)
 				if (proto =="VISONIC433")
 				{
 					//A implémenter
-					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
+					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement. Les developpements ci dessous sont hypothetiques\n");
 					app_visionic433 = app_visionic433+'\n	//Aucun equipement VISIONIC433 n est en ma possession pour tester et remonter les infos\n';
+
+					//Received radio ID
+					//Received radio ID 
+					console.log(" Equipement de protocole "+proto+".");
+					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
+					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
+					
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					jid = "j_"+periph_jeedom;
+						jidbatterie = "j_"+periph_jeedom+"_batterie";
+						jidradio = "j_"+periph_jeedom+"_radio";
+					jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
+						jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
+						jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
+					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
+					
+					app_visionic433 = app_visionic433+'\n		if (visionic433_id=="'+id_eqp+'" && visionic433_status=="Alive")\n'
+					app_visionic433 = app_visionic433+'		{\n';
+					app_visionic433 = app_visionic433+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut Alive et de type '+type_eqp+'\");\n';
+					app_visionic433 = app_visionic433+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Envoi de la requete HTTP Alive-Visionic868 de l\'equipement \");\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic433 = app_visionic433+'			request(http_request, function(error, response, body)\n';
+					app_visionic433 = app_visionic433+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic433 = app_visionic433+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_visionic433 = app_visionic433+'			console.log(\"  Envoi de la requete HTTP BatterieVisionic868: \" + bat);\n';
+					app_visionic433 = app_visionic433+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic433 = app_visionic433+'			request(http_request, function(error, response, body)\n';
+					app_visionic433 = app_visionic433+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic433 = app_visionic433+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_visionic433 = app_visionic433+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\" + lev;\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio de Visionic868: \" + lev);\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic433 = app_visionic433+'			request(http_request, function(error, response, body)\n';
+					app_visionic433 = app_visionic433+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic433 = app_visionic433+'			nb_http_request = nb_http_request + 1;\n';
+					app_visionic433 = app_visionic433+'		}\n';
+
+					app_visionic433 = app_visionic433+'		if (visionic433_id=="'+id_eqp+'" && visionic433_status=="Alarm")\n'
+					app_visionic433 = app_visionic433+'		{\n';
+					app_visionic433 = app_visionic433+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut Alarm et de type '+type_eqp+'\");\n';
+					app_visionic433 = app_visionic433+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=10\";\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Envoi de la requete HTTP Alarm-Visionic868 de l\'equipement \");\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic433 = app_visionic433+'			request(http_request, function(error, response, body)\n';
+					app_visionic433 = app_visionic433+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic433 = app_visionic433+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_visionic433 = app_visionic433+'			console.log(\"  Envoi de la requete HTTP Batterie Visionic868: \" + bat);\n';
+					app_visionic433 = app_visionic433+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic433 = app_visionic433+'			request(http_request, function(error, response, body)\n';
+					app_visionic433 = app_visionic433+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic433 = app_visionic433+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_visionic433 = app_visionic433+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\" + lev;\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio de Visionic868: \" + lev);\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic433 = app_visionic433+'			request(http_request, function(error, response, body)\n';
+					app_visionic433 = app_visionic433+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic433 = app_visionic433+'			nb_http_request = nb_http_request + 1;\n';
+					app_visionic433 = app_visionic433+'		}\n';
+
+					app_visionic433 = app_visionic433+'		if (visionic433_id=="'+id_eqp+'" && visionic433_status=="UNKNOWN")\n'
+					app_visionic433 = app_visionic433+'		{\n';
+					app_visionic433 = app_visionic433+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut UNKNOWN et de type '+type_eqp+'\");\n';
+					app_visionic433 = app_visionic433+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=0\";\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Envoi de la requete HTTP Alarm-Visionic868 de l\'equipement \");\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic433 = app_visionic433+'			request(http_request, function(error, response, body)\n';
+					app_visionic433 = app_visionic433+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic433 = app_visionic433+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_visionic433 = app_visionic433+'			console.log(\"  Envoi de la requete HTTP Batterie Visionic868: \" + bat);\n';
+					app_visionic433 = app_visionic433+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic433 = app_visionic433+'			request(http_request, function(error, response, body)\n';
+					app_visionic433 = app_visionic433+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic433 = app_visionic433+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_visionic433 = app_visionic433+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\" + lev;\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio de Visionic868: \" + lev);\n';
+					app_visionic433 = app_visionic433+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic433 = app_visionic433+'			request(http_request, function(error, response, body)\n';
+					app_visionic433 = app_visionic433+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic433 = app_visionic433+'			nb_http_request = nb_http_request + 1;\n';
+					app_visionic433 = app_visionic433+'		}\n';
 
 					count_periph++;
 				}
 				if (proto =="VISONIC868")
 				{
-					//A implémenter
-					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
-					app_visionic868 = app_visionic868+'\n	//Aucun equipement VISIONIC868 n est en ma possession pour tester et remonter les infos\n';
+					//Received radio ID (<rf>868Mhz </rf> Noise=<noise>2163</noise> Level=<lev>5.0</lev>/5  <dev>Remote Control</dev>  Flags= <flag3>Alive</flag3>  Batt=<bat>Ok</bat>): <id>VS3549221672</id> 
+					//Received radio ID (<rf>868Mhz </rf> Noise=<noise>2173</noise> Level=<lev>5.0</lev>/5  <dev>Remote Control</dev>  Flags= <flag1>Alarm</flag1>  Batt=<bat>Ok</bat>): <id>VS381936674</id> 
+					console.log(" Equipement de protocole "+proto+".");
+					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
+					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
+					
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					jid = "j_"+periph_jeedom;
+						jidbatterie = "j_"+periph_jeedom+"_batterie";
+						jidradio = "j_"+periph_jeedom+"_radio";
+					jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
+						jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
+						jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
+					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
+					
+					app_visionic868 = app_visionic868+'\n		if (visionic868_id=="'+id_eqp+'" && visionic868_status=="Alive")\n'
+					app_visionic868 = app_visionic868+'		{\n';
+					app_visionic868 = app_visionic868+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut Alive et de type '+type_eqp+'\");\n';
+					app_visionic868 = app_visionic868+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Envoi de la requete HTTP Alive-Visionic868 de l\'equipement \");\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic868 = app_visionic868+'			request(http_request, function(error, response, body)\n';
+					app_visionic868 = app_visionic868+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic868 = app_visionic868+'			nb_http_request = nb_http_request + 1;\n';
 
+					app_visionic868 = app_visionic868+'			console.log(\"  Envoi de la requete HTTP BatterieVisionic868: \" + bat);\n';
+					app_visionic868 = app_visionic868+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic868 = app_visionic868+'			request(http_request, function(error, response, body)\n';
+					app_visionic868 = app_visionic868+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic868 = app_visionic868+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_visionic868 = app_visionic868+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\" + lev;\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio de Visionic868: \" + lev);\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic868 = app_visionic868+'			request(http_request, function(error, response, body)\n';
+					app_visionic868 = app_visionic868+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic868 = app_visionic868+'			nb_http_request = nb_http_request + 1;\n';
+					app_visionic868 = app_visionic868+'		}\n';
+
+					app_visionic868 = app_visionic868+'		if (visionic868_id=="'+id_eqp+'" && visionic868_status=="Alarm")\n'
+					app_visionic868 = app_visionic868+'		{\n';
+					app_visionic868 = app_visionic868+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut Alarm et de type '+type_eqp+'\");\n';
+					app_visionic868 = app_visionic868+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=10\";\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Envoi de la requete HTTP Alarm-Visionic868 de l\'equipement \");\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic868 = app_visionic868+'			request(http_request, function(error, response, body)\n';
+					app_visionic868 = app_visionic868+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic868 = app_visionic868+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_visionic868 = app_visionic868+'			console.log(\"  Envoi de la requete HTTP Batterie Visionic868: \" + bat);\n';
+					app_visionic868 = app_visionic868+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic868 = app_visionic868+'			request(http_request, function(error, response, body)\n';
+					app_visionic868 = app_visionic868+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic868 = app_visionic868+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_visionic868 = app_visionic868+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\" + lev;\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio de Visionic868: \" + lev);\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic868 = app_visionic868+'			request(http_request, function(error, response, body)\n';
+					app_visionic868 = app_visionic868+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic868 = app_visionic868+'			nb_http_request = nb_http_request + 1;\n';
+					app_visionic868 = app_visionic868+'		}\n';
+
+					app_visionic868 = app_visionic868+'		if (visionic868_id=="'+id_eqp+'" && visionic868_status=="UNKNOWN")\n'
+					app_visionic868 = app_visionic868+'		{\n';
+					app_visionic868 = app_visionic868+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut UNKNOWN et de type '+type_eqp+'\");\n';
+					app_visionic868 = app_visionic868+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=0\";\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Envoi de la requete HTTP Alarm-Visionic868 de l\'equipement \");\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic868 = app_visionic868+'			request(http_request, function(error, response, body)\n';
+					app_visionic868 = app_visionic868+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic868 = app_visionic868+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_visionic868 = app_visionic868+'			console.log(\"  Envoi de la requete HTTP Batterie Visionic868: \" + bat);\n';
+					app_visionic868 = app_visionic868+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic868 = app_visionic868+'			request(http_request, function(error, response, body)\n';
+					app_visionic868 = app_visionic868+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic868 = app_visionic868+'			nb_http_request = nb_http_request + 1;\n';
+
+					app_visionic868 = app_visionic868+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\" + lev;\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio de Visionic868: \" + lev);\n';
+					app_visionic868 = app_visionic868+'			console.log(\"  Requete :\" + http_request);\n';
+					app_visionic868 = app_visionic868+'			request(http_request, function(error, response, body)\n';
+					app_visionic868 = app_visionic868+'			{	console.log(new Date() + \" \" + body); });\n';
+					app_visionic868 = app_visionic868+'			nb_http_request = nb_http_request + 1;\n';
+					app_visionic868 = app_visionic868+'		}\n';
+					
 					count_periph++;
 				}
 				if (proto =="CHACON")
@@ -1163,7 +1360,7 @@ request(xmlurl, function(err, resp, body)
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n		console.log(\"DEBUG X2D !!!!!! Dans les tests X2D 1....\");\n';
-					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (id=="'+id_eqp+'")\n';
+					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (xdd868pilotwire_id=="'+id_eqp+'")\n';
 					app_xdd868pilotwire=app_xdd868pilotwire+'		{\n';
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
