@@ -205,7 +205,7 @@ app_script2 = app_script2+'\n	//Received radio ID \n';
 app_script2 = app_script2+'	if (S(msg).include(\'<rf>433Mhz </rf>\') && S(msg).include(\'<id>VS\'))\n';
 app_script2 = app_script2+'	{\n';
 app_script2 = app_script2+'		visionic433_status = "UNKNOWN";\n';
-app_script2 = app_script2+'	    visionic433_id  = "VS".S(msg).between("<id>VS", \'</id>\').s;\n';
+app_script2 = app_script2+'	    visionic433_id  = "VS"+S(msg).between("<id>VS", \'</id>\').s;\n';
 app_script2 = app_script2+'		visionic433 = true;\n';
 app_script2 = app_script2+'		if (S(msg).include(\'>Alive</flag\') && !S(msg).include(\'>Alarm</flag\'))\n';
 app_script2 = app_script2+'		{\n			 visionic433_status = "Alive";\n		}\n';
@@ -221,7 +221,7 @@ app_script2 = app_script2+'\n	//Received radio ID (<rf>868Mhz </rf> Noise=<noise
 app_script2 = app_script2+'	if (S(msg).include(\'<rf>868Mhz </rf>\') && S(msg).include(\'<id>VS\'))\n';
 app_script2 = app_script2+'	{\n';
 app_script2 = app_script2+'		visionic868_status = "UNKNOWN";\n';
-app_script2 = app_script2+'	    visionic868_id  = "VS".S(msg).between("<id>VS", \'</id>\').s;\n';
+app_script2 = app_script2+'	    visionic868_id  = "VS"+S(msg).between("<id>VS", \'</id>\').s;\n';
 app_script2 = app_script2+'		visionic868 = true;\n';
 app_script2 = app_script2+'		if (S(msg).include(\'>Alive</flag\') && !S(msg).include(\'>Alarm</flag\'))\n';
 app_script2 = app_script2+'		{\n			 visionic868_status = "Alive";\n		}\n';
