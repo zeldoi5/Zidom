@@ -917,12 +917,15 @@ request(xmlurl, function(err, resp, body)
 					app_chacon = app_chacon+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 					app_chacon = app_chacon+'			nb_http_request = nb_http_request + 1;\n';
 
-					app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
-					app_chacon = app_chacon+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
-					app_chacon = app_chacon+'			console.log(\"  Requete :\" + http_request);\n';
-					app_chacon = app_chacon+'			request(http_request, function(error, response, body)\n';
-					app_chacon = app_chacon+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
-					app_chacon = app_chacon+'			nb_http_request = nb_http_request + 1;\n';
+					app_chacon = app_chacon+'			if (S(msg).include("Batt"))\n';
+					app_chacon = app_chacon+'			{\n';
+					app_chacon = app_chacon+'\t			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+					app_chacon = app_chacon+'\t			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
+					app_chacon = app_chacon+'\t			console.log(\"  Requete :\" + http_request);\n';
+					app_chacon = app_chacon+'\t			request(http_request, function(error, response, body)\n';
+					app_chacon = app_chacon+'\t			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
+					app_chacon = app_chacon+'\t			nb_http_request = nb_http_request + 1;\n';
+					app_chacon = app_chacon+'			}\n';
 					app_chacon = app_chacon+'		}\n';
 
 					app_chacon = app_chacon+'		if (chacon_id=="'+id_eqp+'" && chacon_status=="OFF")\n'
@@ -935,12 +938,15 @@ request(xmlurl, function(err, resp, body)
 					app_chacon = app_chacon+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 					app_chacon = app_chacon+'			nb_http_request = nb_http_request + 1;\n';
 
-					app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
-					app_chacon = app_chacon+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
-					app_chacon = app_chacon+'			console.log(\"  Requete :\" + http_request);\n';
-					app_chacon = app_chacon+'			request(http_request, function(error, response, body)\n';
-					app_chacon = app_chacon+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
-					app_chacon = app_chacon+'			nb_http_request = nb_http_request + 1;\n';
+					app_chacon = app_chacon+'			if (S(msg).include("Batt"))\n';
+					app_chacon = app_chacon+'			{\n';
+					app_chacon = app_chacon+'\t			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+					app_chacon = app_chacon+'\t			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\"+bat;\n';
+					app_chacon = app_chacon+'\t			console.log(\"  Requete :\" + http_request);\n';
+					app_chacon = app_chacon+'\t			request(http_request, function(error, response, body)\n';
+					app_chacon = app_chacon+'\t			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
+					app_chacon = app_chacon+'\t			nb_http_request = nb_http_request + 1;\n';
+					app_chacon = app_chacon+'			}\n';
 					app_chacon = app_chacon+'		}\n';
 
 					count_periph++;
