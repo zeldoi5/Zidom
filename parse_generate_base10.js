@@ -154,8 +154,10 @@ app_script2 = app_script2+'	console.log(new Date() + " " + msg.slice(70));\n';
 app_script2 = app_script2+'';
 
 app_script2 = app_script2+'	visionic433 = S(msg).include(\'VISONIC433\');\n';
+app_script2 = app_script2+'		visionic433_id = "";\n';
 app_script2 = app_script2+'		visionic433_status = "";\n';
 app_script2 = app_script2+'	visionic868 = S(msg).include(\'VISONIC868\');\n';
+app_script2 = app_script2+'		visionic868_id = "";\n';
 app_script2 = app_script2+'		visionic868_status = "";\n';
 app_script2 = app_script2+'	chacon = S(msg).include(\'Chacon\');\n';
 app_script2 = app_script2+'		chacon_status = "";\n';
@@ -1359,7 +1361,7 @@ request(xmlurl, function(err, resp, body)
 					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
-					app_xdd868pilotwire = app_xdd868pilotwire+'\n		console.log(\"DEBUG X2D !!!!!! Dans les tests X2D 1....\");\n';
+					//app_xdd868pilotwire = app_xdd868pilotwire+'\n		console.log(\"DEBUG X2D !!!!!! Dans les tests X2D 1....\");\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (xdd868pilotwire_id=="'+id_eqp+'")\n';
 					app_xdd868pilotwire=app_xdd868pilotwire+'		{\n';
 					
@@ -1379,7 +1381,7 @@ request(xmlurl, function(err, resp, body)
 						jid_file = jid_file+'\t\t\t'+jidcmd+' = 88;\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
-					app_xdd868pilotwire = app_xdd868pilotwire+'\n			console.log(\"DEBUG X2D !!!!!! Dans les tests X2D 2....\");\n';
+					//app_xdd868pilotwire = app_xdd868pilotwire+'\n			console.log(\"DEBUG X2D !!!!!! Dans les tests X2D 2....\");\n';
 					
 					//app_xdd868pilotwire = app_xdd868pilotwire+'\n			if (S(msg).include(\'XDD868 Radiator/Pilot Wire\') && S(msg).include("'+id_eqp+'_ON"))\n';
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n			if (xdd868pilotwire_id=="'+id_eqp+'" && xdd868pilotwire_status=="ON")\n';
