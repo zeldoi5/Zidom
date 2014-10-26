@@ -1345,7 +1345,7 @@ request(xmlurl, function(err, resp, body)
 					app_xdd868intershutter = app_xdd868intershutter+'\n		if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'") && S(msg).include("DIM/SPECIAL"))\n'
 					app_xdd868intershutter = app_xdd868intershutter+'		{\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' de statu DIM/SPECIAL et de type '+type_eqp+'\");\n';
-					app_xdd868intershutter = app_xdd868intershutter+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
+					app_xdd868intershutter = app_xdd868intershutter+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=2\";\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Envoi de la requete HTTP Arret volet de l\'equipement \");\n';
 					app_xdd868intershutter = app_xdd868intershutter+'			console.log(\"  Requete :\" + http_request);\n'; 
 					app_xdd868intershutter = app_xdd868intershutter+'			request(http_request, function(error, response, body)\n';
