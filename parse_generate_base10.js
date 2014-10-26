@@ -781,6 +781,7 @@ request(xmlurl, function(err, resp, body)
 					app_visionic433 = app_visionic433+'		}\n';
 
 					count_periph++;
+					bool_periph_added = 1;
 				}
 				if (proto =="VISONIC868")
 				{
@@ -881,6 +882,7 @@ request(xmlurl, function(err, resp, body)
 					app_visionic868 = app_visionic868+'		}\n';
 					
 					count_periph++;
+					bool_periph_added = 1;
 				}
 				if (proto =="CHACON")
 				{
