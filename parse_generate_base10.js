@@ -6,8 +6,8 @@ var zibase_device = require('string');
 var zibase_token = require('string');
 var zibase_url = require('string');
 var util = require("util");
-var Iconv = require('iconv').Iconv;
-var iconvlite = require('iconv-lite');
+//var Iconv = require('iconv').Iconv;
+//var iconvlite = require('iconv-lite');
 var fs = require("fs");
 
 var  jeedom_api = require('string');
@@ -2277,7 +2277,7 @@ request(xmlurl, function(err, resp, body)
 	});
 });
 
-function readFileSync_encoding(filename, encoding) {
+/*function readFileSync_encoding(filename, encoding) {
     var content = fs.readFileSync(filename);
     return iconvlite.decode(content, encoding);
 }
@@ -2287,7 +2287,7 @@ function readFileSync_encoding2(filename, encoding, contenu) {
     var iconv = new Iconv(encoding, 'UTF-8');
     var buffer = iconv.convert(content);
     return buffer.toString('utf8');
-}
+}*/
 
 process.on('SIGINT', function() {
 	console.log("Caught interrupt signal");
