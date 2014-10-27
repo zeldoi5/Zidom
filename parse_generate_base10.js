@@ -2119,7 +2119,7 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
+						/*app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
 						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
@@ -2130,7 +2130,7 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
-						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
+						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';*/
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						app_undefined = app_undefined+'		}\n';
 
@@ -2143,7 +2143,7 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
+						/*app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
 						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
@@ -2154,7 +2154,7 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception Radio: \" + bat);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
-						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
+						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';*/
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 						app_undefined = app_undefined+'		}\n';
 					}
@@ -2260,7 +2260,7 @@ request(xmlurl, function(err, resp, body)
 
 		console.log("------------------------------------------------------------------------------------")
 		console.log(" Debut d'Ecriture dans le fichier zidomn10.js ...");
-		fs.writeFileSync("zidomn10.txt", app_script, "utf8");
+		fs.writeFileSync("zidomn10.js", app_script, "utf8");
 		//readFileSync_encoding2("zidomn10-2.js", "UTF-8", app_script);
 		//readFileSync_encoding("zidomn10-2.js", "UTF-8", app_script);
 		console.log(" Fin d'Ecriture dans le fichier zidomn10.js !")
