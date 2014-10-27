@@ -6,6 +6,8 @@ var zibase_device = require('string');
 var zibase_token = require('string');
 var zibase_url = require('string');
 var util = require("util");
+var Iconv = require('iconv').Iconv;
+var iconvlite = require('iconv-lite');
 var fs = require("fs");
 
 var  jeedom_api = require('string');
@@ -696,6 +698,8 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						jidradio = "j_"+periph_jeedom+"_radio";
@@ -797,6 +801,8 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						jidradio = "j_"+periph_jeedom+"_radio";
@@ -896,6 +902,8 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						//jidradio = "j_"+periph_jeedom+"_radio";
@@ -963,6 +971,8 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 					jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
 					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
@@ -1018,6 +1028,8 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					/*periph_jeedom = S(periph_jeedom).replaceAll('e', 'e').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('è', 'e').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('ê', 'e').s;
@@ -1078,8 +1090,10 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 
-					if (S(name_eqp).contains("è"))
+					/*if (S(name_eqp).contains("è"))
 					{
 						console.log("  Presence  de caractere accentué : accent grave");
 						console.log("  Tentative 1 de correction:"+S(name_eqp).replaceAll('è', 'e').s);
@@ -1087,10 +1101,10 @@ request(xmlurl, function(err, resp, body)
 					}
 					if (S(name_eqp).contains("é"))
 					{
-						console.log("  Presence  de caractere accentué : accent grave");
+						console.log("  Presence  de caractere accentué : accent aigu");
 						console.log("  Tentative 1 de correction:"+S(name_eqp).replaceAll('é', 'e').s);
 						console.log("  Tentative 2 de correction:"+S(name_eqp).replaceAll('é', 'e').s);
-					}
+					}*/
 					periph_jeedom = S(periph_jeedom).replaceAll('é', 'e').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('è', 'e').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('ê', 'e').s;
@@ -1348,6 +1362,8 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						//jidradio = "j_"+periph_jeedom+"_radio";
@@ -1409,6 +1425,8 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						//jidbatterie = "j_"+periph_jeedom+"_batterie";
 						jidcmd = "j_"+periph_jeedom+"_cmd";
@@ -1521,6 +1539,8 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 					jidhygro = "j_"+periph_jeedom+"_hygro";
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1584,6 +1604,8 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					//jid = "j_"+periph_jeedom;
 						jidpowertotal = "j_"+periph_jeedom+"_powertotal";
 						jidpowerpower = "j_"+periph_jeedom+"_powerpower";
@@ -1638,6 +1660,8 @@ request(xmlurl, function(err, resp, body)
 						periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						//jid = "j_"+periph_jeedom;
 							jidpowertotal = "j_"+periph_jeedom+"_powertotal";
 							jidpowerpower = "j_"+periph_jeedom+"_powerpower";
@@ -1700,6 +1724,8 @@ request(xmlurl, function(err, resp, body)
 						periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 						jidhygro = "j_"+periph_jeedom+"_hygro";
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1761,6 +1787,8 @@ request(xmlurl, function(err, resp, body)
 						periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 							//jidradio = "j_"+periph_jeedom+"_radio";
@@ -1804,6 +1832,8 @@ request(xmlurl, function(err, resp, body)
 						periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 							//jidradio = "j_"+periph_jeedom+"_radio";
@@ -1868,6 +1898,8 @@ request(xmlurl, function(err, resp, body)
 						periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 							//jidradio = "j_"+periph_jeedom+"_radio";
@@ -1929,6 +1961,8 @@ request(xmlurl, function(err, resp, body)
 						periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 							//jidradio = "j_"+periph_jeedom+"_radio";
@@ -1988,6 +2022,8 @@ request(xmlurl, function(err, resp, body)
 						periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -2059,17 +2095,19 @@ request(xmlurl, function(err, resp, body)
 						periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+						periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 
 						jid = "j_"+periph_jeedom;
-							//jidbatterie = "j_"+periph_jeedom+"_batterie";
-							//jidradio = "j_"+periph_jeedom+"_radio";
+							jidbatterie = "j_"+periph_jeedom+"_batterie";
+							jidradio = "j_"+periph_jeedom+"_radio";
 						
 						jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
-							//jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
-							//jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
 						jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							//jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-							//jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'" && sta =="ON")\n'
@@ -2221,20 +2259,35 @@ request(xmlurl, function(err, resp, body)
 		app_script = app_script+'}\n';
 
 		console.log("------------------------------------------------------------------------------------")
-		console.log(" Debut d'Ecriture dans le fichier zidomn10.js ...")
-		fs.writeFileSync("zidomn10.js", app_script, "UTF-8");
+		console.log(" Debut d'Ecriture dans le fichier zidomn10.js ...");
+		fs.writeFileSync("zidomn10.txt", app_script, "utf8");
+		//readFileSync_encoding2("zidomn10-2.js", "UTF-8", app_script);
+		//readFileSync_encoding("zidomn10-2.js", "UTF-8", app_script);
 		console.log(" Fin d'Ecriture dans le fichier zidomn10.js !")
 		console.log("------------------------------------------------------------------------------------")
-		console.log(" Debut d'Ecriture dans le fichier jeedom_id.txt ...")
-		fs.writeFileSync("jeedom_id.txt", jid_file, "UTF-8");
+		console.log(" Debut d'Ecriture dans le fichier jeedom_id_steph.txt ...");
+		fs.writeFileSync("jeedom_id.txt", jid_file, "utf8");
+		//readFileSync_encoding("jeedom_id.txt", "UTF-8", app_script);
 		console.log(" Fin d'Ecriture dans le fichier jeedom_id.txt !")
 		console.log("------------------------------------------------------------------------------------")
-		/*console.log(" Debut d'Ecriture dans le fichier de DEBUG ZWAVE debug_zwave.txt ...")
+		/*console.log(" Debut d'Ecriture dans le fichier de DEBUG ZWAVE debug_zwave.txt ...");
 		fs.writeFileSync("debug_zwave.txt", debug_zwave, "UTF-8");
 		console.log(" Fin d'Ecriture dans le fichier de DEBUG debug_zwave.txt !")
 		console.log("------------------------------------------------------------------------------------")*/
 	});
 });
+
+function readFileSync_encoding(filename, encoding) {
+    var content = fs.readFileSync(filename);
+    return iconvlite.decode(content, encoding);
+}
+
+function readFileSync_encoding2(filename, encoding, contenu) {
+    var content = fs.readFileSync(filename, contenu);
+    var iconv = new Iconv(encoding, 'UTF-8');
+    var buffer = iconv.convert(content);
+    return buffer.toString('utf8');
+}
 
 process.on('SIGINT', function() {
 	console.log("Caught interrupt signal");
@@ -2251,6 +2304,7 @@ process.on('SIGINT', function() {
 		  }, 3000);
 	});
 });
+
 
 function dot2num(dot) {
 var d = dot.split('.');
