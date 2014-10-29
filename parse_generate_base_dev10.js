@@ -60,6 +60,12 @@ jidavgwind = "";
 var jiddir = require('string');	// Variable des identifiants Jeedom pour les remontees de direction du vent de Pluviomètre Oregon
 jiddir = "";
 
+var jidtotrain = require('string'); // Variable des identifiants Jeedom pour les remontées du pluviometre : Total Pluie
+jidtotrain = "";
+var jidcurrain = require('string'); // Variable des identifiants Jeedom pour les remontées de pluviometre : Pluie courrante
+jidcurrain = "";
+
+
 var jid_descr = require('string');	// Variable temporaire de declaration des identifiants Jeedom et d'initialisation à 0
 jid_descr = "";
 var jid_file = require('string');	// Variable temporaire pour stocker en fichier les identifiants Jeedom
@@ -163,6 +169,9 @@ app_script2 = app_script2+'	noise 	= S(msg).between(\'Noise=\', \' \').s;\n';
 app_script2 = app_script2+'	level 	= S(msg).between(\'Level=\', \' \').s;\n';
 app_script2 = app_script2+'	avgwind 	= S(msg).between(\'Avg.Wind=\', \' \').s;\n';
 app_script2 = app_script2+'	direction 	= S(msg).between(\'Dir.=\', \' \').s;\n';
+app_script2 = app_script2+'     //totalrain = S(msg).between(\n';
+app_script2 = app_script2+' \n';
+
 
 app_script2 = app_script2+'\n';
 app_script2 = app_script2+'	console.log("--------------------------------------------------------------------------------------")\n';
