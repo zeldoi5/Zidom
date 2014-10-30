@@ -939,7 +939,7 @@ request(xmlurl, function(err, resp, body)
 					app_chacon = app_chacon+'\n		if (chacon_id=="'+id_eqp+'" && chacon_status=="ON")\n'
 					app_chacon = app_chacon+'		{\n';
 					app_chacon = app_chacon+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut ON et de type '+type_eqp+'\");\n';
-					app_chacon = app_chacon+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=0\";\n';
+					app_chacon = app_chacon+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
 					app_chacon = app_chacon+'			console.log(\"  Envoi de la requete HTTP Activation de l\'equipement \");\n';
 					app_chacon = app_chacon+'			console.log(\"  Requete :\" + http_request);\n';
 					app_chacon = app_chacon+'			request(http_request, function(error, response, body)\n';
