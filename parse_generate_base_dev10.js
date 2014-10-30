@@ -1789,12 +1789,15 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\"+lev;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio: \"+lev);\n';
-						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
-						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
-						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
-						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
+						app_undefined = app_undefined+'			if (S(msg).include(\'Level=<lev>\'))\n'
+						app_undefined = app_undefined+'			{\n';
+						app_undefined = app_undefined+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\"+lev;\n';
+						app_undefined = app_undefined+'				console.log(\"  Envoi de la requete HTTP Niveau de reception radio: \"+lev);\n';
+						app_undefined = app_undefined+'				console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'				request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'				{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
+						app_undefined = app_undefined+'				nb_http_request = nb_http_request + 1;\n';
+						app_undefined = app_undefined+'			}\n';
 
 						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\"+bat;\n';
 						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
