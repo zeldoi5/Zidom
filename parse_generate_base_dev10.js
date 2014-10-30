@@ -930,7 +930,7 @@ request(xmlurl, function(err, resp, body)
 						//jidradio = "j_"+periph_jeedom+"_radio";
 					jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
 						jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
-						jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
+						//jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
 					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
 						jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
 						//jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
@@ -2146,7 +2146,7 @@ request(xmlurl, function(err, resp, body)
 						
 						jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
-							jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
+							//jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
 						jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
 							jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
 							//jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
