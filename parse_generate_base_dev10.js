@@ -59,10 +59,10 @@ var jidavgwind = require('string');	// Variable des identifiants Jeedom pour les
 jidavgwind = "";
 var jiddir = require('string');	// Variable des identifiants Jeedom pour les remontees de direction du vent de Anémomètre Oregon
 jiddir = "";
-var jidtotrain = require('string');	// Variable des identifiants Jeedom pour les remontees de Pluviomètre Oregon
-jidtotrain = "";
-var jidcurrain = require('string');	// Variable des identifiants Jeedom pour les remontees de direction du vent de Pluviomètre Oregon
-jidcurrain = "";
+var jidtotalrain = require('string');	// Variable des identifiants Jeedom pour les remontees de Pluviomètre Oregon
+jidtotalrain = "";
+var jidcurrentrain = require('string');	// Variable des identifiants Jeedom pour les remontees de direction du vent de Pluviomètre Oregon
+jidcurrentrain = "";
 
 var jid_descr = require('string');	// Variable temporaire de declaration des identifiants Jeedom et d'initialisation à 0
 jid_descr = "";
@@ -97,8 +97,8 @@ app_script1 = app_script1+'var clientIp = process.env.MYIP || getIPAddress();\n'
 app_script1 = app_script1+'var zibaseIp = process.env.IP_ZIBASE|| "'+zibase_ip+'";\n';
 app_script1 = app_script1+'var S = require(\'string\');\n';
 
-app_script1 = app_script1+'var debug_zwave = require(\'string\');';
-app_script1 = app_script1+'var debug_http_request = require(\'string\');';
+app_script1 = app_script1+'var debug_zwave = require(\'string\');\n';
+app_script1 = app_script1+'var debug_http_request = require(\'string\');\n';
 app_script1 = app_script1+'debug_zwave = "";\n';
 app_script1 = app_script1+'var request = require(\"request\");\n';
 app_script1 = app_script1+'var dgram = require(\"dgram\");\n';
@@ -1814,23 +1814,23 @@ request(xmlurl, function(err, resp, body)
 						//jid = "j_"+periph_jeedom;
 							jidnoise = "j_"+periph_jeedom+"_noise";
 							jidlevel = "j_"+periph_jeedom+"_level";
-							jidavgwind = "j_"+periph_jeedom+"_avgwind";
-							jiddir = "j_"+periph_jeedom+"_dir";
+							jidtotalrain = "j_"+periph_jeedom+"_totalrain";
+							jidcurrentrain = "j_"+periph_jeedom+"_currentrain";
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 							//jidradio = "j_"+periph_jeedom+"_radio";
 						
 						//jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
 							jid_descr = jid_descr+'var '+jidnoise+' = require(\'string\');\n';
 							jid_descr = jid_descr+'var '+jidlevel+' = require(\'string\');\n';
-							jid_descr = jid_descr+'var '+jidtotrain+' = require(\'string\');\n';
-							jid_descr = jid_descr+'var '+jidcurrain+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidtotalrain+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidcurrentrain+' = require(\'string\');\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
 							//jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
 						//jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
 							jid_file = jid_file+'\t\t'+jidnoise+' = 42;\t//'+periph_jeedom+';\n';
 							jid_file = jid_file+'\t\t\t'+jidlevel+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t'+jidtotrain+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t\t'+jidcurrain+' = 42;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t\t\t'+jidtotalrain+' = 42;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t\t\t\t'+jidcurrentrain+' = 42;\t//'+periph_jeedom+';\n';
 							jid_file = jid_file+'\t\t\t\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
 							//jid_file = jid_file+'\t\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
@@ -1851,14 +1851,14 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
 
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidtotrain+'+\"&value=\" + totalrain;\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidtotalrain+'+\"&value=\" + totalrain;\n';
 						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Total Rain ( sur pluviometre): \" + totalrain);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidcurrain+'+\"&value=\" + currentrain;\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidcurrentrain+'+\"&value=\" + currentrain;\n';
 						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Current Rain ( sur pluviometre): \" + currentrain);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
