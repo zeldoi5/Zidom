@@ -51,20 +51,18 @@ var jidpowertotal = require('string');	// Variable des identifiants Jeedom pour 
 jidpowertotal = "";
 var jidpowerpower = require('string');	// Variable des identifiants Jeedom pour les remontees 'Power' sur les equipements de type Power
 jidpowertotal = "";
-var jidnoise = require('string');	// Variable des identifiants Jeedom pour les remontees de bruit radio de Pluviomètre Oregon
+var jidnoise = require('string');	// Variable des identifiants Jeedom pour les remontees de bruit radio de Anémomètre et Pluviomètre Oregon
 jidnoise = "";
-var jidlevel = require('string');	// Variable des identifiants Jeedom pour les remontees de de niveau de réception radio Pluviomètre Oregon
+var jidlevel = require('string');	// Variable des identifiants Jeedom pour les remontees de de niveau de réception radio Anémomètre Oregon
 jidlevel = "";
-var jidavgwind = require('string');	// Variable des identifiants Jeedom pour les remontees de vitesse de vent de Pluviomètre Oregon
+var jidavgwind = require('string');	// Variable des identifiants Jeedom pour les remontees de vitesse de vent de Anémomètre Oregon
 jidavgwind = "";
-var jiddir = require('string');	// Variable des identifiants Jeedom pour les remontees de direction du vent de Pluviomètre Oregon
+var jiddir = require('string');	// Variable des identifiants Jeedom pour les remontees de direction du vent de Anémomètre Oregon
 jiddir = "";
-
-var jidtotrain = require('string'); // Variable des identifiants Jeedom pour les remontées du pluviometre : Total Pluie
+var jidtotrain = require('string');	// Variable des identifiants Jeedom pour les remontees de Pluviomètre Oregon
 jidtotrain = "";
-var jidcurrain = require('string'); // Variable des identifiants Jeedom pour les remontées de pluviometre : Pluie courrante
+var jidcurrain = require('string');	// Variable des identifiants Jeedom pour les remontees de direction du vent de Pluviomètre Oregon
 jidcurrain = "";
-
 
 var jid_descr = require('string');	// Variable temporaire de declaration des identifiants Jeedom et d'initialisation à 0
 jid_descr = "";
@@ -164,14 +162,14 @@ app_script2 = app_script2+'	//Remontee du bruit de mesure : ex. Noise=<noise>0</
 app_script2 = app_script2+'	noise 	= S(msg).between(\'<noise>\', \'</noise>\').s;\n';
 app_script2 = app_script2+'	//Remontee du sta (status?) : ex. <sta>ON</sta> ou <sta>OFF</sta>\n';
 app_script2 = app_script2+'	sta 	= S(msg).between(\'<sta>\', \'</sta>\').s;\n';
-app_script2 = app_script2+'	//Remontee du Noise : ex. Received radio ID (433Mhz Oregon Noise=2494 Level=1.9/5 WGR800 Avg.Wind=0.9m/s Dir.=180° Batt=Ok)\n';
+app_script2 = app_script2+'	//Remontee de l\'anemometre : ex. Received radio ID (433Mhz Oregon Noise=2494 Level=1.9/5 WGR800 Avg.Wind=0.9m/s Dir.=180° Batt=Ok)\n';
 app_script2 = app_script2+'	noise 	= S(msg).between(\'Noise=\', \' \').s;\n';
 app_script2 = app_script2+'	level 	= S(msg).between(\'Level=\', \' \').s;\n';
 app_script2 = app_script2+'	avgwind 	= S(msg).between(\'Avg.Wind=\', \' \').s;\n';
 app_script2 = app_script2+'	direction 	= S(msg).between(\'Dir.=\', \' \').s;\n';
-app_script2 = app_script2+'     //totalrain = S(msg).between(\n';
-app_script2 = app_script2+' \n';
-
+app_script2 = app_script2+'	//Remontee du pluviometre : Received radio ID (<rf>433Mhz Oregon</rf> Noise=<noise>2472</noise> Level=<lev>5.0</lev>/5 <dev>PCR800</dev> Total Rain=<tra>44</tra>mm Current Rain=<cra>0</cra>mm/hour Batt=<bat>Ok</bat>): <id>OS706331648</id>\n';
+app_script2 = app_script2+' totalrain	= S(msg).between(\'<tra>\', \'</tra>\').s;\n';
+app_script2 = app_script2+' currentrain	= S(msg).between(\'<cra>\', \'</cra>\').s;\n';
 
 app_script2 = app_script2+'\n';
 app_script2 = app_script2+'	console.log("--------------------------------------------------------------------------------------")\n';
@@ -1813,52 +1811,66 @@ request(xmlurl, function(err, resp, body)
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
-						jid = "j_"+periph_jeedom;
-						jidhygro = "j_"+periph_jeedom+"_hygro";
+						//jid = "j_"+periph_jeedom;
+							jidnoise = "j_"+periph_jeedom+"_noise";
+							jidlevel = "j_"+periph_jeedom+"_level";
+							jidavgwind = "j_"+periph_jeedom+"_avgwind";
+							jiddir = "j_"+periph_jeedom+"_dir";
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
-							jidradio = "j_"+periph_jeedom+"_radio";
+							//jidradio = "j_"+periph_jeedom+"_radio";
 						
-						jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
-						jid_descr = jid_descr+'var '+jidhygro+' = require(\'string\');\n';
+						//jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidnoise+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidlevel+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidtotrain+' = require(\'string\');\n';
+							jid_descr = jid_descr+'var '+jidcurrain+' = require(\'string\');\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
-							jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
-						jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t'+jidhygro+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+							//jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
+						//jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t'+jidnoise+' = 42;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t\t'+jidlevel+' = 42;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t\t\t'+jidtotrain+' = 42;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t\t\t\t'+jidcurrain+' = 42;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t\t\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+							//jid_file = jid_file+'\t\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
+						//29/10/2014 19:58:53    Received radio ID (433Mhz Oregon Noise=2482 Level=5.0/5 PCR800 Total Rain=40mm Current Rain=236mm/hour Batt=Ok) Pluviomètre (OS706331648)
 						app_undefined = app_undefined+'			console.log(\" Test de l equipement rain ' + name_eqp + ', d\'ID Zibase '+id_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + raim;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP rain: \" + rain);\n';
+						/*app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidnoise+'+\"&value=\" + noise;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de bruit radio (sur pluviometre): \" + noise);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
+
+						/*app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidlevel+'+\"&value=\" + level;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio (sur pluviometre): \" + level);\n';
+						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
+						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
+						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
+						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
+
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidtotrain+'+\"&value=\" + totalrain;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Total Rain ( sur pluviometre): \" + totalrain);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidradio+'+\"&value=\" + lev;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio: \" + lev);\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidcurrain+'+\"&value=\" + currentrain;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Current Rain ( sur pluviometre): \" + currentrain);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat);\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat2;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat2);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
-						
-						app_undefined = app_undefined+'			if (S(msg).include(\'Humidity\'))\n'
-						app_undefined = app_undefined+'			{\n';
-						app_undefined = app_undefined+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidhygro+'+\"&value=\" + hum;\n';
-						app_undefined = app_undefined+'				console.log(\"  Envoi de la requete HTTP Hygrometrie: \" + hum);\n';
-						app_undefined = app_undefined+'				console.log(\"  Requete :\" + http_request);\n';
-						app_undefined = app_undefined+'				request(http_request, function(error, response, body)\n';
-						app_undefined = app_undefined+'				{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
-						app_undefined = app_undefined+'				nb_http_request = nb_http_request + 1;\n';
-						app_undefined = app_undefined+'			}\n';
 						app_undefined = app_undefined+'		}\n';
 					}
 
@@ -1904,35 +1916,35 @@ request(xmlurl, function(err, resp, body)
 						//Received radio ID (433Mhz Oregon Noise=2494 Level=1.9/5 WGR800 Avg.Wind=0.9m/s Dir.=180° Batt=Ok)
 						app_undefined = app_undefined+'			console.log(\" Test de l equipement Wind ' + name_eqp + ', d\'ID Zibase '+id_eqp+' et de type '+type_eqp+'\");\n';
 						/*app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidnoise+'+\"&value=\" + noise;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de bruit radio: \" + noise);\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de bruit radio (sur anemometre): \" + noise);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
 
 						/*app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidlevel+'+\"&value=\" + level;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio: \" + level);\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Niveau de reception radio (sur anemometre): \" + level);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';*/
 
 						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidavgwind+'+\"&value=\" + avgwind;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP wind: \" + avgwind);\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP wind (sur anemometre): \" + avgwind);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
 						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jiddir+'+\"&value=\" + level;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Direction du vent: \" + direction);\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Direction du vent (sur anemometre): \" + direction);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 						app_undefined = app_undefined+'			nb_http_request = nb_http_request + 1;\n';
 
 						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\" + bat2;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie: \" + bat2);\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP Batterie (sur anemometre): \" + bat2);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
