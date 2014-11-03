@@ -6,8 +6,10 @@ var zibase_device = require('string');
 var zibase_token = require('string');
 var zibase_url = require('string');
 var util = require("utils");
-
+//var Iconv = require('iconv').Iconv;
+//var iconvlite = require('iconv-lite');
 var fs = require("fs");
+//var rpc = require('json-rpc2');
 var  jeedom_api = require('string');
 
 
@@ -16,10 +18,6 @@ zibase_device = "";
 zibase_token = "";
 jeedom_ip = "192.168.0.x";
 jeedom_api = "";
-
-//var Iconv = require('iconv').Iconv;
-//var iconvlite = require('iconv-lite');
-//var rpc = require('json-rpc2');
 
 jeedom_chemin_install    = "/jeedom/core/api/jeeApi.php?api=";
 jeedom_chemin_preinstall = "/core/api/jeeApi.php?api=";
@@ -1507,7 +1505,7 @@ request(xmlurl, function(err, resp, body)
 						//jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
 					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
 						//jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						//jid_file = jid_file+'\t\t'+jidradio+' = 84;\t//'+periph_jeedom+';\n';
+						//jid_file = jid_file+'\t\t\t'+jidradio+' = 84;\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 					app_xdd868intershutter = app_xdd868intershutter+'\n		if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'_ON"))\n'
@@ -1626,7 +1624,7 @@ request(xmlurl, function(err, resp, body)
 					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
 						jid_file = jid_file+'\t\t\t'+jidcmd+' = 88;\t//'+periph_jeedom+';\n';
 						//jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						//jid_file = jid_file+'\t\t'+jidradio+' = 84;\t//'+periph_jeedom+';\n';
+						//jid_file = jid_file+'\t\t\t'+jidradio+' = 84;\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (xdd868pilotwire_id=="'+id_eqp+'")\n';
@@ -1887,7 +1885,7 @@ request(xmlurl, function(err, resp, body)
 						jid_file = jid_file+'\t'+jidpowertotal+' = 88;\t//'+periph_jeedom+';\n';
 						jid_file = jid_file+'\t\t'+jidpowerpower+' = 88;\t//'+periph_jeedom+';\n';
 						jid_file = jid_file+'\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 					app_undefined = app_undefined+'\n		if (owl_id=="'+id_eqp+'")\n'
@@ -1948,7 +1946,7 @@ request(xmlurl, function(err, resp, body)
 							jid_file = jid_file+'\t'+jidpowertotal+' = 88;\t//'+periph_jeedom+';\n';
 							jid_file = jid_file+'\t\t'+jidpowerpower+' = 88;\t//'+periph_jeedom+';\n';
 							jid_file = jid_file+'\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 						
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
@@ -2465,11 +2463,9 @@ request(xmlurl, function(err, resp, body)
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
-
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 							jidradio = "j_"+periph_jeedom+"_radio";
-						
 						jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
 							jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
@@ -2549,11 +2545,9 @@ request(xmlurl, function(err, resp, body)
 						periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
 						periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
-
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 							jidradio = "j_"+periph_jeedom+"_radio";
-						
 						jid_descr = jid_descr+'var '+jid+' = require(\'string\');\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = require(\'string\');\n';
 							jid_descr = jid_descr+'var '+jidradio+' = require(\'string\');\n';
@@ -2721,11 +2715,11 @@ request(xmlurl, function(err, resp, body)
 		app_script = app_script+'}\n';
 
 		console.log("------------------------------------------------------------------------------------")
-		console.log(" Debut d'Ecriture dans le fichier zidomn10.js ...");
-		fs.writeFileSync("zidomn10.js", app_script, "utf8");
-		//readFileSync_encoding2("zidomn10-2.js", "UTF-8", app_script);
-		//readFileSync_encoding("zidomn10-2.js", "UTF-8", app_script);
-		console.log(" Fin d'Ecriture dans le fichier zidomn10.js !")
+		console.log(" Debut d'Ecriture dans le fichier zidomn11.js ...");
+		fs.writeFileSync("zidomn11.js", app_script, "utf8");
+		//readFileSync_encoding2("zidomn11-2.js", "UTF-8", app_script);
+		//readFileSync_encoding("zidomn11-2.js", "UTF-8", app_script);
+		console.log(" Fin d'Ecriture dans le fichier zidomn11.js !")
 		console.log("------------------------------------------------------------------------------------")
 		console.log(" Debut d'Ecriture dans le fichier jeedom_id_steph.txt ...");
 		fs.writeFileSync("jeedom_id.txt", jid_file, "utf8");
