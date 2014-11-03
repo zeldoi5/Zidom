@@ -962,13 +962,13 @@ if($jsonrpc->sendRequest('cmd::execCmd', array('id' => #cmd_id#, 'options' => ar
    echo 'OK';
 }else{
    echo $jsonrpc->getError();
-}*/
+}
 					var myArray = [];
 					var toto ="";
 					console.log("  Recherche de cet equipement dans jeedom ...");
 					//client.call('cmd::execCmd', array('id' => #cmd_id#, 'options' => array('title' => 'Coucou', 'message' => 'Ca marche')));
 					client.call('eqLogic::all',toto);
-					console.log("  Equ. : "+toto);
+					console.log("  Equ. : "+toto);*/
 					
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
