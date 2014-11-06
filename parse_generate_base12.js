@@ -708,7 +708,13 @@ request(xmlurl, function(err, resp, body)
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					
-					periph_jeedom = replace_special_char(name_eqp).s;
+					//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						jidradio = "j_"+periph_jeedom+"_radio";
@@ -821,7 +827,13 @@ request(xmlurl, function(err, resp, body)
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					
-					periph_jeedom = replace_special_char(name_eqp).s;
+					//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						jidradio = "j_"+periph_jeedom+"_radio";
@@ -970,7 +982,13 @@ request(xmlurl, function(err, resp, body)
 					   console.log(jsonrpc.getError());
 					}*/
 					
-					periph_jeedom = replace_special_char(name_eqp).s;
+					//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;console.log(" periph_jeedom"+periph_jeedom+"\n\n\n\n");
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						//jidradio = "j_"+periph_jeedom+"_radio";
@@ -1039,7 +1057,13 @@ request(xmlurl, function(err, resp, body)
 					//Sent radio ID (1 Burst(s), Protocols='Domia' ): M13_ON
 					//Sent radio ID (1 Burst(s), Protocols='Domia' ): M11_OFF
 
-					periph_jeedom = replace_special_char(name_eqp).s;
+					//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						//jidbatterie = "j_"+periph_jeedom+"_batterie";
 					jid_descr = jid_descr+'var '+jid+' = \'\';\n';
@@ -1099,7 +1123,13 @@ request(xmlurl, function(err, resp, body)
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					
-					periph_jeedom = replace_special_char(name_eqp).s;
+					//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						jidradio = "j_"+periph_jeedom+"_radio";
@@ -1174,7 +1204,13 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="ZWAVE")
 				{
-					periph_jeedom = replace_special_char(name_eqp).s;
+					//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1429,7 +1465,13 @@ request(xmlurl, function(err, resp, body)
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					
-					periph_jeedom = replace_special_char(name_eqp).s;
+					//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						//jidbatterie = "j_"+periph_jeedom+"_batterie";
 						//jidradio = "j_"+periph_jeedom+"_radio";
@@ -1548,7 +1590,13 @@ request(xmlurl, function(err, resp, body)
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
 					
-					periph_jeedom = replace_special_char(name_eqp).s;
+					//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						jidcmd = "j_"+periph_jeedom+"_cmd";
 						//jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1733,7 +1781,13 @@ request(xmlurl, function(err, resp, body)
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet Oregon");
 					
-					periph_jeedom = replace_special_char(name_eqp).s;
+					//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 					jidhygro = "j_"+periph_jeedom+"_hygro";
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
@@ -1795,7 +1849,13 @@ request(xmlurl, function(err, resp, body)
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet OWL");
 
-					periph_jeedom = replace_special_char(name_eqp).s;
+					//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					//jid = "j_"+periph_jeedom;
 						jidpowertotal = "j_"+periph_jeedom+"_powertotal";
 						jidpowerpower = "j_"+periph_jeedom+"_powerpower";
@@ -1850,7 +1910,13 @@ request(xmlurl, function(err, resp, body)
 					console.log(" Equipement de protocole "+proto+".");
 					/*if (type_eqp =="power")
 					{
-						periph_jeedom = replace_special_char(name_eqp).s;
+						//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						//jid = "j_"+periph_jeedom;
 							jidpowertotal = "j_"+periph_jeedom+"_powertotal";
 							jidpowerpower = "j_"+periph_jeedom+"_powerpower";
@@ -1906,7 +1972,13 @@ request(xmlurl, function(err, resp, body)
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
 					
-						periph_jeedom = replace_special_char(name_eqp).s;
+						//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 							jidnoise = "j_"+periph_jeedom+"_noise";
 							jidhygro = "j_"+periph_jeedom+"_hygro";
@@ -1972,7 +2044,13 @@ request(xmlurl, function(err, resp, body)
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
 					
-						periph_jeedom = replace_special_char(name_eqp).s;
+						//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						//jid = "j_"+periph_jeedom;
 							jidnoise = "j_"+periph_jeedom+"_noise";
 							jidradio = "j_"+periph_jeedom+"_radio";
@@ -2047,7 +2125,13 @@ request(xmlurl, function(err, resp, body)
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
 
-						periph_jeedom = replace_special_char(name_eqp).s;
+						//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						//jid = "j_"+periph_jeedom;
 							jidnoise = "j_"+periph_jeedom+"_noise";
 							jidradio = "j_"+periph_jeedom+"_radio";
@@ -2123,7 +2207,13 @@ request(xmlurl, function(err, resp, body)
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
 					
-						periph_jeedom = replace_special_char(name_eqp).s;
+						//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 							jidradio = "j_"+periph_jeedom+"_radio";
@@ -2165,7 +2255,13 @@ request(xmlurl, function(err, resp, body)
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id1 : "+ id1_eqp + " / Id2 : "+ id2_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur cette telecommande");
 
-						periph_jeedom = replace_special_char(name_eqp).s;
+						//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
@@ -2226,7 +2322,13 @@ request(xmlurl, function(err, resp, body)
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id1 : "+ id1_eqp + " / Id2 : "+ id2_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur cette telecommande");
 
-						periph_jeedom = replace_special_char(name_eqp).s;
+						//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
@@ -2284,7 +2386,13 @@ request(xmlurl, function(err, resp, body)
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id1 : "+ id1_eqp + " / Id2 : "+ id2_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur cette telecommande");
 
-						periph_jeedom = replace_special_char(name_eqp).s;
+						//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
@@ -2342,7 +2450,13 @@ request(xmlurl, function(err, resp, body)
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
 
-						periph_jeedom = replace_special_char(name_eqp).s;
+						//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 							jidradio = "j_"+periph_jeedom+"_radio";
@@ -2419,7 +2533,13 @@ request(xmlurl, function(err, resp, body)
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce receiverXDom");
 
-						periph_jeedom = replace_special_char(name_eqp).s;
+						//periph_jeedom = replace_special_char(name_eqp).s;
+					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 						jid = "j_"+periph_jeedom;
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 							jidradio = "j_"+periph_jeedom+"_radio";
@@ -2668,6 +2788,7 @@ function replace_special_char(value){
 	value = S(value).replaceAll('ê', 'e').s;
 	value = S(value).replaceAll('à', 'a').s;
 	value = S(value).replaceAll('â', 'a').s;
+	console.log(" VALUE : "+value+"\n");
 	return value;
 }
 function dot2num(dot) {
