@@ -1801,7 +1801,7 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('+', '').s;
-					//periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
