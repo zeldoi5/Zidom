@@ -302,7 +302,7 @@ test_zidom = test_zidom+'	}\n';
 test_zidom = test_zidom+'\n	//Test de remontees de PROTOCOLE 6 : composants ZWAVE (ou ZWave)\n';
 test_zidom = test_zidom+'	if (S(msg).include(\'ZWAVE\')||S(msg).include(\'ZWave\'))\n';
 test_zidom = test_zidom+'	{\n';
-test_zidom = test_zidom+'	\tdebug_zwave = debug_zwave + S(msg);\n';
+//test_zidom = test_zidom+'	\tdebug_zwave = debug_zwave + S(msg);\n';
 test_zidom = test_zidom+'		zwave = true;\n';
 test_zidom = test_zidom+'		//Test pour identifier le statut du composant ZWAVE';
 /*		//Test pour identifier le statut du composant ZWAVE		//Thu Aug 14 2014 23:03:59 GMT+0100 (BST) Sent radio ID (1 Burst(s), Protocols='ZWave n38'  Last RF Transmit Time=20ms): ZC7_ON
