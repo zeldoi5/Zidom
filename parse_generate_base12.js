@@ -61,7 +61,6 @@ declare_zidom = declare_zidom+'// *****************   merci de remplir les varia
 declare_zidom = declare_zidom+'// *****************   - zibase_ip                                                             	       ***************** \n';
 declare_zidom = declare_zidom+'// *****************   - zibase_device                                                                  ***************** \n';
 declare_zidom = declare_zidom+'// *****************   - zibase_token                                                                   ***************** \n';
-declare_zidom = declare_zidom+'// *****************   - zibase_device                                                                  ***************** \n';
 declare_zidom = declare_zidom+'// *****************   - jeedom_ip                                                                      ***************** \n';
 declare_zidom = declare_zidom+'// *****************   - jeedom_api                                                                     ***************** \n';
 declare_zidom = declare_zidom+'// ********************************************************************************************************************** \n';
@@ -988,7 +987,7 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
-					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;console.log(" periph_jeedom"+periph_jeedom+"\n\n\n\n");
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						//jidradio = "j_"+periph_jeedom+"_radio";
@@ -2714,7 +2713,7 @@ request(xmlurl, function(err, resp, body)
 		fs.writeFileSync("zidomn12.js", generate_zidom_script, "utf8");
 			//readFileSync_encoding2("zidomn12-2.js", "UTF-8", generate_zidom_script);
 			//readFileSync_encoding("zidomn12-2.js", "UTF-8", generate_zidom_script);
-		console.log(" Fin d'Ecriture dans le fichier zidomn12.js !")
+		console.log(" Fin d'Ecriture dans le fichier zidomn122.js !")
 		console.log("------------------------------------------------------------------------------------")
 		console.log(" Debut d'Ecriture dans le fichier jeedom_id.txt ...");
 		fs.writeFileSync("jeedom_id.txt", jid_file, "utf8");
