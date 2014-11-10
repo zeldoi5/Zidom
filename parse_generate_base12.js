@@ -61,6 +61,7 @@ declare_zidom = declare_zidom+'// *****************   merci de remplir les varia
 declare_zidom = declare_zidom+'// *****************   - zibase_ip                                                             	       ***************** \n';
 declare_zidom = declare_zidom+'// *****************   - zibase_device                                                                  ***************** \n';
 declare_zidom = declare_zidom+'// *****************   - zibase_token                                                                   ***************** \n';
+declare_zidom = declare_zidom+'// *****************   - zibase_device                                                                  ***************** \n';
 declare_zidom = declare_zidom+'// *****************   - jeedom_ip                                                                      ***************** \n';
 declare_zidom = declare_zidom+'// *****************   - jeedom_api                                                                     ***************** \n';
 declare_zidom = declare_zidom+'// ********************************************************************************************************************** \n';
@@ -194,7 +195,7 @@ test_zidom = test_zidom+'		visionic868_id = "";\n';
 test_zidom = test_zidom+'		visionic868_status = "";\n';
 test_zidom = test_zidom+'	chacon = S(msg).include(\'Chacon\');\n';
 test_zidom = test_zidom+'		chacon_status = "";\n';
-test_zidom = test_zidom+'	domia = S(msg).include(\'DOMIA\');\n';
+test_zidom = test_zidom+'	domia = S(msg).include(\'DOMIA\') || S(msg).include(\'Domia\');\n';
 test_zidom = test_zidom+'		domia_status = "";\n';
 test_zidom = test_zidom+'	rfx10 = S(msg).include(\'X10\');\n';
 test_zidom = test_zidom+'		rfx10_status = "";\n';
@@ -987,7 +988,7 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
-					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;console.log(" periph_jeedom"+periph_jeedom+"\n\n\n\n");
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						//jidradio = "j_"+periph_jeedom+"_radio";
@@ -1074,7 +1075,7 @@ request(xmlurl, function(err, resp, body)
 					app_domia = app_domia+'\n		if (domia_id=="'+id_eqp+'" && domia_status=="ON")\n';
 					app_domia = app_domia+'		{\n';
 					app_domia = app_domia+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' d\'ID Jeedom '+jid+' et de statut ON et de type '+type_eqp+'\");\n';
-					app_domia = app_domia+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=0\";\n';
+					app_domia = app_domia+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=1\";\n';
 					app_domia = app_domia+'			console.log(\"  Envoi de la requete HTTP | Procole '+proto+', Activation de l\'equipement \");\n';
 					app_domia = app_domia+'			console.log(\"  Requete :\" + http_request);\n';
 					app_domia = app_domia+'			request(http_request, function(error, response, body)\n';
@@ -2713,7 +2714,7 @@ request(xmlurl, function(err, resp, body)
 		fs.writeFileSync("zidomn12.js", generate_zidom_script, "utf8");
 			//readFileSync_encoding2("zidomn12-2.js", "UTF-8", generate_zidom_script);
 			//readFileSync_encoding("zidomn12-2.js", "UTF-8", generate_zidom_script);
-		console.log(" Fin d'Ecriture dans le fichier zidomn122.js !")
+		console.log(" Fin d'Ecriture dans le fichier zidomn12.js !")
 		console.log("------------------------------------------------------------------------------------")
 		console.log(" Debut d'Ecriture dans le fichier jeedom_id.txt ...");
 		fs.writeFileSync("jeedom_id.txt", jid_file, "utf8");
