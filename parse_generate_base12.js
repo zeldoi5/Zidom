@@ -988,7 +988,7 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('\\', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('-', '').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
-					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;console.log(" periph_jeedom"+periph_jeedom+"\n\n\n\n");
+					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 					jid = "j_"+periph_jeedom;
 						jidbatterie = "j_"+periph_jeedom+"_batterie";
 						//jidradio = "j_"+periph_jeedom+"_radio";
