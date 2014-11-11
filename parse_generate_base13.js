@@ -1811,7 +1811,7 @@ request(xmlurl, function(err, resp, body)
 
 					app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'")\n';
 					app_undefined = app_undefined+'		{\n';
-					app_undefined = app_undefined+'			var nowseconds = new Date().getTime();';
+					app_undefined = app_undefined+'			var nowseconds = new Date().getTime();\n';
 					app_undefined = app_undefined+'			delta_receive = nowseconds - '+jid+'_previous_receive;\n';
 					app_undefined = app_undefined+'			//console.log("Timestamp de reception de cette Alarme : "+nowseconds);\n';
 					app_undefined = app_undefined+'			//console.log("Timestamp de reception de la precedente Alarme : "+'+jid+'_previous_receive);\n';
