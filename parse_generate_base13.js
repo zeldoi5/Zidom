@@ -1816,9 +1816,10 @@ request(xmlurl, function(err, resp, body)
 					app_undefined = app_undefined+'			//console.log("Timestamp de reception de cette Alarme : "+nowseconds);\n';
 					app_undefined = app_undefined+'			//console.log("Timestamp de reception de la precedente Alarme : "+'+jid+'_previous_receive);\n';
 					app_undefined = app_undefined+'			//console.log("Delta de reception entre les Alarme : "+delta_receive);\n';
+					app_undefined = app_undefined+'			console.log(\" Test de l equipement Oregon ' + name_eqp + ', d\'ID Zibase '+id_eqp+' et de type '+type_eqp+'\");\n';
 					app_undefined = app_undefined+'			if (delta_receive > inter_time_oregon)\n';
 					app_undefined = app_undefined+'			{\n';		
-					app_undefined = app_undefined+'				console.log(\" Test de l equipement Oregon ' + name_eqp + ', d\'ID Zibase '+id_eqp+' et de type '+type_eqp+'\");\n';
+					app_undefined = app_undefined+'				//console.log(\" Test de l equipement Oregon ' + name_eqp + ', d\'ID Zibase '+id_eqp+' et de type '+type_eqp+'\");\n';
 					app_undefined = app_undefined+'				http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + tem;\n';
 					app_undefined = app_undefined+'				console.log(\"  Envoi de la requete HTTP | Procole '+proto+', temperature: \" + tem);\n';
 					app_undefined = app_undefined+'				console.log(\"  Requete :\" + http_request);\n';
