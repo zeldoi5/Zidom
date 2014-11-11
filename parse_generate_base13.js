@@ -2703,7 +2703,7 @@ request(xmlurl, function(err, resp, body)
 
 		generate_zidom_script = generate_zidom_script+'	if (!nb_http_request) \n'
 		generate_zidom_script = generate_zidom_script+' {\n ';
-		generate_zidom_script = generate_zidom_script+'		if (oregon_prev==false) { console.log(new Date() + " *** AUCUNE Requete HTTP envoyee a Jeedom - remontee temperature trop recente ***") }\n'
+		generate_zidom_script = generate_zidom_script+'		if (oregon_prev==false && oregon) { console.log(new Date() + " *** AUCUNE Requete HTTP envoyee a Jeedom - remontee temperature trop recente ***") }\n'
 		generate_zidom_script = generate_zidom_script+' 	else console.log(new Date() + " *** AUCUNE Requete HTTP envoyee a Jeedom ***");';
 		generate_zidom_script = generate_zidom_script+' }\n';
 		generate_zidom_script = generate_zidom_script+'});\n';
