@@ -2229,8 +2229,8 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'" && dev == "Light/UV")\n';
 						app_undefined = app_undefined+'		{\n';
 						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + uv;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP | Procole '+proto+', lumiere: \" + uv);\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + uvl;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP | Procole '+proto+', lumiere: \" + uvl);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
