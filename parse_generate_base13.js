@@ -2764,11 +2764,11 @@ request(xmlurl, function(err, resp, body)
 		generate_zidom_script = generate_zidom_script+'}\n';
 
 		console.log("------------------------------------------------------------------------------------")
-		console.log(" Debut d'Ecriture dans le fichier zidomn12.js ...");
-		fs.writeFileSync("zidomn12.js", generate_zidom_script, "utf8");
+		console.log(" Debut d'Ecriture dans le fichier zidomn13.js ...");
+		fs.writeFileSync("zidomn13.js", generate_zidom_script, "utf8");
 			//readFileSync_encoding2("zidomn12-2.js", "UTF-8", generate_zidom_script);
 			//readFileSync_encoding("zidomn12-2.js", "UTF-8", generate_zidom_script);
-		console.log(" Fin d'Ecriture dans le fichier zidomn12.js !")
+		console.log(" Fin d'Ecriture dans le fichier zidomn13.js !")
 		console.log("------------------------------------------------------------------------------------")
 		console.log(" Debut d'Ecriture dans le fichier jeedom_id.txt ...");
 		fs.writeFileSync("jeedom_id.txt", jid_file, "utf8");
