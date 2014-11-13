@@ -1799,7 +1799,7 @@ request(xmlurl, function(err, resp, body)
 						jidradio = "j_"+periph_jeedom+"_radio";
 					
 					jid_descr = jid_descr+'var '+jid+' = \'\';\n';
-						//jid_descr = jid_descr+'var '+jid+'_previous_receive = 0;\n';
+						jid_descr = jid_descr+'var '+jid+'_previous_receive = 0;\n';
 						jid_descr = jid_descr+'var '+jidhygro+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
