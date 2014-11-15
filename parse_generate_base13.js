@@ -2764,7 +2764,7 @@ request(xmlurl, function(err, resp, body)
 		generate_zidom_script = generate_zidom_script+'}\n';
 
 		console.log("------------------------------------------------------------------------------------")
-		console.log(" Debut d'Ecriture dans le fichier zidomn13_gerald.js ...");
+		console.log(" Debut d'Ecriture dans le fichier zidomn13.js ...");
 		fs.writeFileSync("zidomn13.js", generate_zidom_script, "utf8");
 			//readFileSync_encoding2("zidomn13-2.js", "UTF-8", generate_zidom_script);
 			//readFileSync_encoding("zidomn13-2.js", "UTF-8", generate_zidom_script);
