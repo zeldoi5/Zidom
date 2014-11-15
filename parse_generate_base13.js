@@ -1,7 +1,7 @@
 // A remplir :
 var zibase_ip = "192.168.0.X";
 var zibase_device = "";
-var zibase_token = "fdb06a35b3";
+var zibase_token = "";
 var jeedom_ip = "192.168.0.X";
 var jeedom_api = "";
 var jeedom_chemin_install    = "/jeedom/core/api/jeeApi.php?api=";
@@ -459,7 +459,7 @@ test_zidom = test_zidom+'	}\n';
 test_zidom = test_zidom+'\n	//Test de remontees de PROTOCOLE 9 : composants XDD868 alrm\n';
 test_zidom = test_zidom+'	if (S(msg).include(\'XDD868 alrm\'))\n';
 test_zidom = test_zidom+'	{\n';
-test_zidom = test_zidom+'	    domia_id  = S(msg).between("XDD868 alrm\' ): ", \'_\').s;\n';
+test_zidom = test_zidom+'	    xdd868alrm_id  = S(msg).between("XDD868 alrm\' ): ", \'_\').s;\n';
 test_zidom = test_zidom+'		xdd868alrm = true;\n';
 test_zidom = test_zidom+'		if (S(msg).include(\'_ON\'))\n';
 test_zidom = test_zidom+'		{\n			 xdd868alrm_status = "ON";\n		}\n';
@@ -1799,7 +1799,7 @@ request(xmlurl, function(err, resp, body)
 						jidradio = "j_"+periph_jeedom+"_radio";
 					
 					jid_descr = jid_descr+'var '+jid+' = \'\';\n';
-						jid_descr = jid_descr+'var '+jid+'_previous_receive = 0;\n';
+						//jid_descr = jid_descr+'var '+jid+'_previous_receive = 0;\n';
 						jid_descr = jid_descr+'var '+jidhygro+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
@@ -2279,8 +2279,8 @@ request(xmlurl, function(err, resp, body)
 						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'" && dev == "Light/UV")\n';
 						app_undefined = app_undefined+'		{\n';
 						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + uvl;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP | Procole '+proto+', lumiere: \" + uvl);\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + uv;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP | Procole '+proto+', lumiere: \" + uv);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
@@ -2766,8 +2766,8 @@ request(xmlurl, function(err, resp, body)
 		console.log("------------------------------------------------------------------------------------")
 		console.log(" Debut d'Ecriture dans le fichier zidomn13.js ...");
 		fs.writeFileSync("zidomn13.js", generate_zidom_script, "utf8");
-			//readFileSync_encoding2("zidomn12-2.js", "UTF-8", generate_zidom_script);
-			//readFileSync_encoding("zidomn12-2.js", "UTF-8", generate_zidom_script);
+			//readFileSync_encoding2("zidomn13-2.js", "UTF-8", generate_zidom_script);
+			//readFileSync_encoding("zidomn13-2.js", "UTF-8", generate_zidom_script);
 		console.log(" Fin d'Ecriture dans le fichier zidomn13.js !")
 		console.log("------------------------------------------------------------------------------------")
 		console.log(" Debut d'Ecriture dans le fichier jeedom_id.txt ...");
