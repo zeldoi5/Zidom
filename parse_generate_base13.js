@@ -12,6 +12,8 @@ var jeedom_chemin = jeedom_chemin_install; // ou jeedom_chemin = jeedom_chemin_p
 var zibaseIp = process.env.IP_ZIBASE|| zibase_ip;
 var clientIp = process.env.MYIP || getIPAddress();
 
+
+
 var zibase_url = require('string');
 var util = require("util");
 //var Iconv = require('iconv').Iconv;
@@ -51,6 +53,8 @@ var declare_zidom = "";
 var test_zidom = "";
 var script_zidom = "";
 count_periph = 0;
+finalid = 0;
+
 // Variable qui enregistre le script final
 // Initialisation du script final dans la variable generate_zidom_script :
 
@@ -678,7 +682,6 @@ request(xmlurl, function(err, resp, body)
 				else if (type_eqp != "temperature" && type_eqp != "power" && proto_i == 11 ) { proto ="XDD868PilotWire";}
 				else if (type_eqp != "temperature" && type_eqp != "power" && proto_i == 12 ) { proto ="XDD868Boiler";}
 				else proto = "undefined";
-				//console.log(" --> Protocole defini : "+proto)
 			}
 		
 			//Parsing des commandes Zibase pour extraction des differents ID
@@ -704,12 +707,11 @@ request(xmlurl, function(err, resp, body)
 			{
 				if (proto =="VISONIC433")
 				{
+					finalid++;
 					//A implementer
 					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement. Les developpements ci dessous sont hypothetiques\n");
 					app_visionic433 = app_visionic433+'\n	//Aucun equipement VISIONIC433 n est en ma possession pour tester et remonter les infos\n';
 
-					//Received radio ID
-					//Received radio ID 
 					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
@@ -727,9 +729,9 @@ request(xmlurl, function(err, resp, body)
 					jid_descr = jid_descr+'var '+jid+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+					jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 					app_visionic433 = app_visionic433+'\n		if (visionic433_id=="'+id_eqp+'" && visionic433_status=="Alive")\n';
@@ -827,6 +829,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				if (proto =="VISONIC868")
 				{
+					finalid++;
 					//Received radio ID (<rf>868Mhz </rf> Noise=<noise>2163</noise> Level=<lev>5.0</lev>/5  <dev>Remote Control</dev>  Flags= <flag3>Alive</flag3>  Batt=<bat>Ok</bat>): <id>VS3549221672</id> 
 					//Received radio ID (<rf>868Mhz </rf> Noise=<noise>2173</noise> Level=<lev>5.0</lev>/5  <dev>Remote Control</dev>  Flags= <flag1>Alarm</flag1>  Batt=<bat>Ok</bat>): <id>VS381936674</id> 
 					console.log(" Equipement de protocole "+proto+".");
@@ -846,9 +849,9 @@ request(xmlurl, function(err, resp, body)
 					jid_descr = jid_descr+'var '+jid+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+					jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 					app_visionic868 = app_visionic868+'\n		if (visionic868_id=="'+id_eqp+'" && visionic868_status=="Alive")\n';
@@ -946,6 +949,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				if (proto =="CHACON")
 				{
+					finalid++;
 					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
@@ -1001,9 +1005,9 @@ request(xmlurl, function(err, resp, body)
 					jid_descr = jid_descr+'var '+jid+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 						//jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						//jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+					jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						//jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 					app_chacon = app_chacon+'\n		if (chacon_id=="'+id_eqp+'" && chacon_status=="ON")\n';
@@ -1059,6 +1063,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				if (proto =="DOMIA")
 				{
+					finalid++;
 					console.log(" Equipement de protocole "+proto+".");
 					//Sent radio ID (1 Burst(s), Protocols='Domia' ): M13_ON
 					//Sent radio ID (1 Burst(s), Protocols='Domia' ): M11_OFF
@@ -1074,8 +1079,8 @@ request(xmlurl, function(err, resp, body)
 						//jidbatterie = "j_"+periph_jeedom+"_batterie";
 					jid_descr = jid_descr+'var '+jid+' = \'\';\n';
 						//jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
-					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-						//jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+					jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						//jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 					app_domia = app_domia+'\n		if (domia_id=="'+id_eqp+'" && domia_status=="ON")\n';
@@ -1125,6 +1130,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				if (proto =="RF X10")
 				{
+					finalid++;
 					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
@@ -1142,9 +1148,9 @@ request(xmlurl, function(err, resp, body)
 					jid_descr = jid_descr+'var '+jid+' =  \'\';\n';
 						jid_descr = jid_descr+'var '+jidbatterie+' =  \'\';\n';
 						jid_descr = jid_descr+'var '+jidradio+' =  \'\';\n';
-					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+					jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 					app_rfx10 = app_rfx10+'\n		if (rfx10_id=="'+id_eqp+'" && rfx10_status=="ON")\n';
@@ -1210,6 +1216,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="ZWAVE")
 				{
+					finalid++;
 					//periph_jeedom = replace_special_char(name_eqp).s;
 					periph_jeedom = S(name_eqp).replaceAll(' ', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('/', '_').s;
@@ -1218,19 +1225,19 @@ request(xmlurl, function(err, resp, body)
 					periph_jeedom = S(periph_jeedom).replaceAll('.', '_').s;
 					periph_jeedom = S(periph_jeedom).replaceAll('?', '').s;
 
-					jid = "j_"+periph_jeedom;
-						jidbatterie = "j_"+periph_jeedom+"_batterie";
-						jidradio = "j_"+periph_jeedom+"_radio";
-					jid_descr = jid_descr+'var '+jid+' = \'\';\n';
-						jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
-						jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-					jid_file = jid_file+'\t'+jid+' = 84;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t'+jidbatterie+' = 88;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
-					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
-					
 					if (type_eqp == "power")
 					{
+						jid = "j_"+periph_jeedom;
+							//jidbatterie = "j_"+periph_jeedom+"_batterie";
+							jidradio = "j_"+periph_jeedom+"_radio";
+						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
+							//jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
+							jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
+						jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							//jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
+
 						jidpowerstatus = "j_"+periph_jeedom+"_powerstatus";
 						jidpowertotal = "j_"+periph_jeedom+"_powertotal";
 						jidpowerpower = "j_"+periph_jeedom+"_powerpower";
@@ -1238,9 +1245,9 @@ request(xmlurl, function(err, resp, body)
 						jid_descr = jid_descr+'var '+jidpowerstatus+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidpowertotal+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidpowerpower+' = \'\';\n';
-						jid_file = jid_file+'\t\t\t'+jidpowerstatus+' = 88;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t'+jidpowertotal+' = 88;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t'+jidpowerpower+' = 88;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidpowerstatus+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidpowertotal+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidpowerpower+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 	
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce Power");
@@ -1262,24 +1269,28 @@ request(xmlurl, function(err, resp, body)
 						app_zwave = app_zwave+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
 						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
 
-						/*app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidpowerstatus+'+\"&value=\" + w;\n';
-						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP | Procole '+proto+', Power Status: \" + w);\n';
-						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
-						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
-						app_zwave = app_zwave+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
-						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';*/
-
-						app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\"+bat;\n';
+						/*app_zwave = app_zwave+'			http_request = \"http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jidbatterie+'+\"&value=\"+bat;\n';
 						app_zwave = app_zwave+'			console.log(\"  Envoi de la requete HTTP | Procole '+proto+', Batterie: \" + bat);\n';
 						app_zwave = app_zwave+'			console.log(\"  Requete :\" + http_request);\n';
 						app_zwave = app_zwave+'			request(http_request, function(error, response, body)\n';
 						app_zwave = app_zwave+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
-						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';
+						app_zwave = app_zwave+'			nb_http_request = nb_http_request + 1;\n';*/
 						app_zwave = app_zwave+'		}\n';
 					}
  
 					if (type_eqp == "receiverXDom")
 					{
+						jid = "j_"+periph_jeedom;
+							jidbatterie = "j_"+periph_jeedom+"_batterie";
+							jidradio = "j_"+periph_jeedom+"_radio";
+						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
+							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
+							jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
+						jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
+
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce receiverXDom");
 
@@ -1396,6 +1407,17 @@ request(xmlurl, function(err, resp, body)
 
 					if (type_eqp == "transmitter")
 					{
+						jid = "j_"+periph_jeedom;
+							jidbatterie = "j_"+periph_jeedom+"_batterie";
+							jidradio = "j_"+periph_jeedom+"_radio";
+						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
+							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
+							jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
+						jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
+
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 						console.log("  Ajout dans le script Zidom du test de remontee sur ce transmitter");
 						
@@ -1440,6 +1462,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="RFS10/TS10")
 				{
+					finalid++;
 					//A implementer
 					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
 					app_rfs10ts10=app_rfs10ts10+'	}\n';
@@ -1449,6 +1472,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="XDD433")
 				{
+					finalid++;
 					//A implementer
 					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
 					app_xdd433alrm=app_xdd433alrm+'	}\n';
@@ -1458,6 +1482,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="XDD868")
 				{
+					finalid++;
 					//A implementer
 					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement\n");
 					app_xdd868alrm=app_xdd868alrm+'	}\n';
@@ -1467,6 +1492,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="XDD868Inter/Shutter")
 				{
+					finalid++;
 					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
@@ -1484,9 +1510,9 @@ request(xmlurl, function(err, resp, body)
 					jid_descr = jid_descr+'var '+jid+' = \'\';\n';
 						//jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 						//jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-						//jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						//jid_file = jid_file+'\t\t\t'+jidradio+' = 84;\t//'+periph_jeedom+';\n';
+					jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						//jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						//jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 					app_xdd868intershutter = app_xdd868intershutter+'\n		if (S(msg).include(\'Inter/shutter RFY433\') && S(msg).include("'+id_eqp+'_ON"))\n';
@@ -1592,6 +1618,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="XDD868PilotWire")
 				{
+					finalid++;
 					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet equipement");
@@ -1611,10 +1638,10 @@ request(xmlurl, function(err, resp, body)
 						jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
 						//jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 						//jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t'+jidcmd+' = 88;\t//'+periph_jeedom+';\n';
-						//jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						//jid_file = jid_file+'\t\t\t'+jidradio+' = 84;\t//'+periph_jeedom+';\n';
+					jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidcmd+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						//jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						//jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 					app_xdd868pilotwire = app_xdd868pilotwire+'\n		if (xdd868pilotwire_id=="'+id_eqp+'")\n';
@@ -1773,6 +1800,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="XDD868Boiler")
 				{
+					finalid++;
 					//A implementer
 					console.log(" Equipement de protocole "+proto+" | Tests non realises en l absence de ce type d equipement");
 					app_xdd868boiler=app_xdd868boiler+'	}\n';
@@ -1783,6 +1811,7 @@ request(xmlurl, function(err, resp, body)
 				// Traitement des peripheriques sans protocoles
 				else if (proto =="oregon")
 				{
+					finalid++;
 					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet Oregon");
@@ -1804,10 +1833,10 @@ request(xmlurl, function(err, resp, body)
 						jid_descr = jid_descr+'var '+jidhygro+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-					jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t'+jidhygro+' = 42;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+					jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidhygro+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 					app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'")\n';
@@ -1868,6 +1897,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto =="owl")
 				{
+					finalid++;
 					console.log(" Equipement de protocole "+proto+".");
 					console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
 					console.log("  Ajout dans le script Zidom du test de remontee sur cet OWL");
@@ -1889,11 +1919,11 @@ request(xmlurl, function(err, resp, body)
 						jid_descr = jid_descr+'var '+jidpowerpower+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 						jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-					//jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t'+jidpowertotal+' = 88;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t'+jidpowerpower+' = 88;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-						jid_file = jid_file+'\t\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+					//jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidpowertotal+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidpowerpower+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 					periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 					app_undefined = app_undefined+'\n		if (owl_id=="'+id_eqp+'")\n';
@@ -1930,6 +1960,7 @@ request(xmlurl, function(err, resp, body)
 				}
 				else if (proto == "undefined")
 				{
+					finalid++;
 					console.log(" Equipement de protocole "+proto+".");
 					/*if (type_eqp =="power")
 					{
@@ -1951,11 +1982,11 @@ request(xmlurl, function(err, resp, body)
 							jid_descr = jid_descr+'var '+jidpowerpower+' = require(\'string\');\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-						//jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t'+jidpowertotal+' = 88;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t'+jidpowerpower+' = 88;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+						//jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidpowertotal+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidpowerpower+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 						
 						console.log(" Equipement " + name_eqp + ", de type " + type_eqp + " / Id : "+ id_eqp);
@@ -2013,11 +2044,11 @@ request(xmlurl, function(err, resp, body)
 							jid_descr = jid_descr+'var '+jidhygro+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-						jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t'+jidnoise+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t'+jidhygro+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidnoise+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidhygro+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'")\n';
@@ -2114,12 +2145,12 @@ request(xmlurl, function(err, resp, body)
 							jid_descr = jid_descr+'var '+jidtotalrain+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidcurrentrain+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
-						//jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t'+jidnoise+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t'+jidradio+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t'+jidtotalrain+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t\t'+jidcurrentrain+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+						//jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidnoise+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidtotalrain+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidcurrentrain+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'")\n';
@@ -2195,12 +2226,12 @@ request(xmlurl, function(err, resp, body)
 							jid_descr = jid_descr+'var '+jidavgwind+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jiddir+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
-						//jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t'+jidnoise+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t'+jidradio+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t'+jidavgwind+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t\t'+jiddir+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t\t\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+						//jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidnoise+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidavgwind+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jiddir+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'")\n';
@@ -2272,16 +2303,16 @@ request(xmlurl, function(err, resp, body)
 						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-						jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'" && dev == "Light/UV")\n';
 						app_undefined = app_undefined+'		{\n';
 						app_undefined = app_undefined+'			console.log(\" Test de l equipement ' + name_eqp + ', d\'ID Zibase '+id_eqp+' et de type '+type_eqp+'\");\n';
-						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + uvl;\n';
-						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP | Procole '+proto+', lumiere: \" + uvl);\n';
+						app_undefined = app_undefined+'			http_request = "http://'+jeedom_ip+jeedom_chemin+jeedom_api+'&type=virtual&id=\"+'+jid+'+\"&value=\" + uv;\n';
+						app_undefined = app_undefined+'			console.log(\"  Envoi de la requete HTTP | Procole '+proto+', lumiere: \" + uv);\n';
 						app_undefined = app_undefined+'			console.log(\"  Requete :\" + http_request);\n';
 						app_undefined = app_undefined+'			request(http_request, function(error, response, body)\n';
 						app_undefined = app_undefined+'			{if (debug_http_request=="yes"){ console.log(new Date() + \" \" + body); }});\n';
@@ -2318,8 +2349,8 @@ request(xmlurl, function(err, resp, body)
 						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-						jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 						app_undefined = app_undefined+'\n		if (id=="'+id1_eqp+'")\n';
@@ -2385,8 +2416,8 @@ request(xmlurl, function(err, resp, body)
 						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-						jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 						app_undefined = app_undefined+'\n		if (id=="'+id1_eqp+'")\n';
@@ -2448,8 +2479,8 @@ request(xmlurl, function(err, resp, body)
 							jidbatterie = "j_"+periph_jeedom+"_batterie";
 						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
-						jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 
 						app_undefined = app_undefined+'\n		if (id=="'+id1_eqp+'")\n';
@@ -2514,9 +2545,9 @@ request(xmlurl, function(err, resp, body)
 						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-						jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'" && sta =="ON")\n';
@@ -2597,9 +2628,9 @@ request(xmlurl, function(err, resp, body)
 						jid_descr = jid_descr+'var '+jid+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidbatterie+' = \'\';\n';
 							jid_descr = jid_descr+'var '+jidradio+' = \'\';\n';
-						jid_file = jid_file+'\t'+jid+' = 42;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t'+jidbatterie+' = 84;\t//'+periph_jeedom+';\n';
-							jid_file = jid_file+'\t\t\t'+jidradio+' = 88;\t//'+periph_jeedom+';\n';
+						jid_file = jid_file+'\t'+jid+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidbatterie+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
+							jid_file = jid_file+'\t'+jidradio+' = '+finalid+';\t\t\t\t\t\t//'+periph_jeedom+';\n';
 						periph_file = periph_file+type_eqp+'\t'+periph_jeedom+'\t'+id_eqp+'\tid_'+'\n';
 					
 						app_undefined = app_undefined+'\n		if (id=="'+id_eqp+'" && sta =="ON")\n';
