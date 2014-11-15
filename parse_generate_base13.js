@@ -201,6 +201,7 @@ test_zidom = test_zidom+'		visionic868_status = "";\n';
 test_zidom = test_zidom+'	chacon = S(msg).include(\'Chacon\');\n';
 test_zidom = test_zidom+'		chacon_status = "";\n';
 test_zidom = test_zidom+'	domia = S(msg).include(\'DOMIA\') || S(msg).include(\'Domia\');\n';
+test_zidom = test_zidom+'		domia_id = "";\n';
 test_zidom = test_zidom+'		domia_status = "";\n';
 test_zidom = test_zidom+'	rfx10 = S(msg).include(\'X10\');\n';
 test_zidom = test_zidom+'		rfx10_status = "";\n';
