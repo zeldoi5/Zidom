@@ -286,7 +286,7 @@ test_zidom = test_zidom+'		console.log("Debug : chacon    : " + chacon + " | Com
 test_zidom = test_zidom+'	}\n';
 
 test_zidom = test_zidom+'\n	//Test de remontees de PROTOCOLE 4 : composants DOMIA : 	Sent radio ID (1 Burst(s), Protocols=\'Domia\' ): M13_ON\n';
-test_zidom = test_zidom+'	if (S(msg).include(\'DOMIA\'))\n';
+test_zidom = test_zidom+'	if ((S(msg).include(\'DOMIA\') || S(msg).include(\'Domia\')) && !(S(msg).include(\'Chacon\') || S(msg).include(\'CHACON\')))\n';
 test_zidom = test_zidom+'	{\n';
 test_zidom = test_zidom+'	    domia_id  = S(msg).between("Domia\' ): ", \'_\').s;\n';
 test_zidom = test_zidom+'		domia = true;\n';
